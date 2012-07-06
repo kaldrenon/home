@@ -1,3 +1,6 @@
+# Clone vundle
+git submodule init && git submodule update
+
 # for each file, remove it if it exists as a plain file or a symlink
 if [ -e ~/.vimrc ] || [ -h ~/.vimrc ]
 then

@@ -25,10 +25,14 @@ alias enoc="task pro:enoc"
 alias home="task pro:home"
 alias t="task"
 alias ta="task add"
-alias ls="ls --color"
 alias grep="grep --color"
 alias c="clear;"
 alias rh='clear; rem; home'
+
+# gcp
+
+# Smart LS for git repos
+alias ls="if [ -e .git ] ; then ls --color -a; else ls --color; fi"
 
 _-accept-line () {
   emulate -L zsh
