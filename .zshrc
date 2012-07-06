@@ -32,7 +32,12 @@ alias rh='clear; rem; home'
 # gcp
 
 # Smart LS for git repos
-alias ls="if [ -e .git ] ; then ls --color -a; else ls --color; fi"
+if [[ `hostname` == "afallows" ]] ; then
+  LS_COLO_FLAG="-G" ;
+else 
+  LS_COLO_FLAG="--color" ;
+fi
+alias ls="if [ -e .git ] ; then ls $LS_COLO_FLAG -a; else ls $LS_COLO_FLAG ; fi"
 
 _-accept-line () {
   emulate -L zsh
