@@ -6,4 +6,4 @@ There is also an install script in the root directory of the repo, but be carefu
 
 The fastest way to grab this is: <code>git clone git://github.com/kaldrenon/vim-tools; cd vim-tools; ./install.sh</code>
 
-Note that because every bundle used by Pathogen is a clone of another git repo, I'm not sure whether those will be cloned too when you clone the major project.
+Note that I am using Vundle, so to pick up the plugins I use, you'll want to run <code>:BundleInstall</code> when you start vim for the first time after cloning and installing.
