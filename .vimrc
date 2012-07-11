@@ -27,7 +27,8 @@ silent! colorscheme wombat256
 
 "Set options for plugins
 let g:neocomplcache_enable_at_startup = 1
-let g:vimwiki_list = [{'path': '~/Dropbox/docs/vimwiki'}]
+let g:vimwiki_list = [{'path': '~/Dropbox/docs/vimwiki/'}]
+let g:vimwiki_conceallevel = 0
 let g:vimroom_width=100
 let g:vimroom_navigational_keys=0
 
@@ -114,12 +115,6 @@ map <silent> <C-t> <C-W>n<C-W>_
 set noea " Prevent window stack from automatically evening out when one closes
 set wmh=0 " No max height on windows.
 
-set ofu=syntaxcomplete#Complete
-"ruby omnicomplete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 

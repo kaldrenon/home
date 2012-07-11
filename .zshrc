@@ -28,8 +28,15 @@ alias ta="task add"
 alias grep="grep --color"
 alias c="clear;"
 alias rh='clear; rem; home'
+alias kal='ssh kaldrenon@kaldrenon.selfip.net'
+alias websh='ssh kaldren1@kaldrenon.com'
 
 # gcp
+gcp() {
+  git add *
+  git commit -m "$*"
+  git push
+}
 
 # Smart LS for git repos
 if [[ `hostname` == "afallows" ]] ; then
@@ -37,7 +44,7 @@ if [[ `hostname` == "afallows" ]] ; then
 else 
   LS_COLO_FLAG="--color" ;
 fi
-alias ls="if [ -e .git ] ; then ls $LS_COLO_FLAG -a; else ls $LS_COLO_FLAG ; fi"
+alias ls="ls $LS_COLO_FLAG -a"
 
 _-accept-line () {
   emulate -L zsh

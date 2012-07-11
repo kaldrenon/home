@@ -9,10 +9,7 @@ set columns=100
 
 cd ~/Dropbox
 
-function! DoFocusMode()
-  set invfu 
-  set columns=100
-endfunction
+if has("mac")
+  set guifont=Consolas:h16
+endif
 
-command! FocusMode call DoFocusMode()
-map <silent> <F1> :FocusMode <cr>
