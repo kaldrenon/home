@@ -69,6 +69,8 @@ set ruler
 set guifont=Consolas:h12
 syntax on
 set bs=2
+set laststatus=2
+set stl=%m%y\ %f%=[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%% 
 
 " Folding
 set foldenable
