@@ -88,9 +88,11 @@ set nolist
 
 " Clear search highlighting with \/
 set hls
-noremap <silent><Leader>c :nohls<CR>
-nmap <silent><Leader>t :NERDTree<cr>
-nmap <silent><Leader>T :NERDTreeClose<cr>
+nnoremap <silent><Leader>x :s/^ /✓/
+nnoremap <silent><Leader>X :s/^✓/ /
+nnoremap <silent><Leader>c :nohls<CR>
+nnoremap <silent><Leader>t :NERDTree<cr>
+nnoremap <silent><Leader>T :NERDTreeClose<cr>
 
 " Kick the cursor habit
 for prefix in ['i', 'n', 'v']
@@ -108,12 +110,12 @@ map Y y$
 "  - Ctrl-j and k move up/down in window stack
 "    and maximize after the new bufffer is selected
 "  - Ctrl h and l move left/right between window stacks
-map <silent> <C-m> :wincmd _ <cr>
-map <silent> <C-j> <C-W>j<C-W>_
-map <silent> <C-k> <C-W>k<C-W>_
-map <silent> <C-h> :wincmd h <cr>
-map <silent> <C-l> :wincmd l <cr>
-map <silent> <C-t> <C-W>n<C-W>_
+nnoremap <silent> <C-m> :wincmd _ <cr>
+nnoremap <silent> <C-j> <C-W>j<C-W>_
+nnoremap <silent> <C-k> <C-W>k<C-W>_
+nnoremap <silent> <C-h> :wincmd h <cr>
+nnoremap <silent> <C-l> :wincmd l <cr>
+nnoremap <C-t> :99new
 set noea " Prevent window stack from automatically evening out when one closes
 set wmh=0 " No max height on windows.
 

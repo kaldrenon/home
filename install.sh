@@ -1,5 +1,5 @@
 # Clone vundle
-git submodule init && git submodule update
+git clone git://github.com/gmarik/vundle .vim/bundle/vundle
 
 # for each file, remove it if it exists as a plain file or a symlink
 if [ -e ~/.vimrc ] || [ -h ~/.vimrc ]
