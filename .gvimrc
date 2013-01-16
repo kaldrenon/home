@@ -2,14 +2,11 @@
 " Disable macvim blinking cursor
 set gcr=n:blinkon0
 
-set guioptions-=T
-set guioptions-=r
+set guioptions=
 " Window size
 set columns=100 
+set lines=50
 
 cd ~/Dropbox
 
-if has("mac")
-  set guifont=Consolas:h16
-endif
-
+set guifont="Inconsolata Medium 12"

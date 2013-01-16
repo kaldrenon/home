@@ -1,9 +1,8 @@
-rm %HOMEDRIVE%%HOMEPATH%\_vimrc
-rm %HOMEDRIVE%%HOMEPATH%\_gvimrc
-rm -R %HOMEDRIVE%%HOMEPATH%\vimfiles
-rm -R %HOMEDRIVE%%HOMEPATH%\vimfiles
+del %HOMEDRIVE%%HOMEPATH%\_vimrc
+del %HOMEDRIVE%%HOMEPATH%\_gvimrc
+rmdir /S /Q %HOMEDRIVE%%HOMEPATH%\vimfiles
 
-cp -R .vim %HOMEDRIVE%%HOMEPATH%\vimfiles
-cp .vimrc %HOMEDRIVE%%HOMEPATH%\_vimrc
-cp .gvimrc %HOMEDRIVE%%HOMEPATH%\_gvimrc
+xcopy /S /E /C .vim\*.* %HOMEDRIVE%%HOMEPATH%\vimfiles\*.*
+copy .vimrc %HOMEDRIVE%%HOMEPATH%\_vimrc
+copy .gvimrc %HOMEDRIVE%%HOMEPATH%\_gvimrc
 
