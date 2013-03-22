@@ -4,6 +4,8 @@ If you want to use it, just clone the repo and copy .gvimrc, .vimrc, and the .vi
 
 There is also an install script in the root directory of the repo, but be careful with it because I'm lazy, so right now it will wipe out any existing version of these files that you might have.
 
-The fastest way to grab this is: <code>git clone git://github.com/kaldrenon/vim-tools; cd vim-tools; ./install.sh</code>
+The fastest way to grab this is: 
 
-Note that I am using Vundle, so to pick up the plugins I use, you'll want to run <code>:BundleInstall</code> when you start vim for the first time after cloning and installing.
+    git clone git://github.com/kaldrenon/vim-tools; cd vim-tools; ./install.sh
+
+Note that I am using Vundle, so to pick up the plugins I use, you'll want to run `:BundleInstall` when you start vim for the first time after cloning and installing.
