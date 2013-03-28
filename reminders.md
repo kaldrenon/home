@@ -1,6 +1,5 @@
 # Today
 
-
 ## Big 3
 * Set up a table schema for CSSI
     * install PgSQL on arya
@@ -11,3 +10,4 @@
 
 ## Small 2
 * call dispatch for bike
+* email Gary and Juli
