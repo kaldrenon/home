@@ -6,7 +6,7 @@
     * borrow from KingdomCoders
     * review docs from Frank and Pat
 * eLocal offer paperwork
-* State taxes
+* TacNet Distress+HUDroid progress
 
 ## Small 2
 * call dispatch for bike
