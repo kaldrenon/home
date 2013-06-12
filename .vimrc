@@ -15,17 +15,23 @@ Bundle 'vimwiki'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kogakure/vim-sparkup'
 Bundle 'mattn/gist-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'tobiassvn/vim-gemfile'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
+Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on
 
+set t_Co=256
 silent! colorscheme wombat256
 
 "Set options for plugins
@@ -82,10 +88,6 @@ syntax on
 set bs=2
 set laststatus=2
 set stl=%m%y\ %f%=%#warningmsg#%{SyntasticStatuslineFlag()}%*[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%% 
-
-" Folding
-set foldenable
-set foldmethod=syntax
 
 " Tab formatting
 set shiftwidth=2

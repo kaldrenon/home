@@ -7,7 +7,7 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/kaldrenon/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -16,7 +16,7 @@ compinit
 PROMPT='[%T][%n@%m:%2~]$ '
 RPROMPT='' # prompt for right side of screen
 
-PATH=$PATH:$HOME/Dropbox/bin
+PATH=/usr/local/bin:$PATH:$HOME/Dropbox/bin
 EDITOR=vim
 TERM=screen-256color
 export TERM
@@ -24,35 +24,27 @@ export TERM
 ###
 # TASKWARRIOR ALIASES AND FUNCTIONS
 ###
-alias enoc="task pro:enoc"
-alias home="task pro:home"
-alias rit="task pro:rit"
-alias ivcf="task pro:rit.ivcf"
-alias iva="task add pro:rit.ivcf"
-
-# Temporary aliases for Fall Quarter
-alias rt="task pro:rit +rt"
-alias rta="task add pro:rit +rt"
-alias mp="task pro:rit +mp"
-alias mpa="task add pro:rit +mp"
-alias sp="task pro:rit +sp"
-alias spa="task add pro:rit +sp"
-alias os="task pro:rit +os"
-alias osa="task add pro:rit +os"
-winter() {
-  clear
-  rt
-  mp
-  sp
-  os
-  rit -rt -mp -sp -os
-  ivcf
-}
 
 alias t="task"
 alias ta="task add"
-alias td="task due:today"
+alias td="task +today"
 alias tda="task add due:today"
+
+alias tw="task pro:elocal"
+alias twa="task add pro:elocal"
+
+alias home="task pro:home"
+alias th="task pro:home"
+alias tha="task add pro:home"
+
+work(){
+  clear
+  td
+  tw -today
+}
+tdm(){
+  task $1 mod +today
+}
 today() {
   clear
   td
@@ -64,7 +56,6 @@ alias c="clear;"
 alias rh='clear; rem; home'
 alias kal='ssh kaldrenon@kaldrenon.selfip.net'
 alias websh='ssh kaldren1@kaldrenon.com'
-alias cdrit="cd ~/Dropbox/rit2012/"
 alias agi="sudo apt-get install -y"
 # gcp
 gcp() {
@@ -73,13 +64,8 @@ gcp() {
   git push
 }
 
-# Edit a Google Doc in vim
-gde() {
-  google docs edit --title "$*" --editor vim
-}
-
-# Smart LS for git repos
-if [[ `hostname` == "afallows" ]] ; then
+# Smart LS
+if [[ `hostname` == "fallows" ]] ; then
   LS_COLO_FLAG="-G" ;
 else 
   LS_COLO_FLAG="--color" ;
