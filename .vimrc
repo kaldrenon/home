@@ -13,6 +13,7 @@ Bundle 'vimwiki'
 
 " Independent Plugins (on github)
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'elzr/vim-json'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'kchmck/vim-coffee-script'
@@ -99,13 +100,13 @@ set wrap
 set linebreak
 set nolist
 
-" Clear search highlighting with \/
+" Clear search highlighting with \c
 set hls
 nnoremap <silent><Leader>c :nohls<CR>
 
 " Various leader maps
-nnoremap <silent><Leader>x :s/^ /✓/<cr>
-nnoremap <silent><Leader>X :s/^✓/ /<cr>
+nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr>
+nnoremap <silent><Leader>X :s/^✓/ /<cr>:nohls<cr>
 nnoremap <silent><Leader>t :NERDTree<cr>
 nnoremap <silent><Leader>T :NERDTreeClose<cr>
 nnoremap <silent><Leader>w :w<cr>:bd<cr>

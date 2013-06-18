@@ -13,13 +13,24 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-PROMPT='[%T][%n@%m:%2~]$ '
+autoload -U colors && colors
+
+PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
+# Ensure local/bin precedes bin, add Dropbox to PATH
 PATH=/usr/local/bin:$PATH:$HOME/Dropbox/bin
+
+# Duh
 EDITOR=vim
+export EDITOR
+
+# Support colors for excellence
 TERM=screen-256color
 export TERM
+
+# Used for JRuby optimization for Rails
+export JAVA_OPTS="-d32"
 
 ###
 # TASKWARRIOR ALIASES AND FUNCTIONS
@@ -32,19 +43,37 @@ alias tda="task add due:today"
 
 alias tw="task pro:elocal"
 alias twa="task add pro:elocal"
+alias twbw="task pro:elocal burndown.weekly"
+alias twbd="task pro:elocal burndown.daily"
 
-alias home="task pro:home"
 alias th="task pro:home"
 alias tha="task add pro:home"
 
+ts(){
+  task $1 start
+}
+
+usage(){
+  du -hc $1 | grep total
+}
+
 work(){
   clear
-  td
-  tw -today
+  td pro:elocal
+  tw +dragon -today -later
+  tw -today -dragon -later
 }
+
+home(){
+  clear
+  td pro:home
+  th -today
+}
+
 tdm(){
   task $1 mod +today
 }
+
 today() {
   clear
   td
@@ -53,13 +82,13 @@ today() {
 ### OTHER ALIASES 
 alias grep="grep --color"
 alias c="clear;"
-alias rh='clear; rem; home'
 alias kal='ssh kaldrenon@kaldrenon.selfip.net'
 alias websh='ssh kaldren1@kaldrenon.com'
 alias agi="sudo apt-get install -y"
+
 # gcp
 gcp() {
-  git add *
+  git add -A
   git commit -m "$*"
   git push
 }
@@ -72,6 +101,7 @@ else
 fi
 alias ls="ls $LS_COLO_FLAG -a"
 
+# Show the task being run when aliases are involved
 _-accept-line () {
   emulate -L zsh
   local -a WORDS
@@ -84,6 +114,7 @@ _-accept-line () {
 }
 zle -N accept-line _-accept-line
 
+# Show mode for zsh vi bindings
 function zle-line-init zle-keymap-select {
   RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
   RPS2=$RPS1
@@ -92,5 +123,7 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source "$HOME/.tmuxinator/scripts/tmuxinator"
