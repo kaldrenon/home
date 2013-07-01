@@ -48,6 +48,20 @@ alias twbd="task pro:elocal burndown.daily"
 
 alias th="task pro:home"
 alias tha="task add pro:home"
+alias thbw="task pro:home burndown.weekly"
+alias thbd="task pro:home burndown.daily"
+
+alias tb="task pro:buy"
+alias buy="task add pro:buy"
+
+bought(){
+  task $1 do
+}
+
+shop(){
+  clear
+  task pro:buy
+}
 
 ts(){
   task $1 start
@@ -85,6 +99,8 @@ alias c="clear;"
 alias kal='ssh kaldrenon@kaldrenon.selfip.net'
 alias websh='ssh kaldren1@kaldrenon.com'
 alias agi="sudo apt-get install -y"
+alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 # gcp
 gcp() {
@@ -127,3 +143,22 @@ zle -N zle-keymap-select
 PATH=$PATH:$HOME/.rvm/bin 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source "$HOME/.tmuxinator/scripts/tmuxinator"
+
+
+# Configure AWS environment variables
+case $HOST in
+  fallows)
+    export JAVA_HOME="$(/usr/libexec/java_home)";
+    export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)";
+    export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)";
+    export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars";
+
+    export AWS_ELB_HOME="/Users/andrew/elb_tools";
+    export AWS_ACCESS_KEY_ID="AKIAJZAR6QC6Q2L53AVQ";
+    export AWS_SECRET_ACCESS_KEY="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";
+    export AWS_SSH_KEY_ID=elocal_andrew;
+    export KNIFE_USER_NAME=asfallows;
+    ;;
+  *)
+    ;;
+esac
