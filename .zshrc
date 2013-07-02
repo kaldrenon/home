@@ -158,6 +158,7 @@ case $HOST in
     export AWS_SECRET_ACCESS_KEY="nExepV4o2yjF9Ekg2lYj2fZt9czzERPqJtBVPHHv";
     export AWS_SSH_KEY_ID=elocal_andrew;
     export KNIFE_USER_NAME=asfallows;
+    export PATH=$PATH:/Users/andrew/elb_tools/bin
     ;;
   *)
     ;;
