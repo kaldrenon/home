@@ -1,4 +1,4 @@
-# Lines configured by zsh-newuser-install
+# Limes configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -12,6 +12,8 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+bindkey -M vicmd '?' history-incremental-search-backward
 
 autoload -U colors && colors
 
@@ -33,18 +35,19 @@ export TERM
 export JAVA_OPTS="-d32"
 
 ###
-# TASKWARRIOR ALIASES AND FUNCTIONS
+# TW: Taskwarrior aliases and functions
 ###
 
 alias t="task"
 alias ta="task add"
 alias td="task +today"
-alias tda="task add due:today"
 
 alias tw="task pro:elocal"
 alias twa="task add pro:elocal"
 alias twbw="task pro:elocal burndown.weekly"
 alias twbd="task pro:elocal burndown.daily"
+alias tda="task add pro:elocal +dragon"
+alias tdat="task add pro:elocal +dragon +today"
 
 alias th="task pro:home"
 alias tha="task add pro:home"
@@ -65,10 +68,6 @@ shop(){
 
 ts(){
   task $1 start
-}
-
-usage(){
-  du -hc $1 | grep total
 }
 
 work(){
@@ -93,21 +92,47 @@ today() {
   td
 }
 
-### OTHER ALIASES 
-alias grep="grep --color"
+### Other aliases 
+Alias grep="grep --color"
 alias c="clear;"
 alias kal='ssh kaldrenon@kaldrenon.selfip.net'
 alias websh='ssh kaldren1@kaldrenon.com'
 alias agi="sudo apt-get install -y"
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+alias irb="pry"
 
-# gcp
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add -A"
+
+###
+# FUNC: Custom Functions
+###
+# git add, commit, push
 gcp() {
   git add -A
   git commit -m "$*"
   git push
 }
+# git add, status, commit
+gcs() {
+  git add -A
+  git status
+  print -z 'git commit -m "'
+}
+
+usage(){
+  du -hc $1 | grep total
+}
+
+zz() {
+  source ~/.zshrc
+}
+
+###
+# MISC: Various things
+###
 
 # Smart LS
 if [[ `hostname` == "fallows" ]] ; then
@@ -163,3 +188,13 @@ case $HOST in
   *)
     ;;
 esac
+
+# Hopefully address some issues with home/end
+[[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
+                               bindkey -M vicmd "$terminfo[khome]" beginning-of-line
+[[ -z "$terminfo[kend]"  ]] || bindkey -M viins "$terminfo[kend]" end-of-line &&
+                               bindkey -M vicmd "$terminfo[kend]" end-of-line
+[[ -z "$terminfo[kdch1]" ]] || bindkey -M viins "$terminfo[kdch1]" vi-delete-char &&
+                               bindkey -M vicmd "$terminfo[kdch1]" vi-delete-char
+[[ -z "$terminfo[kpp]"   ]] || bindkey -M viins -s "$terminfo[kpp]" ''
+[[ -z "$terminfo[knp]"   ]] || bindkey -M viins -s "$terminfo[knp]" ''
