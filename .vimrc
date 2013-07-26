@@ -12,11 +12,9 @@ endif
 " Vim-scripts plugins
 Bundle 'JSON.vim'
 Bundle 'JavaScript-Indent'
-Bundle 'neocomplcache'
 Bundle 'vimwiki'
 
 " Independent Plugins (on github)
-Bundle 'amdt/vim-niji'
 Bundle 'bling/vim-airline'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'elzr/vim-json'
@@ -34,6 +32,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wikitopian/hardmode'
 
@@ -45,7 +44,7 @@ silent! colorscheme wombat256
 "Set options for plugins
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
-let g:neocomplcache_enable_at_startup = 1
+let g:niji_matching_filteypes = ['ruby','haml','coffee','scss']
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0 
 let g:syntastic_enable_signs = 1
@@ -58,9 +57,9 @@ let g:vimroom_navigational_keys=0
 let g:github_dashboard = { 'username': 'kaldrenon' }
 
 " <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 hi NonText guibg=bg guifg=#353535
 hi SpecialChars guibg=bg guifg=#353535
