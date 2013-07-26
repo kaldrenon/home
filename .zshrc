@@ -93,7 +93,7 @@ today() {
 }
 
 ### Other aliases 
-Alias grep="grep --color"
+alias grep="grep --color"
 alias c="clear;"
 alias kal='ssh kaldrenon@kaldrenon.selfip.net'
 alias websh='ssh kaldren1@kaldrenon.com'

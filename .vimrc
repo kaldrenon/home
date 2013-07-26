@@ -16,6 +16,8 @@ Bundle 'neocomplcache'
 Bundle 'vimwiki'
 
 " Independent Plugins (on github)
+Bundle 'amdt/vim-niji'
+Bundle 'bling/vim-airline'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'elzr/vim-json'
 Bundle 'flazz/vim-colorschemes'
@@ -23,10 +25,11 @@ Bundle 'gmarik/vundle'
 Bundle 'hsitz/VimOrganizer'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kogakure/vim-sparkup'
-Bundle 'Lokaltog/powerline'
+Bundle 'mhinz/vim-signify'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tobiassvn/vim-gemfile'
+Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rails'
@@ -40,6 +43,8 @@ set t_Co=256
 silent! colorscheme wombat256
 
 "Set options for plugins
+let g:airline_left_sep=' '
+let g:airline_right_sep=' '
 let g:neocomplcache_enable_at_startup = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0 
