@@ -1,8 +1,8 @@
 "Load plugins with Vundle
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set runtimepath+=~/.vim/bundle/vundle
+set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
 if exists('g:powerline_loaded')
@@ -69,7 +69,7 @@ command! Bd :bd
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
 
 "Highlight matched HTML tags
-set mps+=<:>
+set matchpairs+=<:>
 set showmatch
 set matchtime=3
 
@@ -88,9 +88,9 @@ set number
 set ruler
 set guifont=Consolas:h12
 syntax on
-set bs=2
-set laststatus=2
-set stl=%m%y\ %f%=%#warningmsg#%{fugitive#statusline()}%{SyntasticStatuslineFlag()}%*[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%% 
+set backspace=2                        " backspace behaves as in other software
+set laststatus=2                       " always show statusline
+set statusline=%m%y\ %f%=%#warningmsg#%{fugitive#statusline()}%{SyntasticStatuslineFlag()}%*[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%% 
 
 " Tab formatting
 set shiftwidth=2
@@ -103,7 +103,7 @@ set linebreak
 set nolist
 
 " Clear search highlighting with \c
-set hls
+set hlsearch
 set incsearch
 nnoremap <silent><Leader>c :nohls<CR>
 
@@ -142,8 +142,8 @@ nnoremap <silent> <C-k> <C-W>k<C-W>_
 nnoremap <silent> <C-h> :wincmd h <cr>
 nnoremap <silent> <C-l> :wincmd l <cr>
 nnoremap <C-t> :99new 
-set noea " Prevent window stack from automatically evening out when one closes
-set wmh=0 " No max height on windows.
+set noequalalways " Prevent window stack from automatically evening out when one closes
+set winminheight=0 " No max height on windows.
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
