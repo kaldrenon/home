@@ -130,6 +130,13 @@ zz() {
   source ~/.zshrc
 }
 
+tmcd() {
+  for pane in `tmux list-panes -F '#P'`; do
+    tmux select-pane -t $pane
+    tmux send-keys "cd $1" C-m c C-m
+  done
+}
+
 ###
 # MISC: Various things
 ###
