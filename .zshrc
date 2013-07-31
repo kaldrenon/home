@@ -17,22 +17,20 @@ bindkey -M vicmd '?' history-incremental-search-backward
 
 autoload -U colors && colors
 
+# Prompt: [time (green)][user@host (blue): current path (depth 2)
 PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
 # Ensure local/bin precedes bin, add Dropbox to PATH
 PATH=/usr/local/bin:$PATH:$HOME/Dropbox/bin
 
-# Duh
+# Vim is default editor for all things
 EDITOR=vim
 export EDITOR
 
-# Support colors for excellence
+# Support colors for excellence!
 TERM=screen-256color
 export TERM
-
-# Used for JRuby optimization for Rails
-export JAVA_OPTS="-d32"
 
 ###
 # TW: Taskwarrior aliases and functions
@@ -95,8 +93,8 @@ today() {
 ### Other aliases 
 alias grep="grep --color"
 alias c="clear;"
-alias kal='ssh kaldrenon@kaldrenon.selfip.net'
-alias websh='ssh kaldren1@kaldrenon.com'
+alias kal='ssh andrew@kaldrenon.selfip.net'
+alias websh='ssh kaldreno@kaldrenon.com'
 alias agi="sudo apt-get install -y"
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
@@ -109,27 +107,49 @@ alias gaa="git add -A"
 ###
 # FUNC: Custom Functions
 ###
+
+appg() {
+  case $HOST in
+    fallows.elocal)
+      ;;
+    fallows)
+      echo "Executing 'brew install $1"
+      brew install $1
+      ;;
+    *)
+      echo "Executing 'sudo apt-get install $1"
+      sudo apt-get install $1
+      ;;
+  esac
+}
+
 # git add, commit, push
 gcp() {
   git add -A
   git commit -m "$*"
   git push
 }
-# git add, status, commit
+
+# git add, status, prepare to commit
 gcs() {
   git add -A
   git status
   print -z 'git commit -m "'
 }
 
+# Quick alias to get disk usage of a dir
 usage(){
   du -hc $1 | grep total
 }
 
+# Reload this file
 zz() {
   source ~/.zshrc
 }
 
+# CD to given path in all panes 
+# NOTE: currently assumes all panes are at a clear zsh prompt; must use absolute dirs or 
+# have all panes in same path to get the same result
 tmcd() {
   for pane in `tmux list-panes -F '#P'`; do
     tmux select-pane -t $pane
@@ -162,9 +182,9 @@ _-accept-line () {
 }
 zle -N accept-line _-accept-line
 
-# Show mode for zsh vi bindings
+# Show mode in right prompt for zsh vi bindings
 function zle-line-init zle-keymap-select {
-  RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+  RPS1="${${KEYMAP/vicmd/- N -}/(main|viins)/- I -}"
   RPS2=$RPS1
   zle reset-prompt
 }
@@ -174,12 +194,14 @@ zle -N zle-keymap-select
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# Add tmuxinator scripts
 [[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source "$HOME/.tmuxinator/scripts/tmuxinator"
 
 
 # Configure AWS environment variables
 case $HOST in
-  fallows)
+  fallows.elocal)
     export JAVA_HOME="$(/usr/libexec/java_home)";
     export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)";
     export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)";
@@ -191,10 +213,15 @@ case $HOST in
     export AWS_SSH_KEY_ID=elocal_andrew;
     export KNIFE_USER_NAME=asfallows;
     export PATH=$PATH:/Users/andrew/elb_tools/bin
+
+    # Used for JRuby optimization for Rails
+    export JAVA_OPTS="-d32"
     ;;
   *)
     ;;
 esac
+
+
 
 # Hopefully address some issues with home/end
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&

@@ -119,6 +119,8 @@ nnoremap <silent><Leader>g :GHDashboard<cr>
 nnoremap <silent><Leader>o :only<cr>
 nnoremap ZA :wqa<cr>
 
+" extra escape option
+inoremap kj <esc>
 
 " Kick the cursor habit
 for prefix in ['i', 'n', 'v']
