@@ -162,7 +162,7 @@ tmcd() {
 ###
 
 # Smart LS
-if [[ `hostname` == "fallows" ]] ; then
+if [[ `hostname` == "fallows.elocal" ]] ; then
   LS_COLO_FLAG="-G" ;
 else 
   LS_COLO_FLAG="--color" ;
