@@ -23,6 +23,8 @@ Bundle 'gmarik/vundle'
 Bundle 'hsitz/VimOrganizer'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kogakure/vim-sparkup'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
@@ -61,6 +63,8 @@ let g:vimwiki_conceallevel = 0
 let g:vimroom_width=100
 let g:vimroom_navigational_keys=0
 let g:github_dashboard = { 'username': 'kaldrenon' }
+let g:gist_clip_command = 'pbcopy'
+let g:gist_open_browser_after_post = 1
 
 command! W :w
 command! Q :q
@@ -110,8 +114,6 @@ nnoremap <silent><Leader>c :nohls<CR>
 " Various leader maps
 nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr> 
 nnoremap <silent><Leader>X :s/^✓/ /<cr>:nohls<cr>
-nnoremap <silent><Leader>t :NERDTree<cr>
-nnoremap <silent><Leader>T :NERDTreeClose<cr>
 nnoremap <silent><Leader>w :w<cr>:bd<cr>
 nnoremap <silent><Leader>l :lopen<cr>
 nnoremap <silent><Leader>L <C-w>k:lclose<cr>
@@ -143,9 +145,13 @@ nnoremap <silent> <C-j> <C-W>j<C-W>_
 nnoremap <silent> <C-k> <C-W>k<C-W>_
 nnoremap <silent> <C-h> :wincmd h <cr>
 nnoremap <silent> <C-l> :wincmd l <cr>
-nnoremap <C-t> :99new 
+nnoremap <Leader>t :set nosplitbelow<cr>:99new<space>
+nnoremap <Leader>T :set splitbelow<cr>:99new<space>
+nnoremap <Leader>v :set splitright<cr>:vnew<space>
+nnoremap <Leader>V :set nosplitright<cr>:vnew<space>
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
+set splitright
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
