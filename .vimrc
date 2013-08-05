@@ -5,13 +5,19 @@ set runtimepath+=~/.vim/bundle/vundle
 set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
-if exists('g:powerline_loaded')
+if exists('g:loaded_airline')
   set noshowmode
+endif
+
+if has("mac")
+  Bundle 'sjl/vitality.vim'
+  let g:vitality_fix_cursor=0
 endif
 
 " Vim-scripts plugins
 Bundle 'JSON.vim'
 Bundle 'JavaScript-Indent'
+Bundle 'UltiSnips'
 Bundle 'vimwiki'
 
 " Independent Plugins (on github)
@@ -26,7 +32,6 @@ Bundle 'kogakure/vim-sparkup'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
-Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tobiassvn/vim-gemfile'
 Bundle 'tpope/vim-dispatch'
@@ -65,11 +70,12 @@ let g:vimroom_navigational_keys=0
 let g:github_dashboard = { 'username': 'kaldrenon' }
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 command! W :w
 command! Q :q
 command! Bd :bd
-
+command! RS :source ~/.vimrc
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
 
 "Highlight matched HTML tags
@@ -156,5 +162,8 @@ set splitright
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 
+set autoread " automatically reload externally changed buffers
 au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
+au BufRead,BufNewFile *.god setfiletype rb
+au FocusLost * stopinsert
