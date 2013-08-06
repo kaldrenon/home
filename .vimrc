@@ -72,6 +72,8 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+let @w ='/=== Daily LogjV/=== On Deckkd/=== Past Weeksp/=== Daily Logj'
+
 command! W :w
 command! Q :q
 command! Bd :bd
@@ -91,7 +93,6 @@ set wildmode=longest,list
 set nobackup
 set nowritebackup
 set noswapfile
-
 " Basic color and format defaults
 set hidden
 set number
