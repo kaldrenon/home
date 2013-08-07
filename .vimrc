@@ -154,6 +154,8 @@ nnoremap <silent> <C-h> :wincmd h <cr>
 nnoremap <silent> <C-l> :wincmd l <cr>
 nnoremap <Leader>t :set nosplitbelow<cr>:99new<space>
 nnoremap <Leader>T :set splitbelow<cr>:99new<space>
+  " Temporarily make ^T annoying for the sake of relearning
+nnoremap <C-T> <C-Z>
 nnoremap <Leader>v :set splitright<cr>:vnew<space>
 nnoremap <Leader>V :set nosplitright<cr>:vnew<space>
 set noequalalways " Prevent window stack from automatically evening out when one closes

@@ -1,4 +1,9 @@
 snippet day "New day" b
 - `date +"%D"` - `date +"%A"`
-  - $1
+  - ${1:1} - ${2:task}
+
+endsnippet
+
+snippet j "new task" b
+- ${1:1} - ${2:task}
 endsnippet
