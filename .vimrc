@@ -24,6 +24,7 @@ Bundle 'vimwiki'
 Bundle 'bling/vim-airline'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'elzr/vim-json'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'hsitz/VimOrganizer'
@@ -71,6 +72,7 @@ let g:github_dashboard = { 'username': 'kaldrenon' }
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
+let g:miniBufExplMinSize = 2
 
 let @w ='/=== Daily LogjV/=== On Deckkd/=== Past Weeksp/=== Daily Logj'
 
