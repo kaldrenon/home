@@ -72,6 +72,7 @@ let g:github_dashboard = { 'username': 'kaldrenon' }
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsEditSplit='horizontal'
 let g:miniBufExplMinSize = 2
 
 let @w ='/=== Daily LogjV/=== On Deckkd/=== Past Weeksp/=== Daily Logj'
