@@ -129,6 +129,7 @@ nnoremap <silent><Leader>l :lopen<cr>
 nnoremap <silent><Leader>L <C-w>k:lclose<cr>
 nnoremap <silent><Leader>g :GHDashboard<cr>
 nnoremap <silent><Leader>o :only<cr>
+nnoremap <silent><Leader>U :UltiSnipsEdit<cr>
 nnoremap ZA :wqa<cr>
 
 " extra escape option

@@ -221,6 +221,9 @@ case $HOST in
     ;;
 esac
 
+lpsql() {
+  sudo su - postgres -c "export PATH='/Library/PostgreSQL/9.2/bin:$PATH'; psql"
+}
 
 
 # Hopefully address some issues with home/end
