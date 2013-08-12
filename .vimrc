@@ -34,6 +34,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
 Bundle 'scrooloose/syntastic'
+Bundle 'Shougo/unite.vim'
 Bundle 'tobiassvn/vim-gemfile'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
@@ -158,8 +159,17 @@ nnoremap <silent> <C-h> :wincmd h <cr>
 nnoremap <silent> <C-l> :wincmd l <cr>
 nnoremap <Leader>t :set nosplitbelow<cr>:99new<space>
 nnoremap <Leader>T :set splitbelow<cr>:99new<space>
-  " Temporarily make ^T annoying for the sake of relearning
+
+" Unite.vim mappings
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <space>t :Unite -start-insert file_rec<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
+nnoremap <Leader>b :Unite -start-insert buffer<cr>
+
+" Temporarily make ^T annoying for the sake of relearning
 nnoremap <C-T> <C-Z>
+
 nnoremap <Leader>v :set splitright<cr>:vnew<space>
 nnoremap <Leader>V :set nosplitright<cr>:vnew<space>
 set noequalalways " Prevent window stack from automatically evening out when one closes
