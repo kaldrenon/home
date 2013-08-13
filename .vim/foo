@@ -1,0 +1,120 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.004  000.004: --- VIM STARTING ---
+000.063  000.059: Allocated generic buffers
+000.155  000.092: locale set
+000.164  000.009: GUI prepared
+000.169  000.005: clipboard setup
+000.173  000.004: window checked
+000.564  000.391: inits 1
+000.573  000.009: parsing arguments
+057.113  056.540: expanding arguments
+086.070  028.957: shell init
+111.328  025.258: Termcap init
+111.368  000.040: inits 2
+142.336  030.968: init highlight
+155.709  000.168  000.168: sourcing $VIM/vimrc
+164.283  000.081  000.081: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/ftoff.vim
+184.557  000.154  000.154: sourcing /Users/andrew/.vim/bundle/vundle/autoload/vundle.vim
+185.180  000.130  000.130: sourcing /Users/andrew/.vim/bundle/vundle/autoload/vundle/config.vim
+232.859  000.090  000.090: sourcing /Users/andrew/.vim/bundle/vim-json/ftdetect/json.vim
+243.015  000.440  000.440: sourcing /Users/andrew/.vim/bundle/vim-coffee-script/ftdetect/coffee.vim
+243.401  000.062  000.062: sourcing /Users/andrew/.vim/bundle/vim-coffee-script/ftdetect/eco.vim
+269.841  000.238  000.238: sourcing /Users/andrew/.vim/bundle/vim-haml/ftdetect/haml.vim
+283.165  000.147  000.147: sourcing /Users/andrew/.vim/bundle/vim-elixir/ftdetect/elixir.vim
+309.554  000.120  000.120: sourcing /Users/andrew/.vim/bundle/vim-gemfile/ftdetect/Gemfile.vim
+339.772  001.018  001.018: sourcing /Users/andrew/.vim/bundle/vim-ruby/ftdetect/ruby.vim
+348.806  000.053  000.053: sourcing /Users/andrew/.vim/bundle/UltiSnips/ftdetect/UltiSnips.vim
+349.215  000.078  000.078: sourcing /Users/andrew/.vim/bundle/UltiSnips/ftdetect/snippets.vim
+349.753  151.075  148.829: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/filetype.vim
+362.814  000.089  000.089: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/ftplugin.vim
+371.046  000.069  000.069: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/indent.vim
+397.873  004.617  004.617: sourcing /Users/andrew/.vim/bundle/vim-colorschemes/colors/wombat256mod.vim
+426.462  000.319  000.319: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/syncolor.vim
+433.558  000.307  000.307: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/syncolor.vim
+434.172  008.829  008.203: sourcing /Users/andrew/.vim/bundle/vim-colorschemes/colors/wombat256mod.vim
+434.277  009.083  000.254: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/synload.vim
+434.333  024.914  015.831: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/syntax.vim
+478.201  000.145  000.145: sourcing /Users/andrew/.vim/bundle/unite.vim/autoload/unite/filters/matcher_default.vim
+490.802  335.025  153.751: sourcing $HOME/.vimrc
+490.817  013.288: sourcing vimrc file(s)
+503.704  001.489  001.489: sourcing /Users/andrew/.vim/bundle/vitality.vim/plugin/vitality.vim
+538.494  000.819  000.819: sourcing /Users/andrew/.vim/bundle/vim-airline/plugin/airline.vim
+544.778  000.086  000.086: sourcing /Users/andrew/.vim/bundle/gist-vim/plugin/gist.vim
+550.421  000.490  000.490: sourcing /Users/andrew/.vim/bundle/vim-signify/plugin/signify.vim
+562.319  000.087  000.087: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/autoloclist.vim
+563.812  000.119  000.119: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/balloons.vim
+565.994  000.113  000.113: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/checker.vim
+566.391  000.096  000.096: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/cursor.vim
+566.819  000.099  000.099: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/highlighting.vim
+567.238  000.162  000.162: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/loclist.vim
+568.669  000.111  000.111: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/makeprg_builder.vim
+569.084  000.101  000.101: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/modemap.vim
+569.940  000.090  000.090: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/notifiers.vim
+570.722  000.454  000.454: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/registry.vim
+571.356  000.361  000.361: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/signs.vim
+577.609  000.018  000.018: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/autoloclist.vim
+577.655  000.014  000.014: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/balloons.vim
+577.695  000.012  000.012: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/checker.vim
+577.734  000.011  000.011: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/cursor.vim
+577.773  000.011  000.011: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/highlighting.vim
+577.811  000.010  000.010: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/loclist.vim
+577.849  000.010  000.010: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/makeprg_builder.vim
+577.886  000.009  000.009: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/modemap.vim
+577.923  000.009  000.009: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/notifiers.vim
+577.960  000.009  000.009: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/registry.vim
+577.996  000.008  000.008: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic/signs.vim
+642.207  065.060  064.939: sourcing /Users/andrew/.vim/bundle/syntastic/plugin/syntastic.vim
+693.993  001.305  001.305: sourcing /Users/andrew/.vim/bundle/unite.vim/autoload/unite/custom.vim
+694.135  027.910  026.605: sourcing /Users/andrew/.vim/bundle/unite.vim/plugin/unite/bookmark.vim
+699.799  000.239  000.239: sourcing /Users/andrew/.vim/bundle/unite.vim/plugin/unite/buffer.vim
+700.209  000.099  000.099: sourcing /Users/andrew/.vim/bundle/unite.vim/plugin/unite/history_yank.vim
+700.692  000.193  000.193: sourcing /Users/andrew/.vim/bundle/unite.vim/plugin/unite/mru.vim
+701.110  000.155  000.155: sourcing /Users/andrew/.vim/bundle/unite.vim/plugin/unite/window.vim
+701.886  000.565  000.565: sourcing /Users/andrew/.vim/bundle/unite.vim/plugin/unite.vim
+709.871  000.126  000.126: sourcing /Users/andrew/.vim/bundle/vim-dispatch/plugin/dispatch.vim
+736.603  017.359  017.359: sourcing /Users/andrew/.vim/bundle/vim-fugitive/plugin/fugitive.vim
+748.880  001.183  001.183: sourcing /Users/andrew/.vim/bundle/vim-surround/plugin/surround.vim
+769.517  003.304  003.304: sourcing /Users/andrew/.vim/bundle/vim-unimpaired/plugin/unimpaired.vim
+788.702  014.272  014.272: sourcing /Users/andrew/.vim/bundle/YouCompleteMe/plugin/youcompleteme.vim
+814.649  000.529  000.529: sourcing /Users/andrew/.vim/bundle/hardmode/plugin/hardmode.vim
+1207.594  376.376  376.376: sourcing /Users/andrew/.vim/bundle/UltiSnips/plugin/UltiSnips.vim
+1217.150  000.110  000.110: sourcing /Users/andrew/.vim/bundle/UltiSnips/plugin/snipMate_compatibility.vim
+1227.435  002.092  002.092: sourcing /Users/andrew/.vim/bundle/vimwiki/autoload/vimwiki/base.vim
+1228.337  005.000  002.908: sourcing /Users/andrew/.vim/bundle/vimwiki/plugin/vimwiki.vim
+1244.664  000.206  000.206: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/getscriptPlugin.vim
+1245.464  000.470  000.470: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/gzip.vim
+1246.456  000.717  000.717: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/matchparen.vim
+1247.787  001.029  001.029: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/netrwPlugin.vim
+1248.146  000.109  000.109: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/rrhelper.vim
+1248.482  000.086  000.086: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/spellfile.vim
+1248.980  000.254  000.254: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/tarPlugin.vim
+1249.698  000.456  000.456: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/tohtml.vim
+1250.194  000.243  000.243: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/vimballPlugin.vim
+1250.644  000.204  000.204: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/plugin/zipPlugin.vim
+1518.485  253.984  253.984: sourcing /Users/andrew/.vim/bundle/powerline/powerline/bindings/vim/plugin/powerline.vim
+1532.054  000.229  000.229: sourcing /Users/andrew/.vim/bundle/UltiSnips/after/plugin/UltiSnips_after.vim
+1532.098  267.137: loading plugins
+1532.106  000.008: inits 3
+1542.263  010.157: reading viminfo
+1542.281  000.018: setting raw mode
+1542.296  000.015: start termcap
+1542.319  000.023: clearing screen
+1554.252  000.472  000.472: sourcing /Users/andrew/.vim/bundle/vim-airline/autoload/airline/extensions.vim
+1555.122  000.398  000.398: sourcing /Users/andrew/.vim/bundle/vim-airline/autoload/airline.vim
+1555.900  000.085  000.085: sourcing /Users/andrew/.vim/bundle/vim-airline/autoload/airline/themes.vim
+1556.345  000.871  000.786: sourcing /Users/andrew/.vim/bundle/vim-airline/autoload/airline/themes/dark.vim
+1558.106  014.046: opening buffers
+1568.948  000.231  000.231: sourcing /Users/andrew/.vim/bundle/syntastic/autoload/syntastic/util.vim
+1569.114  010.777: BufEnter autocommands
+1569.121  000.007: editing files in windows
+1583.663  000.541  000.541: sourcing /Users/andrew/.vim/bundle/vim-signify/autoload/sy/highlight.vim
+1595.869  001.239  001.239: sourcing /Users/andrew/.vim/bundle/YouCompleteMe/autoload/youcompleteme.vim
+1841.892  270.991: VimEnter autocommands
+1841.904  000.012: before starting main loop
+1843.160  001.256: first screen update
+1843.162  000.002: --- VIM STARTED ---

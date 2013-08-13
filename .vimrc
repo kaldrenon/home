@@ -14,21 +14,18 @@ if has("mac")
   let g:vitality_fix_cursor=0
 endif
 
-" Vim-scripts plugins
-Bundle 'JSON.vim'
+" Syntax Plugins
+Bundle 'elzr/vim-json'
 Bundle 'JavaScript-Indent'
-Bundle 'UltiSnips'
-Bundle 'vimwiki'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-haml'
 
-" Independent Plugins (on github)
+" Functionality plugins
 Bundle 'bling/vim-airline'
 Bundle 'elixir-lang/vim-elixir'
-Bundle 'elzr/vim-json'
-"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'hsitz/VimOrganizer'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'kogakure/vim-sparkup'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
@@ -38,12 +35,13 @@ Bundle 'Shougo/unite.vim'
 Bundle 'tobiassvn/vim-gemfile'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wikitopian/hardmode'
+Bundle 'UltiSnips'
+Bundle 'vimwiki'
 
 filetype plugin indent on
 
@@ -162,7 +160,7 @@ nnoremap <Leader>T :set splitbelow<cr>:99new<space>
 
 " Unite.vim mappings
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <space>t :Unite -start-insert file_rec<cr>
+nnoremap <space>t :Unite -default-action=split -start-insert file_rec<cr>
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 nnoremap <Leader>b :Unite -start-insert buffer<cr>
