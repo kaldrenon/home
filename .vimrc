@@ -9,11 +9,6 @@ if exists('g:loaded_airline')
   set noshowmode
 endif
 
-if has("mac")
-  Bundle 'sjl/vitality.vim'
-  let g:vitality_fix_cursor=0
-endif
-
 " Syntax Plugins
 Bundle 'elzr/vim-json'
 Bundle 'JavaScript-Indent'
@@ -44,8 +39,6 @@ Bundle 'UltiSnips'
 Bundle 'vimwiki'
 
 filetype plugin indent on
-
-set t_Co=256
 
 for cs in ['wombat256mod', 'wombat256', 'default']
   try
@@ -155,24 +148,27 @@ nnoremap <silent> <C-j> <C-W>j<C-W>_
 nnoremap <silent> <C-k> <C-W>k<C-W>_
 nnoremap <silent> <C-h> :wincmd h <cr>
 nnoremap <silent> <C-l> :wincmd l <cr>
-nnoremap <Leader>t :set nosplitbelow<cr>:99new<space>
-nnoremap <Leader>T :set splitbelow<cr>:99new<space>
+set noequalalways " Prevent window stack from automatically evening out when one closes
+set winminheight=0 " No max height on windows.
+set splitright
 
 " Unite.vim mappings
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <space>t :Unite -default-action=split -start-insert file_rec<cr>
+nnoremap <Leader>t :set nosplitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
+nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
+nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-insert file_rec<space>
+nnoremap <Leader>V :set nosplitright<cr>:Unite -default-action=vsplit -start-insert file_rec<space>
+
+nnoremap <Leader>e :Unite -start-insert file_rec<cr>
+nnoremap <Leader>B :Unite -start-insert buffer<cr>
+nnoremap <Leader>b :Unite buffer<cr>
+
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
-nnoremap <Leader>b :Unite -start-insert buffer<cr>
 
 " Temporarily make ^T annoying for the sake of relearning
 nnoremap <C-T> <C-Z>
 
-nnoremap <Leader>v :set splitright<cr>:vnew<space>
-nnoremap <Leader>V :set nosplitright<cr>:vnew<space>
-set noequalalways " Prevent window stack from automatically evening out when one closes
-set winminheight=0 " No max height on windows.
-set splitright
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold

@@ -12,8 +12,23 @@ endsnippet
 # RSpec
 snippet it "rspec it" b
 it "${1:meets a condition}" do
-  ${2:# TODO: test for this condition}
+  ${2:pending "TODO: $1"}
 end
+endsnippet
+
+snippet bfe "Before each" b
+before(:each) do
+  $1
+end
+
+endsnippet
+
+snippet bfu "Before each(user)" b
+before(:each) do
+  @user = FactoryGirl.create(:default_user)
+  sign_in @user
+end
+
 endsnippet
 
 snippet rdesc "RSpec describe" b
@@ -23,6 +38,18 @@ describe "${1:block}" do
   end
  
   $4
+end
+endsnippet
+
+snippet scen "feature scenario" b
+scenario "${1:desc}" do
+  ${2:pending "TODO: $1"}
+end
+endsnippet
+
+snippet cnt "context" b
+context "${1:desc}" do
+  $2
 end
 endsnippet
 
