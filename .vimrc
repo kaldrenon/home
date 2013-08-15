@@ -156,8 +156,9 @@ set splitright
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <Leader>t :set nosplitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
 nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
-nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-insert file_rec<space>
-nnoremap <Leader>V :set nosplitright<cr>:Unite -default-action=vsplit -start-insert file_rec<space>
+nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
+nnoremap <Leader>V :set nosplitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
+nnoremap <Leader>n :Unite -default-action=split -start-insert file/new<cr>
 
 nnoremap <Leader>e :Unite -start-insert file_rec<cr>
 nnoremap <Leader>B :Unite -start-insert buffer<cr>
