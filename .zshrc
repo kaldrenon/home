@@ -98,6 +98,7 @@ alias websh='ssh kaldreno@kaldrenon.com'
 alias agi="sudo apt-get install -y"
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
 
