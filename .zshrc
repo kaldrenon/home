@@ -1,11 +1,12 @@
-# Limes configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory autocd extendedglob notify
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
+HISTFILE=~/.histfile   # Location of command history
+HISTSIZE=10000         # Number of history entries to keep in memory
+SAVEHIST=10000         # Number of history entries to save in HISTFILE
+setopt appendhistory   # Append history from all instances to same histfile
+setopt autocd          # change to dirs without needing to prepend 'cd '
+setopt extendedglob    # expand globs in autocomplete with super smart smartness
+unsetopt beep          # Don't beeping beep.
+bindkey -v             # Vi-ish bindings (normal and insert modes)
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
 
@@ -13,11 +14,11 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-bindkey -M vicmd '?' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-backward  # Search up through recent commands
 
-autoload -U colors && colors
+autoload -U colors && colors  # simplify color codes for use in this RC file
 
-# Prompt: [time (green)][user@host (blue): current path (depth 2)
+# Prompt: [time (green)][user@host (blue): current path (depth 2)]$
 PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
@@ -38,14 +39,14 @@ export TERM
 
 alias t="task"
 alias ta="task add"
-alias td="task +today"
+alias td="task due.before:tomorrow"
 
 alias tw="task pro:elocal"
 alias twa="task add pro:elocal"
 alias twbw="task pro:elocal burndown.weekly"
 alias twbd="task pro:elocal burndown.daily"
 alias tda="task add pro:elocal +dragon"
-alias tdat="task add pro:elocal +dragon +today"
+alias tdat="task add pro:elocal +dragon due:today"
 
 alias th="task pro:home"
 alias tha="task add pro:home"
@@ -68,26 +69,29 @@ ts(){
   task $1 start
 }
 
+# Show a summary of what's on deck
 work(){
   clear
-  td pro:elocal
-  tw +dragon -today -later
-  tw -today -dragon -later
+  task pro:elocal due.before:tomorrow
+  tw +dragon due.after:tomorrow
+  tw +dragon due.none:
 }
 
 home(){
   clear
-  td pro:home
-  th -today
+  task pro:home due.before:tomorrow
+  th due.after:tomorrow
+  th due.none:
 }
 
+# mark a task as 'do it today'
 tdm(){
-  task $1 mod +today
+  echo "task $1 mod due:`date +'%m/%d/%Y'`"
+  task $1 mod due:`date +'%m/%d/%Y'`
 }
 
-today() {
-  clear
-  td
+tdr() {
+  task $1 mod due:
 }
 
 ### Other aliases 
@@ -164,12 +168,14 @@ tmcd() {
 ###
 
 # Smart LS
-if [[ `hostname` == "fallows.elocal" ]] ; then
+if [[ -e "/Users/`whoami`" ]] ; then
   LS_COLO_FLAG="-G" ;
 else 
   LS_COLO_FLAG="--color" ;
 fi
-alias ls="ls $LS_COLO_FLAG -a"
+alias ls="ls $LS_COLO_FLAG -A"
+alias ll="ls $LS_COLO_FLAG -A -l"
+alias la="=ls $LS_COLO_FLAG"
 
 # Show the task being run when aliases are involved
 _-accept-line () {
