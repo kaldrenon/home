@@ -39,7 +39,6 @@ export TERM
 
 alias t="task"
 alias ta="task add"
-alias td="task due.before:tomorrow"
 
 alias tw="task pro:elocal"
 alias twa="task add pro:elocal"
@@ -105,6 +104,7 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
+alias td="echo \`date +'%m/%d/%Y'\`"
 
 alias gs="git status"
 alias ga="git add"
