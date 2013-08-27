@@ -138,6 +138,7 @@ gcp() {
 
 # git add, status, prepare to commit
 gcs() {
+  clear
   git add -A
   git status
   print -z 'git commit -m "'

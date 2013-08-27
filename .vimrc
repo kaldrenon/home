@@ -2,7 +2,6 @@
 set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/vundle
-set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
 if exists('g:loaded_airline')
@@ -169,6 +168,11 @@ nnoremap <space>s :Unite -quick-match buffer<cr>
 
 " Temporarily make ^T annoying for the sake of relearning
 nnoremap <C-T> <C-Z>
+
+" Vimwiki Task related mappings
+nnoremap <space><space> o<esc>0C
+nnoremap <space>t o<esc>0CT
+nnoremap <space>r o<esc>0Cr
 
 
 "improve autocomplete menu color
