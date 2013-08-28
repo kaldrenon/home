@@ -2,7 +2,7 @@
 
 # Task list snippets
 snippet day "New day" b
-- `date +"%D"` - `date +"%A"`
+= `date +"%D"` - `date +"%A"` =
   - ${1:poms} - ${2:task}
 
 endsnippet
@@ -21,7 +21,7 @@ snippet r "Resulotion" i
 
 endsnippet
 
-snippet w "last week" b
-[[Pomodoro/Week of `date -v -1w +"%Y-%m-%d"`]]
+snippet w "last week" i
+[[Pomodoro/Week of `date -v -1w +"%Y"`-${1:`date -v -1w +"%m-%d"`}]]
 endsnippet
 
