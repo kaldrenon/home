@@ -57,16 +57,12 @@ let g:syntastic_enable_highlighting = 1
 let g:syntastic_quiet_warnings = 0
 let g:vimwiki_list = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
-let g:vimroom_width=100
-let g:vimroom_navigational_keys=0
 let g:github_dashboard = { 'username': 'kaldrenon' }
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsEditSplit='horizontal'
 let g:miniBufExplMinSize = 2
-
-let @w ='/=== Daily LogjV/=== On Deckkd/=== Past Weeksp/=== Daily Logj'
 
 command! W :w
 command! Q :q
