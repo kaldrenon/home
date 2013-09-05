@@ -107,6 +107,7 @@ set nolist
 set hlsearch
 set incsearch
 nnoremap <silent><Leader>c :nohls<CR>
+nnoremap <silent><c-n> :nohls<CR>
 
 " Various leader maps
 nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr> 
