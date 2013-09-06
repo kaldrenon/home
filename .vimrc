@@ -114,10 +114,11 @@ nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr>
 nnoremap <silent><Leader>X :s/^✓/ /<cr>:nohls<cr>
 nnoremap <silent><Leader>w :w<cr>:bd<cr>
 nnoremap <silent><Leader>l :lopen<cr>
-nnoremap <silent><Leader>L <C-w>k:lclose<cr>
+nnoremap <silent><Leader>L <C-w>k:lclose<cr><C-w>_
 nnoremap <silent><Leader>g :GHDashboard<cr>
 nnoremap <silent><Leader>o :only<cr>
 nnoremap <silent><Leader>U :UltiSnipsEdit<cr>
+nnoremap <silent><Leader>f 'a/\[ \]<cr>:noh<cr>
 nnoremap ZA :wqa<cr>
 
 " extra escape option
