@@ -164,9 +164,6 @@ nnoremap <Leader>b :Unite buffer<cr>
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 
-" Temporarily make ^T annoying for the sake of relearning
-nnoremap <C-T> <C-Z>
-
 " Vimwiki Task related mappings
 nnoremap <space><space> o<esc>0C
 nnoremap <space>t o<esc>0CT

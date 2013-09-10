@@ -3,7 +3,6 @@
 # Task list snippets
 snippet day "New day" b
 ~~`date +"%D"` - `date +"%A"`~~
-  - [ ] - ${1:poms} - ${2:task}
 
 endsnippet
 
@@ -30,4 +29,8 @@ endsnippet
 
 snippet ! "timestamp" i
 `date +"%H:%M"`
+endsnippet
+
+snippet snp "new thought snippet" !b
+[[snips/`date +"%Y%m%d%H%M%S"`]]
 endsnippet
