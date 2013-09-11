@@ -169,6 +169,8 @@ nnoremap <space><space> o<esc>0C
 nnoremap <space>t o<esc>0CT
 nnoremap <space>r o<esc>0Cr
 
+" * search in visual mode
+vnoremap * y/<C-r>"<cr>
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
@@ -178,3 +180,6 @@ au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
 au FocusLost * stopinsert
+
+nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
+nnoremap <space>m /^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
