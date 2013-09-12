@@ -9,6 +9,13 @@ snippet rld "Rails Log (debug)" b
 logger.debug $1
 endsnippet
 
+snippet scope "ActiveRecord model scope" b
+scope :${1:name},
+      lambda {
+        ${2:condition}
+      }
+endsnippet
+
 # RSpec
 snippet it "rspec it" b
 it "${1:meets a condition}" do

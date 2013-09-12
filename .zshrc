@@ -109,6 +109,9 @@ alias td="echo \`date +'%m/%d/%Y'\`"
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add -A"
+alias gg="noglob git grep "
+
+alias ag="noglob ag "
 
 ###
 # FUNC: Custom Functions
@@ -147,6 +150,15 @@ gcs() {
 # Quick alias to get disk usage of a dir
 usage(){
   du -hc $1 | grep total
+}
+
+# more powerful silver-search
+agg () {
+  echo "== FILES"
+  noglob ag -g $*
+  echo "\n== LINES"
+  noglob ag $*
+  echo ""
 }
 
 # Reload this file
