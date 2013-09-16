@@ -87,6 +87,7 @@ set noswapfile
 set hidden
 set number
 set ruler
+set mouse=a
 set guifont=Consolas:h12
 syntax on
 set backspace=2                        " backspace behaves as in other software
