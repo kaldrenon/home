@@ -181,6 +181,7 @@ au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
 au FocusLost * stopinsert
+au BufRead,BufNewFile,BufEnter Pomodoro.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
 
 nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
 nnoremap <space>m /^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
