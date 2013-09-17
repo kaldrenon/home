@@ -17,9 +17,13 @@ scope :${1:name},
 endsnippet
 
 # RSpec
-snippet it "rspec it" b
-it "${1:meets a condition}" do
-  ${2:pending "TODO: $1"}
+snippet it "rspec it (line)" !b
+it '${1:meets a condition}'
+endsnippet
+
+snippet itb "rspec it (block)" b
+it '${1:meets a condition}' do
+  ${2:pending 'TODO: $1'}
 end
 endsnippet
 
@@ -49,13 +53,13 @@ end
 endsnippet
 
 snippet scen "feature scenario" b
-scenario "${1:desc}" do
-  ${2:pending "TODO: $1"}
+scenario '${1:desc}' do
+  ${2:pending 'TODO: $1'}
 end
 endsnippet
 
 snippet cnt "context" b
-context "${1:desc}" do
+context '${1:desc}' do
   $2
 end
 endsnippet
