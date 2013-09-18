@@ -3,6 +3,7 @@ set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/vundle
 call vundle#rc()
+runtime macros/matchit.vim
 
 if exists('g:loaded_airline')
   set noshowmode
@@ -20,15 +21,20 @@ Bundle 'elixir-lang/vim-elixir'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'hsitz/VimOrganizer'
+Bundle 'kana/vim-textobj-user'
 Bundle 'kogakure/vim-sparkup'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
 Bundle 'tobiassvn/vim-gemfile'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Valloric/YouCompleteMe'
