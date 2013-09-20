@@ -27,6 +27,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
 Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
 Bundle 'tobiassvn/vim-gemfile'
@@ -69,6 +70,7 @@ let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsEditSplit='horizontal'
 let g:miniBufExplMinSize = 2
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 command! W :w
 command! Q :q
@@ -188,6 +190,7 @@ au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
 au FocusLost * stopinsert
 au BufRead,BufNewFile,BufEnter Pomodoro.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
+nnoremap K kJ
 
 nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
 nnoremap <space>m /^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
