@@ -75,7 +75,8 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
   let g:unite_source_rec_async_command = 'ag -i --nocolor --nogroup'
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden'
+  let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden --ignore-dir tmp'
+  let g:unite_source_grep_recursive_opt = ''
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
@@ -169,6 +170,7 @@ set splitright
 
 " Unite.vim mappings
 call unite#custom#source('buffer,file,file_mru,file_rec', 'sorters', 'sorter_rank')
+call unite#custom#source('file_rec', 'ignore_pattern', 'tmp/*')
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <Leader>t :set nosplitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
 nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
