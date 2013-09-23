@@ -93,7 +93,7 @@ tdr() {
   task $1 mod due:
 }
 
-### Other aliases 
+### Other aliases
 alias grep="grep --color"
 alias c="clear;"
 alias kal='ssh andrew@kaldrenon.selfip.net'
@@ -166,8 +166,8 @@ zz() {
   source ~/.zshrc
 }
 
-# CD to given path in all panes 
-# NOTE: currently assumes all panes are at a clear zsh prompt; must use absolute dirs or 
+# CD to given path in all panes
+# NOTE: currently assumes all panes are at a clear zsh prompt; must use absolute dirs or
 # have all panes in same path to get the same result
 tmcd() {
   for pane in `tmux list-panes -F '#P'`; do
@@ -183,7 +183,7 @@ tmcd() {
 # Smart LS
 if [[ -e "/Users/`whoami`" ]] ; then
   LS_COLO_FLAG="-G" ;
-else 
+else
   LS_COLO_FLAG="--color" ;
 fi
 alias ls="ls $LS_COLO_FLAG -A"
@@ -213,7 +213,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin 
+PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Add tmuxinator scripts

@@ -58,7 +58,7 @@ endfor
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:syntastic_auto_jump = 1
-let g:syntastic_auto_loc_list = 0 
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_quiet_warnings = 0
@@ -70,7 +70,16 @@ let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsEditSplit='horizontal'
 let g:miniBufExplMinSize = 2
-let g:ackprg = 'ag --nogroup --nocolor --column'
+
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:unite_source_rec_async_command = 'ag -i --nocolor --nogroup'
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden'
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
 
 command! W :w
 command! Q :q
@@ -100,7 +109,7 @@ set guifont=Consolas:h12
 syntax on
 set backspace=2                        " backspace behaves as in other software
 set laststatus=2                       " always show statusline
-set statusline=%m%y\ %f%=%#warningmsg#%{fugitive#statusline()}%{SyntasticStatuslineFlag()}%*[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%% 
+set statusline=%m%y\ %f%=%#warningmsg#%{fugitive#statusline()}%{SyntasticStatuslineFlag()}%*[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%%
 
 " Tab formatting
 set shiftwidth=2
@@ -119,7 +128,7 @@ nnoremap <silent><Leader>c :nohls<CR>
 nnoremap <silent><c-n> :nohls<CR>
 
 " Various leader maps
-nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr> 
+nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr>
 nnoremap <silent><Leader>X :s/^✓/ /<cr>:nohls<cr>
 nnoremap <silent><Leader>w :w<cr>:bd<cr>
 nnoremap <silent><Leader>l :lopen<cr>
@@ -159,6 +168,7 @@ set winminheight=0 " No max height on windows.
 set splitright
 
 " Unite.vim mappings
+call unite#custom#source('buffer,file,file_mru,file_rec', 'sorters', 'sorter_rank')
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <Leader>t :set nosplitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
 nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
@@ -190,6 +200,7 @@ au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
 au FocusLost * stopinsert
 au BufRead,BufNewFile,BufEnter Pomodoro.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
+au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap K kJ
 
 nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
