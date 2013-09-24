@@ -122,28 +122,40 @@ set wrap
 set linebreak
 set nolist
 
-" Clear search highlighting with \c
+" Searching
 set hlsearch
 set incsearch
+
+" Clear search highlighting with \c
 nnoremap <silent><Leader>c :nohls<CR>
 nnoremap <silent><c-n> :nohls<CR>
 
 " Various leader maps
-nnoremap <silent><Leader>x :s/^ /✓/<cr>:nohls<cr>
-nnoremap <silent><Leader>X :s/^✓/ /<cr>:nohls<cr>
+" save and unload
 nnoremap <silent><Leader>w :w<cr>:bd<cr>
+" open/close location list
 nnoremap <silent><Leader>l :lopen<cr>
 nnoremap <silent><Leader>L <C-w>k:lclose<cr><C-w>_
-nnoremap <silent><Leader>g :GHDashboard<cr>
+
+" reduce down to current buffer
 nnoremap <silent><Leader>o :only<cr>
+
+" Open snippets file for current filetype
 nnoremap <silent><Leader>U :UltiSnipsEdit<cr>
-nnoremap <silent><Leader>f 'a/\[ \]<cr>:noh<cr>
+
+" Go to next uncompleted task in vimwiki buffers
+au BufRead,BufNewFile,BufEnter *.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
 nnoremap ZA :wqa<cr>
 
-" extra escape option
-inoremap kj <esc>
+" Find uncommented method and class headers
+nnoremap <silent><space>h /\v^\s*[^#]*\n^\s*(def\|class)/+1<cr>:noh<cr>
+nnoremap <silent><space>H O##
 
-" Kick the cursor habit
+" extra escape option TURNED OFF want to make C-[ habit because it's more
+" standard
+" inoremap kj <esc>
+
+" Kick the cursor habit (disable arrow keys in ivn modes)
 for prefix in ['i', 'n', 'v']
   for key in ['<Up>', '<Down>', '<Left>', '<Right>']
     exe prefix . "noremap " . key . " <Nop>"
@@ -172,6 +184,8 @@ set splitright
 call unite#custom#source('buffer,file,file_mru,file_rec', 'sorters', 'sorter_rank')
 call unite#custom#source('file_rec', 'ignore_pattern', 'tmp/*')
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+" Open windows in horiz/vert splits after fuzzy matching a file name
 nnoremap <Leader>t :set nosplitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
 nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
 nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
@@ -197,11 +211,14 @@ vnoremap * y/<C-r>"<cr>
 highlight Pmenu ctermbg=238 gui=bold
 
 set autoread " automatically reload externally changed buffers
+
+" Extension to filetype config
 au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
-au FocusLost * stopinsert
-au BufRead,BufNewFile,BufEnter Pomodoro.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
+
+
+" Enable tab completion for popup menus in vimwiki buffers
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap K kJ
 
