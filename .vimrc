@@ -105,7 +105,6 @@ set noswapfile
 set hidden
 set number
 set ruler
-set mouse=a
 set guifont=Consolas:h12
 syntax on
 set backspace=2                        " backspace behaves as in other software
@@ -126,6 +125,16 @@ set nolist
 set hlsearch
 set incsearch
 
+" Swap j/k with gj/gk for normal, visual, and select modes
+xnoremap j gj
+xnoremap gj j
+xnoremap k gk
+xnoremap gk k
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
 " Clear search highlighting with \c
 nnoremap <silent><Leader>c :nohls<CR>
 nnoremap <silent><c-n> :nohls<CR>
@@ -142,6 +151,10 @@ nnoremap <silent><Leader>o :only<cr>
 
 " Open snippets file for current filetype
 nnoremap <silent><Leader>U :UltiSnipsEdit<cr>
+
+" Insert mapping for calling UltiSnips expand trigger - lets me use snippets
+" in mappings!
+inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 
 " Go to next uncompleted task in vimwiki buffers
 au BufRead,BufNewFile,BufEnter *.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz

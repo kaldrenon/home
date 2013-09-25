@@ -256,3 +256,7 @@ lpsql() {
                                bindkey -M vicmd "$terminfo[kdch1]" vi-delete-char
 [[ -z "$terminfo[kpp]"   ]] || bindkey -M viins -s "$terminfo[kpp]" ''
 [[ -z "$terminfo[knp]"   ]] || bindkey -M viins -s "$terminfo[knp]" ''
+
+# Use PageUp/PageDown to search history
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
+[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
