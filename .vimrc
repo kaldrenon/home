@@ -109,7 +109,6 @@ set guifont=Consolas:h12
 syntax on
 set backspace=2                        " backspace behaves as in other software
 set laststatus=2                       " always show statusline
-set statusline=%m%y\ %f%=%#warningmsg#%{fugitive#statusline()}%{SyntasticStatuslineFlag()}%*[%2c,%3l]\ %4L\ \ Buf:%2n\ \ %3p%%
 
 " Tab formatting
 set shiftwidth=2
@@ -164,9 +163,9 @@ nnoremap ZA :wqa<cr>
 nnoremap <silent><space>h /\v^\s*[^#]*\n^\s*(def\|class)/+1<cr>:noh<cr>
 nnoremap <silent><space>H O##
 
-" extra escape option TURNED OFF want to make C-[ habit because it's more
-" standard
-" inoremap kj <esc>
+" minor cursor adjust without leaving insert mode
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " Kick the cursor habit (disable arrow keys in ivn modes)
 for prefix in ['i', 'n', 'v']
