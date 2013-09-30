@@ -57,10 +57,7 @@ endfor
 "Set options for plugins
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_enable_signs = 1
@@ -73,7 +70,6 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsEditSplit='horizontal'
-let g:miniBufExplMinSize = 2
 
 if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
