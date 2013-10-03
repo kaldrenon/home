@@ -22,6 +22,8 @@ autoload -U colors && colors  # simplify color codes for use in this RC file
 PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
+alias hl="history -D -n -1"
+
 # Ensure local/bin precedes bin, add Dropbox to PATH
 PATH=/usr/local/bin:$PATH:$HOME/Dropbox/bin
 
@@ -245,7 +247,6 @@ esac
 lpsql() {
   sudo su - postgres -c "export PATH='/Library/PostgreSQL/9.2/bin:$PATH'; psql"
 }
-
 
 # Hopefully address some issues with home/end
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
