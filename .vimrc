@@ -20,6 +20,7 @@ Bundle 'bling/vim-airline'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
+Bundle 'godlygeek/tabular'
 Bundle 'hsitz/VimOrganizer'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kogakure/vim-sparkup'
@@ -238,3 +239,11 @@ nnoremap K kJ
 
 nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
 nnoremap <space>m /^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
+
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
