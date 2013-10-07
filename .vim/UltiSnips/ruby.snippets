@@ -75,6 +75,13 @@ snippet ## "Header Comment" !b
 #
 endsnippet
 
+#VCR
+snippet vcr "vcr cassette block" !b
+VCR.use_cassette('${1:cassette_name}') do
+  ${2:# TODO: test execution}
+end
+endsnippet
+
 ### Predefined
 snippet "^#!" "#!/usr/bin/env ruby" r
 #!/usr/bin/env ruby
@@ -627,15 +634,11 @@ class ${1:class_name}
 end
 endsnippet
 
-
-
 snippet module "module"
 module ${1:module_name}
 	$0
 end
 endsnippet
-
-
 
 snippet ###
 =begin
@@ -643,4 +646,3 @@ snippet ###
 =end
 endsnippet
 
-# vim: set ts=2 sw=2 expandtab:
