@@ -76,7 +76,8 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
   let g:unite_source_rec_async_command = 'ag -i --nocolor --nogroup'
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden --ignore-dir tmp'
+  let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden ' .
+        \ '--ignore ''.git'' --ignore ''tmp'''
   let g:unite_source_grep_recursive_opt = ''
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -210,6 +211,10 @@ nnoremap <Leader>n :Unite -default-action=split -start-insert file/new<cr>
 nnoremap <Leader>e :Unite -start-insert file_rec<cr>
 nnoremap <Leader>B :Unite -start-insert buffer<cr>
 nnoremap <Leader>b :Unite buffer<cr>
+
+nnoremap <Leader>s{ :s/\v\{(.+),<space>(.+)\}/{\2,<space>\1}/<cr>:nohls<cr>
+nnoremap <Leader>s[ :s/\v\[(.+),<space>(.+)\]/[\2,<space>\1]/<cr>:nohls<cr>
+nnoremap <Leader>s( :s/\v\[(.+),<space>(.+)\)/[\2,<space>\1)/<cr>:nohls<cr>
 
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
