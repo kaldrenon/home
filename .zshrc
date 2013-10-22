@@ -1,3 +1,21 @@
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# Antigen bundles
+source ~/antigen.zsh
+#
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle brew
+antigen bundle knife
+#antigen bundle rails
+#antigen bundle rake
+#antigen bundle ruby
+#antigen bundle tmux
+#
+antigen apply
+
+
 HISTFILE=~/.histfile   # Location of command history
 HISTSIZE=10000         # Number of history entries to keep in memory
 SAVEHIST=10000         # Number of history entries to save in HISTFILE
@@ -112,6 +130,7 @@ alias gs="git status"
 alias ga="git add"
 alias gaa="git add -A"
 alias gg="noglob git grep "
+alias gco="git checkout"
 
 alias ag="noglob ag "
 
@@ -214,13 +233,9 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Add tmuxinator scripts
 [[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source "$HOME/.tmuxinator/scripts/tmuxinator"
-
 
 # Configure AWS environment variables
 case $HOST in
