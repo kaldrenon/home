@@ -8,11 +8,8 @@ source ~/antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle brew
 antigen bundle knife
-#antigen bundle rails
-#antigen bundle rake
-#antigen bundle ruby
-#antigen bundle tmux
-#
+antigen bundle web-search
+antigen bundle vi-mode
 antigen apply
 
 
@@ -279,4 +276,10 @@ lpsql() {
 
 elcats() {
   ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}'
+}
+
+tmcolors() {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
 }

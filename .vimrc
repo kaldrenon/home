@@ -104,6 +104,7 @@ set wildmode=longest,list
 set nobackup
 set nowritebackup
 set noswapfile
+
 " Basic color and format defaults
 set hidden
 set number
