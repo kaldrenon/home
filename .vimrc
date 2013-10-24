@@ -32,7 +32,9 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
+Bundle 'slim-template/vim-slim'
 Bundle 'tobiassvn/vim-gemfile'
+Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
@@ -129,6 +131,9 @@ set hlsearch
 set incsearch
 
 set ttimeoutlen=50
+
+nnoremap ; :
+nnoremap : ;
 
 " Swap j/k with gj/gk for normal, visual, and select modes
 xnoremap j gj
