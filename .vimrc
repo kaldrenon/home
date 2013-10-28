@@ -124,7 +124,10 @@ set expandtab
 " Wrapping
 set wrap
 set linebreak
-set nolist
+
+" Character Listing
+set list
+set listchars=tab:»\|,trail:·
 
 " Searching
 set hlsearch
