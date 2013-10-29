@@ -115,6 +115,7 @@ set guifont=Consolas:h12
 syntax on
 set backspace=2                        " backspace behaves as in other software
 set laststatus=2                       " always show statusline
+set cursorline
 
 " Tab formatting
 set shiftwidth=2
