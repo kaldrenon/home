@@ -51,85 +51,34 @@ TERM=screen-256color
 export TERM
 
 ###
-# TW: Taskwarrior aliases and functions
+# ALIAS: Other aliases
 ###
 
-alias t="task"
-alias ta="task add"
-
-alias tw="task pro:elocal"
-alias twa="task add pro:elocal"
-alias twbw="task pro:elocal burndown.weekly"
-alias twbd="task pro:elocal burndown.daily"
-alias tda="task add pro:elocal +dragon"
-alias tdat="task add pro:elocal +dragon due:today"
-
-alias th="task pro:home"
-alias tha="task add pro:home"
-alias thbw="task pro:home burndown.weekly"
-alias thbd="task pro:home burndown.daily"
-
-alias tb="task pro:buy"
-alias buy="task add pro:buy"
-
-bought(){
-  task $1 do
-}
-
-shop(){
-  clear
-  task pro:buy
-}
-
-ts(){
-  task $1 start
-}
-
-# Show a summary of what's on deck
-work(){
-  clear
-  task pro:elocal due.before:tomorrow
-  tw +dragon due.after:tomorrow
-  tw +dragon due.none:
-}
-
-home(){
-  clear
-  task pro:home due.before:tomorrow
-  th due.after:tomorrow
-  th due.none:
-}
-
-# mark a task as 'do it today'
-tdm(){
-  echo "task $1 mod due:`date +'%m/%d/%Y'`"
-  task $1 mod due:`date +'%m/%d/%Y'`
-}
-
-tdr() {
-  task $1 mod due:
-}
-
-### Other aliases
+# CLI tools
 alias grep="grep --color"
 alias c="clear;"
-alias kal='ssh andrew@kaldrenon.selfip.net'
-alias websh='ssh kaldreno@kaldrenon.com'
+alias ag="noglob ag "
+alias td="echo \`date +'%m/%d/%Y'\`"
+
+# Ubuntu/Debian
 alias agi="sudo apt-get install -y"
+
+# PostgreSQL
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+
+# Ruby Dev
 alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
-alias td="echo \`date +'%m/%d/%Y'\`"
 
-alias gs="git status"
+# Git(Hub)
 alias ga="git add"
 alias gaa="git add -A"
-alias gg="noglob git grep "
+alias gcl="git clone"
 alias gco="git checkout"
-
-alias ag="noglob ag "
+alias gg="noglob git grep "
+alias gs="git status"
 
 ###
 # FUNC: Custom Functions
@@ -184,8 +133,12 @@ zz() {
   source ~/.zshrc
 }
 
-# CD to given path in all panes
-# NOTE: currently assumes all panes are at a clear zsh prompt; must use absolute dirs or
+###
+# TMUX: things that specifically benefit tmux usage
+###
+
+## CD to given path in all panes
+# NOTE: assumes all panes are at a clear zsh prompt; must use absolute dirs or
 # have all panes in same path to get the same result
 tmcd() {
   for pane in `tmux list-panes -F '#P'`; do
@@ -194,11 +147,18 @@ tmcd() {
   done
 }
 
+# Print all the color names for TMUX highlighting
+tmcolors() {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
 ###
 # MISC: Various things
 ###
 
-# Smart LS
+# Smart LS - different flag depending on host
 if [[ -e "/Users/`whoami`" ]] ; then
   LS_COLO_FLAG="-G" ;
 else
@@ -260,7 +220,7 @@ lpsql() {
   sudo su - postgres -c "export PATH='/Library/PostgreSQL/9.2/bin:$PATH'; psql"
 }
 
-# Hopefully address some issues with home/end
+# Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
                                bindkey -M vicmd "$terminfo[khome]" beginning-of-line
 [[ -z "$terminfo[kend]"  ]] || bindkey -M viins "$terminfo[kend]" end-of-line &&
@@ -274,12 +234,82 @@ lpsql() {
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
+
+
+
+#####
+# ELOCAL: Managing elocal servers
+#####
 elcats() {
   ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}'
 }
 
-tmcolors() {
-  for i in {0..255} ; do
-    printf "\x1b[38;5;${i}mcolour${i}\n"
+elgrep() {
+  for ff in 1 2 3;
+  do
+    echo "-- Elocal Prod Web $ff --";
+    ssh elocal_production_web_$ff "sudo grep --color '$1' /var/log/syslog" | ag $1;
+    echo ''
   done
 }
+
+###
+# TW: Taskwarrior aliases and functions
+###
+
+alias t="task"
+alias ta="task add"
+
+alias tw="task pro:elocal"
+alias twa="task add pro:elocal"
+alias twbw="task pro:elocal burndown.weekly"
+alias twbd="task pro:elocal burndown.daily"
+alias tda="task add pro:elocal +dragon"
+alias tdat="task add pro:elocal +dragon due:today"
+
+alias th="task pro:home"
+alias tha="task add pro:home"
+alias thbw="task pro:home burndown.weekly"
+alias thbd="task pro:home burndown.daily"
+
+alias tb="task pro:buy"
+alias buy="task add pro:buy"
+
+bought(){
+  task $1 do
+}
+
+shop(){
+  clear
+  task pro:buy
+}
+
+ts(){
+  task $1 start
+}
+
+# Show a summary of what's on deck
+work(){
+  clear
+  task pro:elocal due.before:tomorrow
+  tw +dragon due.after:tomorrow
+  tw +dragon due.none:
+}
+
+home(){
+  clear
+  task pro:home due.before:tomorrow
+  th due.after:tomorrow
+  th due.none:
+}
+
+# mark a task as 'do it today'
+tdm(){
+  echo "task $1 mod due:`date +'%m/%d/%Y'`"
+  task $1 mod due:`date +'%m/%d/%Y'`
+}
+
+tdr() {
+  task $1 mod due:
+}
+
