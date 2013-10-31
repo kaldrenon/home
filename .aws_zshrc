@@ -1,0 +1,124 @@
+HISTFILE=~/.histfile   # Location of command history
+HISTSIZE=10000         # Number of history entries to keep in memory
+SAVEHIST=10000         # Number of history entries to save in HISTFILE
+setopt appendhistory   # Append history from all instances to same histfile
+setopt autocd          # change to dirs without needing to prepend 'cd '
+setopt extendedglob    # expand globs in autocomplete with super smart smartness
+unsetopt beep          # Don't beeping beep.
+bindkey -v             # Vi-ish bindings (normal and insert modes)
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '~/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+bindkey -M vicmd '?' history-incremental-search-backward  # Search up through recent commands
+
+autoload -U colors && colors  # simplify color codes for use in this RC file
+
+# Prompt: [time (green)][user@host (blue): current path (depth 2)]$
+PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}prod%{$reset_color%}:%2~]$ "
+RPROMPT='' # prompt for right side of screen
+
+# Ensure local/bin precedes bin, add Dropbox to PATH
+PATH=/usr/local/bin:$PATH:$HOME/Dropbox/bin
+
+# Vim is default editor for all things
+EDITOR=vim
+export EDITOR
+
+# Support colors for excellence!
+TERM=screen-256color
+export TERM
+
+alias cbd="cd /mnt/deploy/bearded_dragon"
+### Other aliases 
+alias grep="grep --color"
+alias c="clear;"
+alias agi="sudo apt-get install -y"
+alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
+alias td="echo \`date +'%m/%d/%Y'\`"
+
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add -A"
+alias gg="noglob git grep "
+
+alias ag="noglob ag "
+
+###
+# FUNC: Custom Functions
+###
+# Quick alias to get disk usage of a dir
+usage(){
+  du -hc $1 | grep total
+}
+
+# more powerful silver-search
+agg () {
+  echo "== FILES"
+  noglob ag -g $*
+  echo "\n== LINES"
+  noglob ag $*
+  echo ""
+}
+
+# Reload this file
+zz() {
+  source ~/.zshrc
+}
+
+# CD to given path in all panes 
+# NOTE: currently assumes all panes are at a clear zsh prompt; must use absolute dirs or 
+# have all panes in same path to get the same result
+tmcd() {
+  for pane in `tmux list-panes -F '#P'`; do
+    tmux select-pane -t $pane
+    tmux send-keys "cd $1" C-m c C-m
+  done
+}
+
+###
+# MISC: Various things
+###
+
+# Smart LS
+LS_COLO_FLAG="--color" ;
+alias ls="ls $LS_COLO_FLAG -A"
+alias ll="ls $LS_COLO_FLAG -A -l"
+alias la="=ls $LS_COLO_FLAG"
+
+# Show the task being run when aliases are involved
+_-accept-line () {
+  emulate -L zsh
+  local -a WORDS
+  WORDS=( ${(z)BUFFER} )
+  local -r FIRSTWORD=${WORDS[1]}
+  local -r GREEN=$'\e[32m' RESET_COLORS=$'\e[0m'
+  [[ "$(whence -w $FIRSTWORD 2>/dev/null)" == "${FIRSTWORD}: alias" ]] &&
+    echo -nE $'\n'"${GREEN}Executing $(whence $FIRSTWORD)${RESET_COLORS}"
+  zle .accept-line
+}
+zle -N accept-line _-accept-line
+
+# Show mode in right prompt for zsh vi bindings
+function zle-line-init zle-keymap-select {
+  RPS1="${${KEYMAP/vicmd/- N -}/(main|viins)/- I -}"
+  RPS2=$RPS1
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# Add tmuxinator scripts
+[[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source "$HOME/.tmuxinator/scripts/tmuxinator"
+
+
