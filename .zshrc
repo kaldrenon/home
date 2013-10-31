@@ -12,7 +12,6 @@ antigen bundle web-search
 antigen bundle vi-mode
 antigen apply
 
-
 HISTFILE=~/.histfile   # Location of command history
 HISTSIZE=10000         # Number of history entries to keep in memory
 SAVEHIST=10000         # Number of history entries to save in HISTFILE
