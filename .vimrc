@@ -141,9 +141,6 @@ set incsearch
 
 set ttimeoutlen=50
 
-nnoremap ; :
-nnoremap : ;
-
 " Swap j/k with gj/gk for normal, visual, and select modes
 xnoremap j gj
 xnoremap gj j
