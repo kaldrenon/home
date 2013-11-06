@@ -19,7 +19,7 @@ bindkey -M vicmd '?' history-incremental-search-backward  # Search up through re
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
 # Prompt: [time (green)][user@host (blue): current path (depth 2)]$
-PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}prod%{$reset_color%}:%2~]$ "
+PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}$RAILS_ENV%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
 # Ensure local/bin precedes bin, add Dropbox to PATH
