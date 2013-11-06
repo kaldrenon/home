@@ -166,7 +166,10 @@ nnoremap <silent><Leader>L <C-w>k:lclose<cr><C-w>_
 nnoremap <silent><Leader>o :only<cr>
 
 " Open snippets file for current filetype
-nnoremap <silent><Leader>U :UltiSnipsEdit<cr>
+nnoremap <silent><Leader>uu :UltiSnipsEdit<cr>
+nnoremap <Leader>U :UltiSnipsEdit<space>
+nnoremap <silent><Leader>ua :UltiSnipsEdit<space>all<cr>
+nnoremap <silent><Leader>ur :UltiSnipsEdit<space>ruby<cr>
 
 " Insert mapping for calling UltiSnips expand trigger - lets me use snippets
 " in mappings!
@@ -233,9 +236,9 @@ nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 
 " Vimwiki Task related mappings
-nnoremap <space><space> o<esc>0C
-nnoremap <space>t o<esc>0CT
-nnoremap <space>r o<esc>0Cr
+nmap <space><space> o<esc>0C
+nmap <space>t o<esc>0CT<C-j>
+nmap <space>r o<esc>0Cr<C-j>
 
 " * search in visual mode
 vnoremap * y/<C-r>"<cr>
