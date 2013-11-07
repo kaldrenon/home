@@ -259,63 +259,9 @@ elgrep() {
   done
 }
 
-###
-# TW: Taskwarrior aliases and functions
-###
-
-alias t="task"
-alias ta="task add"
-
-alias tw="task pro:elocal"
-alias twa="task add pro:elocal"
-alias twbw="task pro:elocal burndown.weekly"
-alias twbd="task pro:elocal burndown.daily"
-alias tda="task add pro:elocal +dragon"
-alias tdat="task add pro:elocal +dragon due:today"
-
-alias th="task pro:home"
-alias tha="task add pro:home"
-alias thbw="task pro:home burndown.weekly"
-alias thbd="task pro:home burndown.daily"
-
-alias tb="task pro:buy"
-alias buy="task add pro:buy"
-
-bought(){
-  task $1 do
-}
-
-shop(){
-  clear
-  task pro:buy
-}
-
-ts(){
-  task $1 start
-}
-
-# Show a summary of what's on deck
-work(){
-  clear
-  task pro:elocal due.before:tomorrow
-  tw +dragon due.after:tomorrow
-  tw +dragon due.none:
-}
-
-home(){
-  clear
-  task pro:home due.before:tomorrow
-  th due.after:tomorrow
-  th due.none:
-}
-
-# mark a task as 'do it today'
-tdm(){
-  echo "task $1 mod due:`date +'%m/%d/%Y'`"
-  task $1 mod due:`date +'%m/%d/%Y'`
-}
-
-tdr() {
-  task $1 mod due:
+bdgrep() {
+  echo "-- Bearded Dragon Prod --";
+  ssh bdprod "sudo grep --color '$1' /var/log/syslog" | ag $1
+  echo ''
 }
 
