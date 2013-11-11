@@ -10,20 +10,19 @@ if exists('g:loaded_airline')
 endif
 
 " Syntax Plugins
+Bundle 'elixir-lang/vim-elixir'
 Bundle 'elzr/vim-json'
 Bundle 'JavaScript-Indent'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-haml'
 
 " Functionality plugins
 Bundle 'bling/vim-airline'
-Bundle 'elixir-lang/vim-elixir'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
-Bundle 'hsitz/VimOrganizer'
 Bundle 'kana/vim-textobj-user'
-Bundle 'kogakure/vim-sparkup'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
@@ -32,7 +31,6 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
-Bundle 'slim-template/vim-slim'
 Bundle 'tobiassvn/vim-gemfile'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
@@ -44,7 +42,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'wikitopian/hardmode'
 Bundle 'UltiSnips'
 Bundle 'vimwiki'
 
