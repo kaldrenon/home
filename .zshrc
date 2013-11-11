@@ -65,6 +65,7 @@ alias grep="grep --color"
 alias c="clear;"
 alias ag="noglob ag "
 alias td="echo \`date +'%m/%d/%Y'\`"
+alias wat='man'
 
 # Ubuntu/Debian
 alias agi="sudo apt-get install -y"
