@@ -135,6 +135,10 @@ agg () {
   echo ""
 }
 
+jcurl() {
+  curl -X POST -H 'Content-Type: application/json' $1 --data $2
+}
+
 # Reload this file
 zz() {
   source ~/.zshrc
