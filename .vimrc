@@ -63,8 +63,10 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.branch = ' '
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.readonly = 'RO'
+let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_powerline_fonts = 1
 
 let g:syntastic_auto_jump = 1
@@ -239,6 +241,8 @@ nnoremap <Leader>b :Unite buffer<cr>
 nnoremap <Leader>s{ :s/\v\{(.+),<space>(.+)\}/{\2,<space>\1}/<cr>:nohls<cr>
 nnoremap <Leader>s[ :s/\v\[(.+),<space>(.+)\]/[\2,<space>\1]/<cr>:nohls<cr>
 nnoremap <Leader>s( :s/\v\[(.+),<space>(.+)\)/[\2,<space>\1)/<cr>:nohls<cr>
+nnoremap <Leader>sb ciwtrue<esc>
+nnoremap <Leader>sB ciwfalse<esc>
 
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
