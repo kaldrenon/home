@@ -270,3 +270,10 @@ bdgrep() {
   echo ''
 }
 
+bdgreps() {
+  echo "-- Bearded Dragon Stage --";
+  ssh bdstage "sudo grep --color '$1' /var/log/syslog" | ag $1
+  echo ''
+}
+
+

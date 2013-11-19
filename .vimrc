@@ -244,6 +244,9 @@ nnoremap <Leader>s( :s/\v\[(.+),<space>(.+)\)/[\2,<space>\1)/<cr>:nohls<cr>
 nnoremap <Leader>sb ciwtrue<esc>
 nnoremap <Leader>sB ciwfalse<esc>
 
+nnoremap <Leader>x i✓<esc>
+nnoremap <Leader>X r✓
+
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 
