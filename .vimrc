@@ -69,7 +69,7 @@ let g:airline_symbols.readonly = 'RO'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_powerline_fonts = 1
 
-let g:syntastic_auto_jump = 1
+let g:syntastic_auto_jump = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
