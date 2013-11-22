@@ -144,7 +144,7 @@ set linebreak
 
 " Character Listing
 set list
-set listchars=tab:»-,trail:·
+set listchars=tab:‣-,trail:·
 
 " Searching
 set hlsearch

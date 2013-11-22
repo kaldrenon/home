@@ -1,5 +1,11 @@
 ### Mine
 
+snippet "d (\S+)" "def with name" r
+def `!p snip.rv = match.group(1)`
+  $1
+end
+endsnippet
+
 ###
 # Rails
 ###
