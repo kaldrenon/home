@@ -1,17 +1,17 @@
 ### Vimwiki snippets
 
 # Task list snippets
-snippet day "New day" b
+snippet d "New day" b
 ~~`date +"%D"` - `date +"%A"`~~
 endsnippet
 
 snippet t "new task" i
 
-- [ ] - ${1:poms} - ${2:task}
+- [ ] - ${1:1} - ${2:task}
 endsnippet
 
 snippet T "new task" i
-  - [ ] - ${1:poms} - ${2:task}
+  - [ ] - ${1:1} - ${2:task}
 endsnippet
 
 snippet r "Resulotion" i
@@ -19,7 +19,7 @@ snippet r "Resulotion" i
 endsnippet
 
 snippet w "last week" i
-[[Pomodoro/Week of `date -v -1w +"%Y"`-${1:`date -v -1w +"%m-%d"`}]]
+[[Pomodoro/Week of `date -v -1w +"%Y"`-${1:`date +"%m-%d"`}]]
 endsnippet
 
 snippet @ "datestamp" !b
