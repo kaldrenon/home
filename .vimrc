@@ -284,3 +284,6 @@ if exists(":Tabularize")
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
 
+""" Ruby Specific Bindings
+
+au FileType ruby nnoremap "" :v/#{.\{-}}/s/\v"(.\{-})"/'\1'/
