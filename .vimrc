@@ -278,12 +278,12 @@ nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
 nnoremap <space>m /^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
 
 if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
+  nnoremap <Leader>a= :Tabularize /=<CR>
+  vnoremap <Leader>a= :Tabularize /=<CR>
+  nnoremap <Leader>a: :Tabularize /:\zs<CR>
+  vnoremap <Leader>a: :Tabularize /:\zs<CR>
 endif
 
 """ Ruby Specific Bindings
 
-au FileType ruby nnoremap "" :v/#{.\{-}}/s/\v"(.\{-})"/'\1'/
+au FileType ruby nnoremap "" :s/"/'/g<cr>
