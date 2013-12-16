@@ -42,7 +42,9 @@ endsnippet
 
 # basic clause
 snippet it "rspec it (line)" !b
-it '${1:meets a condition}'
+it '${1:meets a condition}' do
+  $2
+end
 endsnippet
 
 # basic clause with a block
