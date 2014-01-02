@@ -6,10 +6,6 @@ prod_dep() {
 }
 
 
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
 # Antigen bundles
 source ~/antigen.zsh
 #
@@ -44,9 +40,6 @@ PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2
 RPROMPT='' # prompt for right side of screen
 
 alias hl="history -D -n -1"
-
-# Ensure local/bin precedes bin, add Dropbox to PATH
-PATH=/usr/local/bin:$PATH:$HOME/Dropbox/bin
 
 # Vim is default editor for all things
 EDITOR=vim
@@ -276,4 +269,6 @@ bdgreps() {
   echo ''
 }
 
-
+# Ensure local/bin precedes bin, add RVM, Dropbox to PATH
+PATH=$HOME/.rvm/bin:/usr/local/bin:$PATH:$HOME/Dropbox/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
