@@ -14,6 +14,7 @@ Bundle 'elixir-lang/vim-elixir'
 Bundle 'elzr/vim-json'
 Bundle 'JavaScript-Indent'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-haml'
 
@@ -31,7 +32,6 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
-Bundle 'tobiassvn/vim-gemfile'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-dispatch'
@@ -74,7 +74,7 @@ let g:syntastic_auto_jump = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_quiet_warnings = 0
+let g:syntastic_quiet_messages = { 'level': 'warnings' }
 
 let g:vimwiki_list = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
@@ -85,6 +85,8 @@ let g:gist_open_browser_after_post = 1
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsEditSplit='horizontal'
+
+let g:used_javascript_libs = 'angularjs'
 
 if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
