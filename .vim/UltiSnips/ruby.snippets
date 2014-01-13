@@ -6,6 +6,12 @@ def `!p snip.rv = match.group(1)`
 end
 endsnippet
 
+snippet "do |(\w+)|" "close do block" r
+do |`!p snip.rv = match.group(1)`|
+  $1
+end
+endsnippet
+
 ###
 # Rails
 ###
