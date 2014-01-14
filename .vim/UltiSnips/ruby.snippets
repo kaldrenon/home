@@ -6,9 +6,15 @@ def `!p snip.rv = match.group(1)`
 end
 endsnippet
 
-snippet "do |(\w+)|" "close do block" r
+snippet "do \|(\w+)\|" "close do block" r
 do |`!p snip.rv = match.group(1)`|
   $1
+end
+endsnippet
+
+snippet test "unit test" b
+test "${1:context}" do
+  ${2:# TODO: definition}
 end
 endsnippet
 
