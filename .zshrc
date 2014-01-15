@@ -211,7 +211,7 @@ case $HOST in
     export AWS_SECRET_ACCESS_KEY="nExepV4o2yjF9Ekg2lYj2fZt9czzERPqJtBVPHHv";
     export AWS_SSH_KEY_ID=elocal_andrew;
     export KNIFE_USER_NAME=asfallows;
-    export PATH=$PATH:/Users/andrew/elb_tools/bin
+    HOST_PATH=/Applications/Postgres93.app/Contents/MacOS/bin:/Users/andrew/elb_tools/bin
 
     # Used for JRuby optimization for Rails
     export JAVA_OPTS="-d32"
@@ -219,10 +219,6 @@ case $HOST in
   *)
     ;;
 esac
-
-lpsql() {
-  sudo su - postgres -c "export PATH='/Library/PostgreSQL/9.2/bin:$PATH'; psql"
-}
 
 # Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
@@ -270,5 +266,5 @@ bdgreps() {
 }
 
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
-PATH=$HOME/.rvm/bin:/usr/local/bin:$PATH:$HOME/Dropbox/bin
+PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
