@@ -29,12 +29,22 @@ endsnippet
 
 # info log
 snippet rli "Rails Log (info)" b
-logger.info $1
+Rails.logger.info { $1 }
 endsnippet
 
 # debug log
 snippet rld "Rails Log (debug)" b
-logger.debug $1
+Rails.logger.debug { $1 }
+endsnippet
+
+# warn log
+snippet rld "Rails Log (warn)" b
+Rails.logger.warn { $1 }
+endsnippet
+
+# error log
+snippet rld "Rails Log (error)" b
+Rails.logger.error { $1 }
 endsnippet
 
 #
