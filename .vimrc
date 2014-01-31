@@ -197,6 +197,9 @@ nnoremap ZA :wqa<cr>
 nnoremap <silent><space>h /\v^\s*[^#]*\n^\s*(def\|class)/+1<cr>:noh<cr>
 nnoremap <silent><space>H O##
 
+" flip capitalization on a word
+nnoremap <silent><leader>~ viw~
+
 " minor cursor adjust without leaving insert mode
 inoremap <C-h> <left>
 inoremap <C-l> <right>
