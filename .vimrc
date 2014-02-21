@@ -30,6 +30,7 @@ Bundle 'mhinz/vim-signify'
 Bundle 'mhinz/vim-tmuxify'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rking/ag.vim'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
 Bundle 'sunaku/vim-ruby-minitest'
@@ -289,6 +290,8 @@ if exists(":Tabularize")
   nnoremap <Leader>a: :Tabularize /:\zs<CR>
   vnoremap <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+nnoremap <space>f :NERDTreeToggle<cr>
 
 """ Ruby Specific Bindings
 
