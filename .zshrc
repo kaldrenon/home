@@ -80,6 +80,8 @@ alias gco="git checkout"
 alias gg="noglob git grep "
 alias gs="git status"
 
+
+
 ###
 # FUNC: Custom Functions
 ###
@@ -121,13 +123,14 @@ usage(){
 
 # more powerful silver-search
 agg () {
-  echo "== FILES"
+  echo "-- Files"
   noglob ag -g $*
-  echo "\n== LINES"
+  echo "\n-- Lines"
   noglob ag $*
   echo ""
 }
 
+# Shorthand for a JSON curl request
 jcurl() {
   curl -X POST -H 'Content-Type: application/json' $1 --data $2
 }
@@ -135,6 +138,11 @@ jcurl() {
 # Reload this file
 zz() {
   source ~/.zshrc
+}
+
+# Search power
+vimag() {
+  vim -o `ag -l $1`
 }
 
 ###
@@ -152,7 +160,7 @@ tmcd() {
 }
 
 # Print all the color names for TMUX highlighting
-tmcolors() {
+tmuxcolors() {
   for i in {0..255} ; do
     printf "\x1b[38;5;${i}mcolour${i}\n"
   done
@@ -163,6 +171,7 @@ tmcolors() {
 ###
 
 # Smart LS - different flag depending on host
+# OSX uses /Users, other hosts use /home
 if [[ -e "/Users/`whoami`" ]] ; then
   LS_COLO_FLAG="-G" ;
 else
@@ -237,6 +246,10 @@ esac
 #####
 # ELOCAL: Managing elocal servers
 #####
+elcat() {
+  ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}' | ag "^ +$1\|"
+}
+
 elcats() {
   ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}'
 }
