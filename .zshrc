@@ -80,11 +80,13 @@ alias gco="git checkout"
 alias gg="noglob git grep "
 alias gs="git status"
 
-
-
 ###
 # FUNC: Custom Functions
 ###
+
+vlm() {
+  vim db/migrate/`ls db/migrate | tail -1`
+}
 
 appg() {
   case $HOST in
