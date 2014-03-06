@@ -85,7 +85,7 @@ alias gs="git status"
 ###
 
 vlm() {
-  vim db/migrate/`ls db/migrate | tail -1`
+  vim -o db/migrate/`ls db/migrate | tail -$1`
 }
 
 appg() {
