@@ -265,6 +265,15 @@ elgrep() {
   done
 }
 
+elgrephist() {
+  for ff in 1 2 3;
+  do
+    echo "-- Elocal Prod Web $ff --";
+    ssh elocal_production_web_$ff "sudo grep --color '$1' /var/log/syslog.1" | ag $1;
+    echo ''
+  done
+}
+
 bdgrep() {
   echo "-- Bearded Dragon Prod --";
   ssh bdprod "sudo grep --color '$1' /var/log/syslog" | ag $1
