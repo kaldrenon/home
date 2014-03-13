@@ -295,3 +295,8 @@ nnoremap <space>f :NERDTreeToggle<cr>
 """ Ruby Specific Bindings
 
 au FileType ruby nnoremap "" :s/"/'/g<cr>
+au FileType ruby nnoremap <silent><C-p> :w !ruby<cr>
+
+nnoremap <silent><space>p :new<cr>:set ft=ruby<cr>
+nnoremap <silent><space>P :bd
+
