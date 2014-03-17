@@ -15,7 +15,7 @@ endsnippet
 
 snippet des "Describe (coffee)" b
 describe '${1:description}', ->
-	$0
+  $0
 endsnippet
 
 snippet ## "comment header" b
@@ -24,21 +24,27 @@ snippet ## "comment header" b
 #
 endsnippet
 
+snippet jqpost "jQuery $.post" !b
+$.post(${1:href}, ${2:data}, (${3:result}) ->
+  ${4:# TODO: handle response from post}
+)
+endsnippet
+
 ### Predefined
 
 snippet it "it (coffee)" b
 it '${1:description}', ->
-	$0
+  $0
 endsnippet
 
 snippet bef "before each (coffee)" b
 beforeEach ->
-	$0
+  $0
 endsnippet
 
 snippet aft "after each (coffee)" b
 afterEach ->
-	$0
+  $0
 endsnippet
 
 snippet any "any (coffee)" b
@@ -47,7 +53,7 @@ endsnippet
 
 snippet ru "runs (coffee)" b
 runs ->
-	$0
+  $0
 endsnippet
 
 snippet wa "waits (coffee)" b
