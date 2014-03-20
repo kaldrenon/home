@@ -218,11 +218,13 @@ case $HOST in
     export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars";
 
     export AWS_ELB_HOME="/Users/andrew/elb_tools";
+    export AWS_RDS_HOME="/Users/andrew/rds_tools";
     export AWS_ACCESS_KEY_ID="AKIAJZAR6QC6Q2L53AVQ";
     export AWS_SECRET_ACCESS_KEY="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";
+    export AWS_CREDENTIAL_FILE="$HOME/.ec2/creds-file"
     export AWS_SSH_KEY_ID=elocal_andrew;
     export KNIFE_USER_NAME=asfallows;
-    HOST_PATH=/Applications/Postgres93.app/Contents/MacOS/bin:/Users/andrew/elb_tools/bin
+    HOST_PATH=/Applications/Postgres93.app/Contents/MacOS/bin:/Users/andrew/elb_tools/bin:/Users/andrew/rds_tools
 
     # Used for JRuby optimization for Rails
     export JAVA_OPTS="-d32"
