@@ -17,6 +17,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-haml'
+Bundle 'groenewege/vim-less'
 
 " Functionality plugins
 Bundle 'bling/vim-airline'
