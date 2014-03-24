@@ -258,6 +258,10 @@ elcats() {
   ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}'
 }
 
+githash() {
+  ssh $1 "cd /mnt/deploy/$2/current; git rev-parse HEAD";
+}
+
 elgrep() {
   for ff in 1 2 3;
   do
