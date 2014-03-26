@@ -41,9 +41,6 @@ RPROMPT='' # prompt for right side of screen
 
 alias hl="history -D -n -1"
 
-# Vim is default editor for all things
-EDITOR=vim
-export EDITOR
 
 # Support colors for excellence!
 TERM=screen-256color
@@ -295,3 +292,10 @@ bdgreps() {
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# Vim is default editor for all things
+EDITOR=`which vim`
+export EDITOR
+
+VISUAL=`which vim`
+export VISUAL
