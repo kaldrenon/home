@@ -172,7 +172,10 @@ powerup() {
   cp $HOME/home/.powenv .powenv
 
   POW_APP_PATH=`pwd`
-  cd ~/.pow && ln -s $POW_APP_PATH && cd -
+  cd ~/.pow
+  rm `basename $POW_APP_PATH`
+  ln -s $POW_APP_PATH
+  cd -
 }
 
 ###
