@@ -165,6 +165,16 @@ tmuxcolors() {
   done
 }
 
+powerup() {
+  mkdir -p $HOME/.pow
+
+  cp $HOME/home/pusherenv .env
+  cp $HOME/home/.powenv .powenv
+
+  POW_APP_PATH=`pwd`
+  cd ~/.pow && ln -s $POW_APP_PATH && cd -
+}
+
 ###
 # MISC: Various things
 ###
@@ -176,6 +186,7 @@ if [[ -e "/Users/`whoami`" ]] ; then
 else
   LS_COLO_FLAG="--color" ;
 fi
+
 alias ls="ls $LS_COLO_FLAG -A"
 alias ll="ls $LS_COLO_FLAG -A -l"
 alias la="=ls $LS_COLO_FLAG"
