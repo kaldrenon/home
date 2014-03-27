@@ -19,7 +19,3 @@ then
 else
   echo "RVM project not found at: $PWD"
 fi
-
-PUSHER_APPID=70009
-PUSHER_KEY=bcaa57fbcaae7f9075dc
-PUSHER_SECRET=5dff97d5ac86bbb3b37b

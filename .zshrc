@@ -168,7 +168,6 @@ tmuxcolors() {
 powerup() {
   mkdir -p $HOME/.pow
 
-  cp $HOME/home/pusherenv .env
   cp $HOME/home/.powenv .powenv
 
   POW_APP_PATH=`pwd`
