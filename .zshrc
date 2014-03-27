@@ -175,7 +175,7 @@ powerup() {
   cd ~/.pow
   rm `basename $POW_APP_PATH`
   ln -s $POW_APP_PATH
-  cd -
+  cd - > /dev/null
 }
 
 ###
