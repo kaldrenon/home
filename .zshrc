@@ -172,7 +172,7 @@ powerup() {
 
   POW_APP_PATH=`pwd`
   cd ~/.pow
-  rm `basename $POW_APP_PATH`
+  rm `basename $POW_APP_PATH` > /dev/null
   ln -s $POW_APP_PATH
   cd - > /dev/null
 }
