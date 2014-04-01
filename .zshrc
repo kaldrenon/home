@@ -177,6 +177,10 @@ powerup() {
   cd - > /dev/null
 }
 
+powercycle() {
+  powify restart `basename $(pwd)`
+}
+
 ###
 # MISC: Various things
 ###
