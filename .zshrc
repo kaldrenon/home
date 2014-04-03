@@ -82,7 +82,14 @@ alias gs="git status"
 ###
 
 vlm() {
-  vim -o db/migrate/`ls db/migrate | tail -$1`
+  files=""
+  for file in $(ls db/migrate | tail -$1); do
+    filename=db/migrate/$file
+    files="$files $filename"
+  done
+  pwd
+  echo "vim -o$files"
+  vim -o $(echo $files)
 }
 
 appg() {
