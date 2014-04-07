@@ -35,8 +35,8 @@ bindkey -M vicmd '?' history-incremental-search-backward  # Search up through re
 
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
-# Prompt: [time (green)][user@host (blue): current path (depth 2)]$
-PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2~]$ "
+# Prompt: [time (green)][user@host (cyan): current path (depth 2)]$
+PROMPT="[%{$fg_bold[green]%}%T%{$reset_color%}][%{$fg_bold[blue]%}%n@%m%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
 alias hl="history -D -n -1"
