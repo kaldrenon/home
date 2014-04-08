@@ -1,7 +1,7 @@
 ### Mine
 extends 'rails.snippets'
 
-snippet "d (\S+)" "def with name" r
+snippet "def (\S+)" "def with name" r
 def `!p snip.rv = match.group(1)`
   $1
 end
@@ -50,6 +50,12 @@ endsnippet
 #
 # ActiveRecord
 #
+
+# Find for model - python splits a snake_case word and joins it as CamelCase
+snippet find "Find by params[:id] for model" !b
+@${1:model_name} = `!p comp = t[1].split('_')
+snip.rv = "".join(x.title() for x in comp)`.find(params[:${2:id}])
+endsnippet
 
 # Scope in a format that rubocop likes
 snippet scope "ActiveRecord model scope" b
