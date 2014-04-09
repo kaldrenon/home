@@ -24,6 +24,10 @@ snippet ## "comment header" b
 #
 endsnippet
 
+snippet targ "Set target var" !b
+target = $(event.currentTarget)
+endsnippet
+
 snippet jqpost "jQuery $.post" !b
 $.post(${1:href}, ${2:data}, (${3:result}) ->
   ${4:# TODO: handle response from post}
