@@ -76,6 +76,7 @@ alias gcl="git clone"
 alias gco="git checkout"
 alias gg="noglob git grep "
 alias gs="git status"
+alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 ###
 # FUNC: Custom Functions
@@ -186,6 +187,10 @@ powerup() {
 
 powercycle() {
   powify restart `basename $(pwd)`
+}
+
+rtest() {
+  bundle exec ruby -Itest $1
 }
 
 ###

@@ -83,6 +83,12 @@ it '${1:meets a condition}' do
 end
 endsnippet
 
+snippet sh "rspec it (line)" !b
+should '${1:meets a condition}' do
+  $2
+end
+endsnippet
+
 # Before Each (empty)
 snippet bfe "Before each" b
 before(:each) do
