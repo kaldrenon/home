@@ -13,7 +13,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle brew
 antigen bundle knife
 antigen bundle web-search
-antigen bundle olivierverdier/zsh-git-prompt
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
