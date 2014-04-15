@@ -13,6 +13,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle brew
 antigen bundle knife
 antigen bundle web-search
+antigen bundle olivierverdier/zsh-git-prompt
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
@@ -88,8 +89,6 @@ vlm() {
     filename=db/migrate/$file
     files="$files $filename"
   done
-  pwd
-  echo "vim -o$files"
   vim -o $(echo $files)
 }
 
