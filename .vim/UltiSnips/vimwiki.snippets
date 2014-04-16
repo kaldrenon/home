@@ -5,13 +5,12 @@ snippet d "New day" b
 ~~`date +"%D"` - `date +"%A"`~~
 endsnippet
 
-snippet t "new task" i
-
-- [ ] - ${1:1} - ${2:task}
+snippet p "pomodoro" !b
+  - [ ] - ${1:1} - ${2:pomodoro description}
 endsnippet
 
 snippet T "new task" i
-  - [ ] - ${1:1} - ${2:task}
+  - [ ] - ${1:*} - ${2:small task}
 endsnippet
 
 snippet r "Resulotion" i
@@ -22,12 +21,8 @@ snippet w "last week" i
 [[history/Week of `date -v -1w +"%Y"`-${1:`date +"%m-%d"`}]]
 endsnippet
 
-snippet @ "datestamp" !b
-`date +"%Y-%m-%d"`
-endsnippet
-
 snippet ! "timestamp" i
-`date +"%H:%M"`
+@`date +"%H:%M"`
 endsnippet
 
 snippet snp "new thought snippet" !b

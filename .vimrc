@@ -170,6 +170,10 @@ nnoremap gk k
 xnoremap gk k
 vnoremap gk k
 
+" Join up
+nnoremap K kJ
+nnoremap <A-j> ddkkpJ
+
 " Clear search highlighting with \c
 nnoremap <silent><Leader>c :nohls<CR>
 nnoremap <silent><c-n> :nohls<CR>
@@ -262,12 +266,25 @@ nnoremap <Leader>X r✓
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 
-" Vimwiki Task related mappings
-nmap <space><space> o<esc>0C
+"""""
+" Vimwiki Task related mappings - rely on UltiSnips snippets
+"""""
+" New Pomodoro task entry
+nmap <space>p o<esc>0Cp<C-j>
+nmap <space>P O<esc>0Cp<C-j>
+
+" New quick task entry
 nmap <space>t o<esc>0CT<C-j>
 nmap <space>T O<esc>0CT<C-j>
+
+" New task description line
 nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
+
+nmap <C-x> A<space>!<C-j><esc><C-space>
+
+" Enable tab completion for popup menus in vimwiki buffers
+au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 
 " * search in visual mode
 vnoremap * y/<C-r>"<cr>
@@ -282,17 +299,11 @@ au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
 
-
-" Enable tab completion for popup menus in vimwiki buffers
-au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-nnoremap K kJ
-
-if exists(":Tabularize")
-  nnoremap <Leader>a= :Tabularize /=<CR>
-  vnoremap <Leader>a= :Tabularize /=<CR>
-  nnoremap <Leader>a: :Tabularize /:\zs<CR>
-  vnoremap <Leader>a: :Tabularize /:\zs<CR>
-endif
+" Mappings for common Tabularizations
+nnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a: :Tabularize /:\zs<CR>
+vnoremap <Leader>a: :Tabularize /:\zs<CR>
 
 nnoremap <space>f :NERDTreeToggle<cr>
 
@@ -300,7 +311,3 @@ nnoremap <space>f :NERDTreeToggle<cr>
 
 au FileType ruby nnoremap "" :s/"/'/g<cr>
 au FileType ruby nnoremap <silent><C-p> :w !ruby<cr>
-
-nnoremap <silent><space>p :new<cr>:set ft=ruby<cr>
-nnoremap <silent><space>P :bd
-
