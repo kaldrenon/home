@@ -305,7 +305,7 @@ vnoremap <Leader>a= :Tabularize /=<CR>
 nnoremap <Leader>a: :Tabularize /:\zs<CR>
 vnoremap <Leader>a: :Tabularize /:\zs<CR>
 
-nnoremap <space>f :NERDTreeToggle<cr>
+nnoremap - :NERDTreeToggle<cr>
 
 """ Ruby Specific Bindings
 
