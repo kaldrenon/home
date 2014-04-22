@@ -281,7 +281,7 @@ nmap <space>T O<esc>0CT<C-j>
 nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
 
-nmap <C-x> A<space>!<C-j><esc><C-space>
+nnoremap <C-x> A<space>!<C-j><esc><C-space>
 
 " Enable tab completion for popup menus in vimwiki buffers
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"

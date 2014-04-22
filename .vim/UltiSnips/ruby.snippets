@@ -80,17 +80,14 @@ it '${1:meets a condition}' do
 end
 endsnippet
 
-# basic clause with a block
-snippet itb "rspec it (block)" b
-it '${1:meets a condition}' do
-  ${2:pending 'TODO: $1'}
-end
-endsnippet
-
-snippet sh "rspec it (line)" !b
+snippet sh "should" !b
 should '${1:meets a condition}' do
   $2
 end
+endsnippet
+
+snippet shs "should (snippet)" !b
+should '${1:meets a condition}'
 endsnippet
 
 # Before Each (empty)
@@ -138,6 +135,15 @@ snippet vcr "vcr cassette block" !b
 VCR.use_cassette('${1:cassette_name}') do
   ${2:# TODO: test execution}
 end
+endsnippet
+
+# FactoryGirl
+snippet fc "FactoryGirl create" i
+FactoryGirl.create(:${1:model})
+endsnippet
+
+snippet fb "FactoryGirl build" i
+FactoryGirl.build(:${1:model})
 endsnippet
 
 #

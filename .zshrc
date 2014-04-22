@@ -188,7 +188,10 @@ powercycle() {
 }
 
 rtest() {
-  bundle exec ruby -Itest $1
+  local cmd="bundle exec ruby -Itest $1"
+  clear
+  echo "$fg_bold[blue]Executing $cmd$reset_color"
+  eval $cmd
 }
 
 ###
