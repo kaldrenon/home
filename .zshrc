@@ -82,6 +82,10 @@ alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=f
 # FUNC: Custom Functions
 ###
 
+print_color() {
+  echo "$fg_bold[$1]$2$reset_color"
+}
+
 vlm() {
   files=""
   for file in $(ls db/migrate | tail -$1); do
@@ -116,9 +120,37 @@ gcp() {
 # git add, status, prepare to commit
 gcs() {
   clear
+  grcs $(git rev-parse --abbrev-ref HEAD)
   git add -A
   git status
   print -z 'git commit -m "'
+}
+
+grcs() {
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  local remote=$1
+  if [ -z "$1" ]; then; local remote='master'; fi
+
+  local local_count=$(git log --oneline --decorate=short $branch..origin/$remote | wc -l | tr -d ' ')
+  local remote_count=$(git log --oneline --decorate=short origin/$remote..$branch | wc -l | tr -d ' ')
+  echo "  $local_count unmerged commits on $branch"
+  echo "  $remote_count unmerged commits on origin/master"
+  if [ $remote_count != 0 ]; then
+    print_color red "\tPULL!";
+  elif [ $local_count != 0 ]; then
+    print_color green "\tFree to push.";
+  else
+    print_color yellow "\tNothing to push or pull.";
+  fi
+}
+
+grcl() {
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  echo "\n-- Commits on $branch missing on origin/master --"
+  git log -5 --oneline --decorate=short $branch..origin/master
+  echo "\n-- Commits on origin/master missing on $branch --"
+  git log -5 --oneline --decorate=short origin/master..$branch
+  echo
 }
 
 # Quick alias to get disk usage of a dir
