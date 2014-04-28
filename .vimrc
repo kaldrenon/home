@@ -95,7 +95,7 @@ if executable('ag')
   let g:unite_source_rec_async_command = 'ag -i --nocolor --nogroup'
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden ' .
-        \ '--ignore ''.git'' --ignore ''tmp'''
+        \ '--ignore ''.git'' --ignore ''tmp'' --ignore ''node_modules'''
   let g:unite_source_grep_recursive_opt = ''
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
