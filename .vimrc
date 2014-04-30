@@ -200,7 +200,6 @@ nnoremap <silent><Leader>ur :UltiSnipsEdit<space>ruby<cr>
 inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 
 " Go to next uncompleted task in vimwiki buffers
-au BufRead,BufNewFile,BufEnter *.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
 nnoremap ZA :wqa<cr>
 
 " Find uncommented method and class headers
