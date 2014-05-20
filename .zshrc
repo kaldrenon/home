@@ -64,10 +64,38 @@ alias agi="sudo apt-get install -y"
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
+######
 # Ruby Dev
+######
 alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
+rdbupdate() {
+  rake db:migrate db:test:prepare
+  if [ $? -eq 0 ]; then
+    alert Migration completed
+  else
+    alert Migration failed
+  fi
+}
+
+# Run a single test file
+rtest() {
+  local cmd="bundle exec ruby -Itest $1"
+  clear
+  echo "$fg_bold[blue]Executing $cmd$reset_color"
+  eval $cmd
+  alert "Test run for $1 complete"
+}
+
+rtest_all() {
+  local cmd="rake test"
+  clear
+  echo "$fg_bold[blue]Executing $cmd$reset_color"
+  eval $cmd
+  alert "Full test suite completed"
+}
+
 
 # Git(Hub)
 alias ga="git add"
@@ -77,6 +105,10 @@ alias gco="git checkout"
 alias gg="noglob git grep "
 alias gs="git status"
 alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gcodbsql="git checkout HEAD db/structure.sql"
+
+# Voices (OSX only afaik)
+alias alert="say -v 'Victoria'"
 
 ###
 # FUNC: Custom Functions
@@ -120,7 +152,6 @@ gcp() {
 # git add, status, prepare to commit
 gcs() {
   clear
-  grcs $(git rev-parse --abbrev-ref HEAD)
   git add -A
   git status
   print -z 'git commit -m "'
@@ -219,12 +250,6 @@ powercycle() {
   powify restart `basename $(pwd)`
 }
 
-rtest() {
-  local cmd="bundle exec ruby -Itest $1"
-  clear
-  echo "$fg_bold[blue]Executing $cmd$reset_color"
-  eval $cmd
-}
 
 ###
 # MISC: Various things
