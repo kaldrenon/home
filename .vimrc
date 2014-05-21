@@ -91,6 +91,8 @@ let g:UltiSnipsEditSplit     = 'horizontal'
 
 let g:used_javascript_libs = 'angularjs'
 
+let g:ycm_server_keep_logfiles = 1
+
 if executable('ag')
   let g:ackprg                          = 'ag --nogroup --nocolor --column'
   let g:unite_source_rec_async_command  = 'ag -i --nocolor --nogroup'
