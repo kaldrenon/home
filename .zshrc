@@ -85,7 +85,11 @@ rtest() {
   clear
   echo "$fg_bold[blue]Executing $cmd$reset_color"
   eval $cmd
-  alert "Test run for $1 complete"
+  if [ $? -eq 0 ]; then
+    alert "Tests completed - $1"
+  else
+    alert "Tests failed - $1"
+  fi
 }
 
 rtest_all() {
