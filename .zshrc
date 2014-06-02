@@ -64,6 +64,9 @@ alias agi="sudo apt-get install -y"
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
+# Voices (OSX only afaik)
+alias alert="say -v 'Victoria'"
+
 ######
 # Ruby Dev
 ######
@@ -111,8 +114,6 @@ alias gs="git status"
 alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gcodbsql="git checkout HEAD db/structure.sql"
 
-# Voices (OSX only afaik)
-alias alert="say -v 'Victoria'"
 
 ###
 # FUNC: Custom Functions
