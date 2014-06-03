@@ -89,9 +89,9 @@ rtest() {
   echo "$fg_bold[blue]Executing $cmd$reset_color"
   eval $cmd
   if [ $? -eq 0 ]; then
-    alert "Tests completed - $1"
+    alert "Tests completed - $(sed 's/[\/_]/ /g' <<< $1)"
   else
-    alert "Tests failed - $1"
+    alert "Tests failed - $(sed 's/[\/_]/ /g' <<< $1)"
   fi
 }
 
