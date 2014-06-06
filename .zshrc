@@ -100,7 +100,11 @@ rtest_all() {
   clear
   echo "$fg_bold[blue]Executing $cmd$reset_color"
   eval $cmd
-  alert "Full test suite completed"
+  if [ $? -eq 0 ]; then
+    alert "Tests completed - full test suite"
+  else
+    alert "Tests failed - full test suite"
+  fi
 }
 
 
