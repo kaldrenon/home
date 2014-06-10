@@ -21,7 +21,6 @@ Bundle 'groenewege/vim-less'
 
 " Functionality plugins
 Bundle 'bling/vim-airline'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
@@ -35,7 +34,6 @@ Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
-Bundle 'sudo.vim'
 Bundle 'sunaku/vim-ruby-minitest'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
@@ -84,6 +82,7 @@ let g:syntastic_quiet_messages = { 'level': 'warnings' }
 let g:vimwiki_list = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
 
+let g:github_dashboard = { 'username': 'kaldrenon' }
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 
@@ -110,7 +109,7 @@ command! Bd :bd
 command! RS :source ~/.vimrc
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
 
-" Highlight matched HTML tags
+"Highlight matched HTML tags
 set matchpairs+=<:>
 set showmatch
 set matchtime=3
@@ -158,23 +157,14 @@ set incsearch
 set ttimeoutlen=50
 
 " Swap j/k with gj/gk for normal, visual, and select modes
-nnoremap j  gj
-xnoremap j  gj
-vnoremap j  gj
-nnoremap k  gk
-xnoremap k  gk
-vnoremap k  gk
-
-nnoremap gj j
+xnoremap j gj
 xnoremap gj j
-vnoremap gj j
-nnoremap gk k
+xnoremap k gk
 xnoremap gk k
-vnoremap gk k
-
-" Join up
-nnoremap K kJ
-nnoremap <A-j> ddkkpJ
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
 
 " Clear search highlighting with \c
 nnoremap <silent><Leader>c :nohls<CR>
@@ -268,25 +258,10 @@ nnoremap <Leader>X r✓
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 
-"""""
-" Vimwiki Task related mappings - rely on UltiSnips snippets
-"""""
-" New Pomodoro task entry
-nmap <space>p o<esc>0Cp<C-j>
-nmap <space>P O<esc>0Cp<C-j>
-
-" New quick task entry
+" Vimwiki Task related mappings
+nmap <space><space> o<esc>0C
 nmap <space>t o<esc>0CT<C-j>
-nmap <space>T O<esc>0CT<C-j>
-
-" New task description line
 nmap <space>r o<esc>0Cr<C-j>
-nmap <space>R O<esc>0Cr<C-j>
-
-nnoremap <C-x> A<space>!<C-j><esc><C-space>
-
-" Enable tab completion for popup menus in vimwiki buffers
-au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 
 " * search in visual mode
 vnoremap * y/<C-r>"<cr>
@@ -301,15 +276,28 @@ au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
 
-" Mappings for common Tabularizations
-nnoremap <Leader>a= :Tabularize /=<CR>
-vnoremap <Leader>a= :Tabularize /=<CR>
-nnoremap <Leader>a: :Tabularize /:\zs<CR>
-vnoremap <Leader>a: :Tabularize /:\zs<CR>
 
-nnoremap - :NERDTreeToggle<cr>
+" Enable tab completion for popup menus in vimwiki buffers
+au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+nnoremap K kJ
+
+nnoremap <space>M ?^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
+nnoremap <space>m /^\s\+#\n^\s\+#.\+\n^\s\+#<cr>zt:nohls<cr>
+
+if exists(":Tabularize")
+  nnoremap <Leader>a= :Tabularize /=<CR>
+  vnoremap <Leader>a= :Tabularize /=<CR>
+  nnoremap <Leader>a: :Tabularize /:\zs<CR>
+  vnoremap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+nnoremap <space>f :NERDTreeToggle<cr>
 
 """ Ruby Specific Bindings
 
 au FileType ruby nnoremap "" :s/"/'/g<cr>
 au FileType ruby nnoremap <silent><C-p> :w !ruby<cr>
+
+nnoremap <silent><space>p :new<cr>:set ft=ruby<cr>
+nnoremap <silent><space>P :bd
+

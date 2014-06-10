@@ -1,0 +1,15 @@
+[user]
+        name = Andrew Fallows
+        email = kaldrenon@gmail.com
+[grep]
+        linenumber = true
+[github]
+        user = kaldrenon
+[help]
+        autocorrect = 1
+[color]
+        ui = true
+[init]
+  templatedir = ~/.git_template
+[push]
+        default = current

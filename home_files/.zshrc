@@ -35,12 +35,15 @@ bindkey -M vicmd '?' history-incremental-search-backward  # Search up through re
 
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
-# Prompt: [time (green)][user@host (cyan): current path (depth 2)]$
-PROMPT="[%{$fg_bold[green]%}%T%{$reset_color%}][%{$fg_bold[blue]%}%n@%m%{$reset_color%}:%2~]$ "
+# Prompt: [time (green)][user@host (blue): current path (depth 2)]$
+PROMPT="[%{$fg[green]%}%T%{$reset_color%}][%{$fg[blue]%}%n@%m%{$reset_color%}:%2~]$ "
 RPROMPT='' # prompt for right side of screen
 
 alias hl="history -D -n -1"
 
+# Vim is default editor for all things
+EDITOR=vim
+export EDITOR
 
 # Support colors for excellence!
 TERM=screen-256color
@@ -76,23 +79,13 @@ alias gcl="git clone"
 alias gco="git checkout"
 alias gg="noglob git grep "
 alias gs="git status"
-alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 ###
 # FUNC: Custom Functions
 ###
 
-print_color() {
-  echo "$fg_bold[$1]$2$reset_color"
-}
-
 vlm() {
-  files=""
-  for file in $(ls db/migrate | tail -$1); do
-    filename=db/migrate/$file
-    files="$files $filename"
-  done
-  vim -o $(echo $files)
+  vim -o db/migrate/`ls db/migrate | tail -$1`
 }
 
 appg() {
@@ -120,37 +113,9 @@ gcp() {
 # git add, status, prepare to commit
 gcs() {
   clear
-  grcs $(git rev-parse --abbrev-ref HEAD)
   git add -A
   git status
   print -z 'git commit -m "'
-}
-
-grcs() {
-  local branch=$(git rev-parse --abbrev-ref HEAD)
-  local remote=$1
-  if [ -z "$1" ]; then; local remote='master'; fi
-
-  local local_count=$(git log --oneline --decorate=short $branch..origin/$remote | wc -l | tr -d ' ')
-  local remote_count=$(git log --oneline --decorate=short origin/$remote..$branch | wc -l | tr -d ' ')
-  echo "  $local_count unmerged commits on $branch"
-  echo "  $remote_count unmerged commits on origin/master"
-  if [ $remote_count != 0 ]; then
-    print_color red "\tPULL!";
-  elif [ $local_count != 0 ]; then
-    print_color green "\tFree to push.";
-  else
-    print_color yellow "\tNothing to push or pull.";
-  fi
-}
-
-grcl() {
-  local branch=$(git rev-parse --abbrev-ref HEAD)
-  echo "\n-- Commits on $branch missing on origin/master --"
-  git log -5 --oneline --decorate=short $branch..origin/master
-  echo "\n-- Commits on origin/master missing on $branch --"
-  git log -5 --oneline --decorate=short origin/master..$branch
-  echo
 }
 
 # Quick alias to get disk usage of a dir
@@ -203,29 +168,6 @@ tmuxcolors() {
   done
 }
 
-powerup() {
-  mkdir -p $HOME/.pow
-
-  cp $HOME/home/.powenv .powenv
-
-  POW_APP_PATH=`pwd`
-  cd ~/.pow
-  rm `basename $POW_APP_PATH` > /dev/null
-  ln -s $POW_APP_PATH
-  cd - > /dev/null
-}
-
-powercycle() {
-  powify restart `basename $(pwd)`
-}
-
-rtest() {
-  local cmd="bundle exec ruby -Itest $1"
-  clear
-  echo "$fg_bold[blue]Executing $cmd$reset_color"
-  eval $cmd
-}
-
 ###
 # MISC: Various things
 ###
@@ -237,7 +179,6 @@ if [[ -e "/Users/`whoami`" ]] ; then
 else
   LS_COLO_FLAG="--color" ;
 fi
-
 alias ls="ls $LS_COLO_FLAG -A"
 alias ll="ls $LS_COLO_FLAG -A -l"
 alias la="=ls $LS_COLO_FLAG"
@@ -354,12 +295,3 @@ bdgreps() {
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-# Vim is default editor for all things
-EDITOR=`which vim`
-export EDITOR
-
-VISUAL=`which vim`
-export VISUAL
-
-eval `ssh-agent -s`
