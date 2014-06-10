@@ -867,26 +867,6 @@ resources :${1:posts}${2: do
 end}
 endsnippet
 
-snippet scope "scope"
-scope :${1:name}, ${2:joins(:${3:table}).}where(${4:'${5:$3.${6:field}} = ?', ${7:'${8:value}'}})
-endsnippet
-
-snippet scopel "scope lambda"
-scope :${1:name}, lambda { |${2:param}| ${3:where(${4::${5:field} => ${6:"${7:value}"}})} }
-endsnippet
-
-snippet scopee "scope with extension"
-scope :${1:name}, ${2:where(${3::${4:field} => ${5:'${6:value}'}})} do
-  def ${7:method_name}
-    $0
-  end
-end
-endsnippet
-
-snippet sb "scoped_by"
-scoped_by_${1:attribute}(${2:id})
-endsnippet
-
 snippet setup "setup do..end"
 setup do
   $0

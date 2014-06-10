@@ -4,9 +4,9 @@ set gcr=n:blinkon0
 
 set guioptions=
 " Window size
-set columns=100 
+set columns=100
 set lines=50
 
 cd ~/Dropbox
 
-set guifont="Inconsolata Medium 12"
+set guifont=Source_Code_Pro:h10:cANSI

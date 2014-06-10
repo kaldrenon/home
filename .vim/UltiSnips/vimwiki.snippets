@@ -2,7 +2,11 @@
 
 # Task list snippets
 snippet d "New day" b
-~~`date +"%D"` - `date +"%A"`~~
+~~`date +"%D"` - `date +"%A"`~~ [[details/`date +"%Y%m%d%H%M%S"`]]
+  - [ ] |*| To Do Today List initialized
+  - [ ] |${1:1}| ${2:pomodoro description}
+  - [ ] |*| Reflections
+
 endsnippet
 
 snippet p "pomodoro" !b
@@ -25,6 +29,19 @@ snippet ! "timestamp" i
 @`date +"%H:%M"`
 endsnippet
 
+snippet dt "task details" i
+[[details/`date +"%Y%m%d%H%M%S"`]]
+endsnippet
+
 snippet snp "new thought snippet" !b
 [[snips/`date +"%Y%m%d%H%M%S"`]]
+endsnippet
+
+snippet pomtitles "Titles for pomodoro reflection file" !b
+= Goals =
+$1
+= Notes =
+$2
+= Reflections =
+$3
 endsnippet

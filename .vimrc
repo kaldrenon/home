@@ -68,36 +68,39 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.readonly = 'RO'
+let g:airline_symbols.linenr     = '␤'
+let g:airline_symbols.branch     = '⎇'
+let g:airline_symbols.readonly   = 'RO'
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts    = 1
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
-let g:syntastic_auto_jump = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_enable_signs = 1
+let g:syntastic_mode_map            = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+let g:syntastic_auto_jump           = 0
+let g:syntastic_auto_loc_list       = 0
+let g:syntastic_enable_signs        = 1
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_quiet_messages = { 'level': 'warnings' }
+let g:syntastic_quiet_messages      = { 'level': 'warnings' }
 
-let g:vimwiki_list = [{'path': '~/Dropbox/docs/vimwiki/'}]
+let g:vimwiki_list         = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
+let g:vimwiki_hl_headers   = 1
 
-let g:gist_clip_command = 'pbcopy'
+let g:gist_clip_command            = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsEditSplit='horizontal'
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsEditSplit     = 'horizontal'
 
 let g:used_javascript_libs = 'angularjs'
 
+let g:ycm_server_keep_logfiles = 1
+
 if executable('ag')
-  let g:ackprg = 'ag --nogroup --nocolor --column'
-  let g:unite_source_rec_async_command = 'ag -i --nocolor --nogroup'
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_ops = '--line-numbers --nocolor --nogroup --hidden ' .
-        \ '--ignore ''.git'' --ignore ''tmp'''
+  let g:ackprg                          = 'ag --nogroup --nocolor --column'
+  let g:unite_source_rec_async_command  = 'ag -i --nocolor --nogroup'
+  let g:unite_source_grep_command       = 'ag'
+  let g:unite_source_grep_default_ops   = '--line-numbers --nocolor --nogroup --hidden ' .
+        \ '--ignore ''.git'' --ignore ''tmp'' --ignore ''node_modules'''
   let g:unite_source_grep_recursive_opt = ''
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -201,7 +204,6 @@ nnoremap <silent><Leader>ur :UltiSnipsEdit<space>ruby<cr>
 inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 
 " Go to next uncompleted task in vimwiki buffers
-au BufRead,BufNewFile,BufEnter *.wiki nnoremap <buffer> <space>j gg/-<space>\[<space>\]<cr>:nohls<cr>zz
 nnoremap ZA :wqa<cr>
 
 " Find uncommented method and class headers
