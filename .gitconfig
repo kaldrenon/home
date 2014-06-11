@@ -1,17 +1,27 @@
 [user]
   name = Andrew Fallows
   email = kaldrenon@gmail.com
+
 [grep]
   linenumber = true
+
 [credential]
   helper = cache --timeout 3600
+
 [credential "https://github.com"]
   user = kaldrenon
+
+[credential "http://github.com"]
+  user = kaldrenon
+
 [help]
   autocorrect = 1
+
 [color]
   ui = true
+
 [init]
   templatedir = ~/.git_template
+
 [push]
   default = current
