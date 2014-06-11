@@ -21,7 +21,6 @@ Bundle 'groenewege/vim-less'
 
 " Functionality plugins
 Bundle 'bling/vim-airline'
-Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'kana/vim-textobj-user'
@@ -47,6 +46,10 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'UltiSnips'
 Bundle 'vimwiki'
+
+" Colo Plugins
+Bundle 'flazz/vim-colorschemes'
+Bundle 'jordwalke/flatlandia'
 
 filetype plugin indent on
 
