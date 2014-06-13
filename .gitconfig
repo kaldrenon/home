@@ -6,7 +6,7 @@
   linenumber = true
 
 [credential]
-  helper = cache --timeout 3600
+  helper = store
 
 [credential "https://github.com"]
   user = kaldrenon
