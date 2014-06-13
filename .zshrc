@@ -1,11 +1,3 @@
-# TEMPORARY
-prod_dep() {
-  gco a198e675b056b9dda7efd2084e4e3721904dd1c9 config/deploy.rb
-  cap to_production deploy
-  git reset --hard HEAD
-}
-
-
 # Antigen bundles
 source ~/antigen.zsh
 #
