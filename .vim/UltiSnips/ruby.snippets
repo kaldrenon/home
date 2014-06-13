@@ -19,133 +19,6 @@ test "${1:context}" do
 end
 endsnippet
 
-###
-# Rails
-###
-
-snippet params "params" !i
-params[:$1]
-endsnippet
-
-#
-# Logging
-#
-
-# info log
-snippet rli "Rails Log (info)" b
-Rails.logger.info { $1 }
-endsnippet
-
-# debug log
-snippet rld "Rails Log (debug)" b
-Rails.logger.debug { $1 }
-endsnippet
-
-# warn log
-snippet rlw "Rails Log (warn)" b
-Rails.logger.warn { $1 }
-endsnippet
-
-# error log
-snippet rle "Rails Log (error)" b
-Rails.logger.error { $1 }
-endsnippet
-
-#
-# ActiveRecord
-#
-
-# Find for model - python splits a snake_case word and joins it as CamelCase
-snippet find "Find by params[:id] for model" !b
-@${1:model_name} = `!p comp = t[1].split('_')
-snip.rv = "".join(x.title() for x in comp)`.find(params[:${2:id}])
-endsnippet
-
-# Scope in a format that rubocop likes
-snippet scl "ActiveRecord model scope" b
-scope :${1:name},
-      lambda {
-        ${2:condition}
-      }
-endsnippet
-
-#
-# RSpec
-#
-
-# basic clause
-snippet it "rspec it (line)" !b
-it '${1:meets a condition}' do
-  $2
-end
-endsnippet
-
-snippet sh "should" !b
-should '${1:meets a condition}' do
-  $2
-end
-endsnippet
-
-snippet shs "should (snippet)" !b
-should '${1:meets a condition}'
-endsnippet
-
-# Before Each (empty)
-snippet bfe "Before each" b
-before(:each) do
-  $1
-end
-endsnippet
-
-# Before each with a user login
-snippet bfu "Before each(user)" b
-before(:each) do
-  @user = FactoryGirl.create(:default_user)
-  sign_in @user
-end
-endsnippet
-
-# Describe (for feature specs)
-snippet rdesc "RSpec describe" b
-describe "${1:block}" do
-  before(:each) do
-    @${2:obj} = FactoryGirl.create(:${3:factory_name})
-  end
-
-  $4
-end
-endsnippet
-
-# Feature scenario
-snippet scen "feature scenario" b
-scenario '${1:desc}' do
-  ${2:pending 'TODO: $1'}
-end
-endsnippet
-
-# spec context
-snippet cnt "test context" b
-context '${1:desc}' do
-  $2
-end
-endsnippet
-
-# VCR cassette template
-snippet vcr "vcr cassette block" !b
-VCR.use_cassette('${1:cassette_name}') do
-  ${2:# TODO: test execution}
-end
-endsnippet
-
-# FactoryGirl
-snippet fc "FactoryGirl create" i
-FactoryGirl.create(:${1:model})
-endsnippet
-
-snippet fb "FactoryGirl build" i
-FactoryGirl.build(:${1:model})
-endsnippet
-
 #
 # Misc
 #
@@ -389,3 +262,79 @@ snippet ###
 =end
 endsnippet
 
+#
+# RSpec
+#
+
+# basic clause
+snippet it "rspec it (line)" !b
+it '${1:meets a condition}' do
+  $2
+end
+endsnippet
+
+snippet sh "should" !b
+should '${1:meets a condition}' do
+  $2
+end
+endsnippet
+
+snippet shs "should (snippet)" !b
+should '${1:meets a condition}'
+endsnippet
+
+# Before Each (empty)
+snippet bfe "Before each" b
+before(:each) do
+  $1
+end
+endsnippet
+
+# Before each with a user login
+snippet bfu "Before each(user)" b
+before(:each) do
+  @user = FactoryGirl.create(:default_user)
+  sign_in @user
+end
+endsnippet
+
+# Describe (for feature specs)
+snippet rdesc "RSpec describe" b
+describe "${1:block}" do
+  before(:each) do
+    @${2:obj} = FactoryGirl.create(:${3:factory_name})
+  end
+
+  $4
+end
+endsnippet
+
+# Feature scenario
+snippet scen "feature scenario" b
+scenario '${1:desc}' do
+  ${2:pending 'TODO: $1'}
+end
+endsnippet
+
+# spec context
+snippet cnt "test context" b
+context '${1:desc}' do
+  $2
+end
+endsnippet
+
+# VCR cassette template
+snippet vcr "vcr cassette block" !b
+VCR.use_cassette('${1:cassette_name}') do
+  ${2:# TODO: test execution}
+end
+endsnippet
+
+# FactoryGirl
+snippet fc "FactoryGirl create" i
+FactoryGirl.create(:${1:model})
+endsnippet
+
+snippet fb "FactoryGirl build" i
+FactoryGirl.build(:${1:model})
+endsnippet

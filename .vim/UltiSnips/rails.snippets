@@ -1,3 +1,59 @@
+###
+# Rails
+###
+
+snippet params "params" !i
+params[:$1]
+endsnippet
+
+#
+# Logging
+#
+
+# info log
+snippet rli "Rails Log (info)" b
+Rails.logger.info { $1 }
+endsnippet
+
+# debug log
+snippet rld "Rails Log (debug)" b
+Rails.logger.debug { $1 }
+endsnippet
+
+# warn log
+snippet rlw "Rails Log (warn)" b
+Rails.logger.warn { $1 }
+endsnippet
+
+# error log
+snippet rle "Rails Log (error)" b
+Rails.logger.error { $1 }
+endsnippet
+
+#
+# ActiveRecord
+#
+
+# Find for model - python splits a snake_case word and joins it as CamelCase
+snippet find "Find by params[:id] for model" !b
+@${1:model_name} = `!p comp = t[1].split('_')
+snip.rv = "".join(x.title() for x in comp)`.find(params[:${2:id}])
+endsnippet
+
+snippet where "Select multiple by params[:model_ids] for model" !b
+@${1:model_name}s = `!p comp = t[1].split('_')
+snip.rv = "".join(x.title() for x in comp)`.where($2)
+endsnippet
+
+# Scope in a format that rubocop likes
+snippet scl "ActiveRecord model scope" b
+scope :${1:name},
+      lambda {
+        ${2:condition}
+      }
+endsnippet
+
+
 ###########################################################################
 #                    GENERATED FROM get_tm_snippets.py                    #
 ###########################################################################
