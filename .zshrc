@@ -388,4 +388,8 @@ export EDITOR
 VISUAL=`which vim`
 export VISUAL
 
-eval `ssh-agent -s`
+if ps ax | ag '[s]sh-agent -s' > /dev/null; then
+  # Do nothing
+else
+  eval `ssh-agent -s`
+fi
