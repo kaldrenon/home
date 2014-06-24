@@ -4,37 +4,12 @@
 #
 extends coffee
 
-snippet ect "event.currentTarget" i
-$(event.currentTarget)
-endsnippet
 
-snippet clk "On click (coffee)" b
-$(document).on 'click', '$1', (event) ->
-  ${2:console.log "clicked $1"}
-endsnippet
-
+### Predefined
 snippet des "Describe (coffee)" b
 describe '${1:description}', ->
   $0
 endsnippet
-
-snippet ## "comment header" b
-#
-# ${1:function header}
-#
-endsnippet
-
-snippet targ "Set target var" !b
-target = $(event.currentTarget)
-endsnippet
-
-snippet jqpost "jQuery $.post" !b
-$.post(${1:href}, ${2:data}, (${3:result}) ->
-  ${4:# TODO: handle response from post}
-)
-endsnippet
-
-### Predefined
 
 snippet it "it (coffee)" b
 it '${1:description}', ->

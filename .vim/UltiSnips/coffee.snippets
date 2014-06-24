@@ -1,5 +1,30 @@
-# From the TextMate bundle
+snippet ect "event.currentTarget" i
+$(event.currentTarget)
+endsnippet
 
+snippet clk "On click (coffee)" b
+$(document).on 'click', '$1', (event) ->
+  ${2:console.log "clicked $1"}
+endsnippet
+
+
+snippet ## "comment header" b
+#
+# ${1:function header}
+#
+endsnippet
+
+snippet targ "Set target var" !b
+target = $(event.currentTarget)
+endsnippet
+
+snippet jqpost "jQuery $.post" !b
+$.post(${1:href}, ${2:data}, (${3:result}) ->
+  ${4:# TODO: handle response from post}
+)
+endsnippet
+
+# From the TextMate bundle
 snippet fun "Function" b
 ${1:name} = (${2:args}) ->
 	${0:# body...}
