@@ -55,7 +55,7 @@ Bundle 'jordwalke/flatlandia'
 
 filetype plugin indent on
 
-for cs in ['wombat256mod', 'wombat256', 'default']
+for cs in ['hybrid', 'wombat256mod', 'wombat256', 'default']
   try
     execute 'colorscheme' cs
     break
