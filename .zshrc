@@ -268,6 +268,12 @@ alias ls="ls $LS_COLO_FLAG -A"
 alias ll="ls $LS_COLO_FLAG -A -l"
 alias la="=ls $LS_COLO_FLAG"
 
+lt () {
+  ltsA "$@" | head
+}
+
+function mcd() { mkdir $1 && cd $1; }
+
 # Show the task being run when aliases are involved
 _-accept-line () {
   emulate -L zsh
