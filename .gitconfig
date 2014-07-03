@@ -33,4 +33,6 @@
   st = status
   co = checkout
 
-  conflicts = diff --name-only --diff-filter=U
+  changes        = diff --name-only --diff-filter=AM
+  cached-changes = diff --cached --name-only --diff-filter=AM
+  conflicts      = diff --name-only --diff-filter=U
