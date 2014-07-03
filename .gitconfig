@@ -25,3 +25,12 @@
 
 [push]
   default = current
+
+[alias]
+  cm = commit -m
+  d  = diff
+  dc = diff --cached
+  st = status
+  co = checkout
+
+  conflicts = diff --name-only --diff-filter=U
