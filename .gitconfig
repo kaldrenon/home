@@ -30,7 +30,7 @@
   cm = commit -m
   d  = diff
   dc = diff --cached
-  st = status
+  s  = status
   co = checkout
 
   changes        = diff --name-only --diff-filter=AM

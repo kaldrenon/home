@@ -24,6 +24,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'bling/vim-airline'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
+Bundle 'junegunn/goyo.vim'
+Bundle 'junegunn/limelight.vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
@@ -97,6 +99,8 @@ let g:UltiSnipsEditSplit     = 'horizontal'
 let g:used_javascript_libs = 'angularjs'
 
 let g:ycm_server_keep_logfiles = 1
+
+let g:goyo_width = 100
 
 if executable('ag')
   let g:ackprg                          = 'ag --nogroup --nocolor --column'
@@ -272,6 +276,10 @@ nnoremap <Leader>X r✓
 
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
+
+" Goyo / Limelight Mappings
+nnoremap <silent> <space><space> :Goyo<cr>
+nnoremap <silent> <Leader>l :Limelight!!<cr>
 
 """""
 " Vimwiki Task related mappings - rely on UltiSnips snippets
