@@ -27,11 +27,12 @@
   default = current
 
 [alias]
+  ca = commit --amend
   cm = commit -m
+  co = checkout
   d  = diff
   dc = diff --cached
   s  = status
-  co = checkout
 
   changes        = diff --name-only --diff-filter=AM
   cached-changes = diff --cached --name-only --diff-filter=AM
