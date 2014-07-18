@@ -302,7 +302,8 @@ nnoremap <C-x> A<space>!<C-j><esc><C-space>
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 
 " * search in visual mode
-vnoremap * y/<C-r>"<cr>
+vnoremap *     y/<C-r>"<cr>
+vnoremap <Tab> :Tabularize<space>/
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
