@@ -67,7 +67,7 @@ alias irb="pry"
 alias cop='clear; rubocop'
 rdbupdate() {
   bundle install
-  rake db:migrate db:test:prepare
+  rake db:migrate
   if [ $? -eq 0 ]; then
     alert Migration completed
   else
