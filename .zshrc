@@ -69,9 +69,9 @@ rdbupdate() {
   bundle install
   rake db:migrate
   if [ $? -eq 0 ]; then
-    alert Migration completed
+    ( alert Migration completed )
   else
-    alert Migration failed
+    ( alert Migration failed )
   fi
 }
 
@@ -82,9 +82,9 @@ rtest() {
   echo "$fg_bold[blue]Executing $cmd$reset_color"
   eval $cmd
   if [ $? -eq 0 ]; then
-    alert "Tests completed - $(sed 's/[\/_]/ /g' <<< $1)" &
+    ( alert "Tests completed - $(sed 's/[\/_]/ /g' <<< $1)" & )
   else
-    alert "Tests failed - $(sed 's/[\/_]/ /g' <<< $1)" &
+    ( alert "Tests failed - $(sed 's/[\/_]/ /g' <<< $1)" & )
   fi
 }
 

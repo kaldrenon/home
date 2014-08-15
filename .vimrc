@@ -19,16 +19,18 @@ Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-haml'
 Bundle 'groenewege/vim-less'
+Bundle 'VimClojure'
 
 " Functionality plugins
 Bundle 'bling/vim-airline'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
+Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
-Bundle 'kana/vim-textobj-user'
+Bundle 'lord-garbage/tslime.vim'
 Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
 Bundle 'mhinz/vim-signify'
 Bundle 'mhinz/vim-tmuxify'
 Bundle 'nelstrom/vim-textobj-rubyblock'
@@ -38,6 +40,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
 Bundle 'sudo.vim'
 Bundle 'sunaku/vim-ruby-minitest'
+Bundle 'terryma/vim-expand-region'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-dispatch'
@@ -54,6 +57,10 @@ Bundle 'vimwiki'
 " Colo Plugins
 Bundle 'flazz/vim-colorschemes'
 Bundle 'jordwalke/flatlandia'
+
+" Dependencies - plugins I don't use directly but that other plugins need
+Bundle 'kana/vim-textobj-user'
+Bundle 'mattn/webapi-vim'
 
 filetype plugin indent on
 
@@ -240,11 +247,22 @@ map Y y$
 "  - Ctrl-j and k move up/down in window stack
 "    and maximize after the new bufffer is selected
 "  - Ctrl h and l move left/right between window stacks
-nnoremap <silent> <C-m> :wincmd _ <cr>
-nnoremap <silent> <C-j> <C-W>j<C-W>_
-nnoremap <silent> <C-k> <C-W>k<C-W>_
-nnoremap <silent> <C-h> :wincmd h <cr>
-nnoremap <silent> <C-l> :wincmd l <cr>
+
+"nnoremap <silent> <C-m> :wincmd _ <cr>
+"nnoremap <silent> <C-j> <C-W>j<C-W>_
+"nnoremap <silent> <C-k> <C-W>k<C-W>_
+"nnoremap <silent> <C-h> :wincmd h <cr>
+"nnoremap <silent> <C-l> :wincmd l <cr>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr><C-w>_
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr><C-w>_
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-=> :wincmd =<cr>
+
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
 set splitright
@@ -314,6 +332,7 @@ set autoread " automatically reload externally changed buffers
 au BufRead,BufNewFile *.rem setfiletype remind
 au BufRead,BufNewFile *.tex setfiletype tex
 au BufRead,BufNewFile *.god setfiletype rb
+au BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
 
 " Mappings for common Tabularizations
 nnoremap <Leader>a= :Tabularize /=<CR>
