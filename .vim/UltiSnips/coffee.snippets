@@ -24,6 +24,16 @@ $.post(${1:href}, ${2:data}, (${3:result}) ->
 )
 endsnippet
 
+snippet jqdel "jQuery $.ajax with DELETE" !b
+$.ajax({
+  type: 'DELETE',
+  url:  ${1:href},
+  data: ${2:data},
+  success: (${3:result}) ->
+    ${4:# TODO: handle response from delete}
+})
+endsnippet
+
 snippet data "Set up a data hash" !b
 data = {
   $1

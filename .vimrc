@@ -26,7 +26,6 @@ Bundle 'bling/vim-airline'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
-Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
 Bundle 'lord-garbage/tslime.vim'
@@ -261,13 +260,16 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr><C-w>_
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr><C-w>_
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
-nnoremap <silent> <C-=> :wincmd =<cr>
+nnoremap <silent> <C-=> <C-w>=
+nnoremap <silent> <C-m> <C-w>_
 
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
 set splitright
 
+""""
 " Unite.vim mappings
+""""
 call unite#custom#source('buffer,file,file_mru,file_rec', 'sorters', 'sorter_rank')
 call unite#custom#source('file_rec', 'ignore_pattern', 'tmp/*')
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -279,25 +281,29 @@ nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-inser
 nnoremap <Leader>V :set nosplitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
 nnoremap <Leader>n :Unite -default-action=split -start-insert file/new<cr>
 
+" Read files into current buffer; swap buffers
 nnoremap <Leader>e :Unite -start-insert file_rec<cr>
 nnoremap <Leader>B :Unite -start-insert buffer<cr>
 nnoremap <Leader>b :Unite buffer<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
 
-nnoremap <Leader>s{ :s/\v\{(.+),<space>(.+)\}/{\2,<space>\1}/<cr>:nohls<cr>
-nnoremap <Leader>s[ :s/\v\[(.+),<space>(.+)\]/[\2,<space>\1]/<cr>:nohls<cr>
-nnoremap <Leader>s( :s/\v\[(.+),<space>(.+)\)/[\2,<space>\1)/<cr>:nohls<cr>
-nnoremap <Leader>sb ciwtrue<esc>
-nnoremap <Leader>sB ciwfalse<esc>
+" Unite search (I rarely use this)
+nnoremap <space>/ :Unite grep:.<cr>
 
+" Mark something completed with a unicode check
 nnoremap <Leader>x I✓<space><esc>
 nnoremap <Leader>X r✓
-
-nnoremap <space>/ :Unite grep:.<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
 
 " Goyo / Limelight Mappings
 nnoremap <silent> <space><space> :Goyo<cr>
 nnoremap <silent> <Leader>l :Limelight!!<cr>
+
+" quickly restart YCM server
+nnoremap <silent> <space>yr :YcmRestart<cr>
+
+" recapitalize a word
+nnoremap <silent> <space>c viw~
+
 
 """""
 " Vimwiki Task related mappings - rely on UltiSnips snippets

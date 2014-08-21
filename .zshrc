@@ -212,7 +212,7 @@ zz() {
 
 # Search power
 vimag() {
-  vim -o `ag -l $1`
+  vim -o `ag -l $1 $2`
 }
 
 ###
