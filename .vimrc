@@ -119,6 +119,12 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+let g:tmuxify_custom_command = 'tmux split-window -p 20'
+let g:tmuxify_map_prefix = '<space>m'
+let g:tmuxify_run = {
+      \ 'c':  'rails c',
+      \ 'gs': 'gs'
+      \ }
 
 command! W :w
 command! Q :q
