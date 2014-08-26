@@ -33,7 +33,6 @@ RPROMPT='' # prompt for right side of screen
 
 alias hl="history -D -n -1"
 
-
 # Support colors for excellence!
 TERM=screen-256color
 export TERM
