@@ -22,6 +22,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'VimClojure'
 
 " Functionality plugins
+Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'AndrewRadev/switch.vim'
 Bundle 'bling/vim-airline'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
@@ -119,7 +121,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let g:tmuxify_custom_command = 'tmux split-window -p 20'
+let g:tmuxify_custom_command = 'tmux split-window -s 30'
 let g:tmuxify_map_prefix = '<space>m'
 let g:tmuxify_run = {
       \ 'c':  'rails c',
@@ -269,6 +271,10 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 nnoremap <silent> <C-=> <C-w>=
 nnoremap <silent> <C-m> <C-w>_
 
+nnoremap <silent> <space>sv :vnew<cr>
+nnoremap <silent> <space>sh :new<cr>
+nnoremap <silent> <space>ss :new<cr>
+
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
 set splitright
@@ -291,7 +297,7 @@ nnoremap <Leader>n :Unite -default-action=split -start-insert file/new<cr>
 nnoremap <Leader>e :Unite -start-insert file_rec<cr>
 nnoremap <Leader>B :Unite -start-insert buffer<cr>
 nnoremap <Leader>b :Unite buffer<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
+nnoremap <Leader>s :Unite -quick-match buffer<cr>
 
 " Unite search (I rarely use this)
 nnoremap <space>/ :Unite grep:.<cr>
