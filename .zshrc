@@ -2,9 +2,6 @@
 source ~/antigen.zsh
 #
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle brew
-antigen bundle knife
-antigen bundle web-search
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
@@ -15,13 +12,6 @@ setopt autocd          # change to dirs without needing to prepend 'cd '
 setopt extendedglob    # expand globs in autocomplete with super smart smartness
 unsetopt beep          # Don't beeping beep.
 bindkey -v             # Vi-ish bindings (normal and insert modes)
-
-# The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
 
 bindkey -M vicmd '?' history-incremental-search-backward  # Search up through recent commands
 
@@ -57,6 +47,8 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 # Voices (OSX only afaik)
 alias alert="say -v 'Victoria'"
+
+alias vimp="vim --startuptime ~/vim_start.log"
 
 ######
 # Ruby Dev
@@ -399,3 +391,11 @@ if ps ax | ag '[s]sh-agent -s' > /dev/null; then
 else
   eval `ssh-agent -s`
 fi
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '~/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+

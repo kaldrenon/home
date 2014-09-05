@@ -181,6 +181,8 @@ set incsearch
 
 set ttimeoutlen=50
 
+nnoremap <silent> <space>vp :e<space>~/vim_start.log<cr>G
+
 " Swap j/k with gj/gk for normal, visual, and select modes
 nnoremap j  gj
 xnoremap j  gj
