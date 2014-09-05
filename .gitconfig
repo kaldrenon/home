@@ -5,6 +5,9 @@
 [grep]
   linenumber = true
 
+[github]
+	user = kaldrenon
+
 [credential]
   helper = store
 
