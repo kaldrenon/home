@@ -9,7 +9,7 @@ pkgs = ['htop','git','build-essential','vlc','guake']
 then
   rm ~/.vimrc
 fi
-ln -s $PWD/.vimrc $HOME/.vimrc 
+ln -s $PWD/.vimrc $HOME/.vimrc
 
 if [ -e ~/.vim ] || [ -h ~/.vim ]
 then
