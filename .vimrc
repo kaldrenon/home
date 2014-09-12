@@ -30,6 +30,7 @@ Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'lord-garbage/tslime.vim'
 Bundle 'mattn/gist-vim'
 Bundle 'mhinz/vim-signify'
@@ -127,6 +128,15 @@ let g:tmuxify_run = {
       \ 'c':  'rails c',
       \ 'gs': 'gs'
       \ }
+
+let g:ctrlp_map = '<space>e'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_switch_buffer = 'ETVH'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\vtmp'
+      \}
 
 command! W :w
 command! Q :q
@@ -294,6 +304,8 @@ nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert
 nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
 nnoremap <Leader>V :set nosplitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
 nnoremap <Leader>n :Unite -default-action=split -start-insert file/new<cr>
+
+nnoremap <space>m :CtrlPMixed<cr>
 
 " Read files into current buffer; swap buffers
 nnoremap <Leader>e :Unite -start-insert file_rec<cr>
