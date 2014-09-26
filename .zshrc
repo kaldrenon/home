@@ -102,6 +102,7 @@ alias gs="git status"
 alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gcodbsql="git checkout HEAD db/structure.sql"
 
+alias rc="clear; bundle exec rails c"
 
 ###
 # FUNC: Custom Functions
@@ -386,11 +387,15 @@ export EDITOR
 VISUAL=`which vim`
 export VISUAL
 
-if ps ax | ag '[s]sh-agent -s' > /dev/null; then
-  # Do nothing
-else
-  eval `ssh-agent -s`
-fi
+start-agent() {
+  if ps ax | ag '[s]sh-agent -s' > /dev/null; then
+    # Do nothing
+  else
+    eval `ssh-agent -s`
+  fi
+}
+
+start-agent
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
