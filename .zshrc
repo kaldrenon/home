@@ -151,6 +151,11 @@ gcs() {
   print -z 'git commit -m "'
 }
 
+gdc() {
+  clear
+  git diff "$1^" $1
+}
+
 grcs() {
   local branch=$(git rev-parse --abbrev-ref HEAD)
   local remote=$1
