@@ -379,3 +379,8 @@ nnoremap - :NERDTreeToggle<cr>
 
 au FileType ruby nnoremap "" :s/"/'/g<cr>
 au FileType ruby nnoremap <silent><C-p> :w !ruby<cr>
+
+""" Mouse Settings
+set ttyfast
+set ttymouse=xterm2
+set mouse=a
