@@ -52,10 +52,13 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'UltiSnips'
 Bundle 'vimwiki'
+
+if !has('win32')
+  Bundle 'Valloric/YouCompleteMe'
+endif
 
 " Colo Plugins
 Bundle 'flazz/vim-colorschemes'
@@ -183,8 +186,11 @@ set wrap
 set linebreak
 
 " Character Listing
-set list
-set listchars=tab:‣-,trail:·
+
+if !has('win32')
+  set list
+  set listchars=tab:‣-,trail:·
+endif
 
 " Searching
 set hlsearch
