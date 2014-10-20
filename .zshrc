@@ -92,7 +92,9 @@ rtest_all() {
 }
 
 
+######
 # Git(Hub)
+######
 alias ga="git add"
 alias gaa="git add -A"
 alias gcl="git clone"
@@ -103,39 +105,6 @@ alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=f
 alias gcodbsql="git checkout HEAD db/structure.sql"
 
 alias rc="clear; bundle exec rails c"
-
-###
-# FUNC: Custom Functions
-###
-
-print_color() {
-  echo "$fg_bold[$1]$2$reset_color"
-}
-
-vlm() {
-  files=""
-  for file in $(ls db/migrate | tail -$1); do
-    filename=db/migrate/$file
-    files="$files $filename"
-  done
-  vim -o $(echo $files)
-}
-
-appg() {
-  case $HOST in
-    fallows.elocal)
-      ;;
-    fallows)
-      echo "Executing 'brew install $1"
-      brew install $1
-      ;;
-    *)
-      echo "Executing 'sudo apt-get install $1"
-      sudo apt-get install $1
-      ;;
-  esac
-}
-
 # git add, commit, push
 gcp() {
   git add -A
@@ -182,6 +151,60 @@ grcl() {
   git log -5 --oneline --decorate=short origin/master..$branch
   echo
 }
+
+
+######
+# XFinity Home Tools
+######
+
+alias cdx="cd ~/Dropbox/code/comcast/xfinity_home"
+alias xpkg="bundle install && npm install"
+
+grd() {
+  git review develop
+}
+
+gca() {
+  clear
+  git add -A
+  git status
+  print -z 'git commit --amend'
+}
+
+######
+# Utility
+######
+
+print_color() {
+  echo "$fg_bold[$1]$2$reset_color"
+}
+
+vlm() {
+  files=""
+  for file in $(ls db/migrate | tail -$1); do
+    filename=db/migrate/$file
+    files="$files $filename"
+  done
+  vim -o $(echo $files)
+}
+
+appg() {
+  case $HOST in
+    HQSML-136389)
+      ;;
+    fallows.elocal)
+      ;;
+    fallows)
+      echo "Executing 'brew install $1"
+      brew install $1
+      ;;
+    *)
+      echo "Executing 'sudo apt-get install $1"
+      sudo apt-get install $1
+      ;;
+  esac
+}
+
 
 # Quick alias to get disk usage of a dir
 usage(){
@@ -296,7 +319,7 @@ zle -N zle-keymap-select
 
 
 # Add tmuxinator scripts
-[[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source "$HOME/.tmuxinator/scripts/tmuxinator"
+source ~/.tmuxinator/tmuxinator.zsh
 
 # Configure AWS environment variables
 case $HOST in
