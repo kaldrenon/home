@@ -42,3 +42,4 @@
   changes        = diff --name-only --diff-filter=AM
   cached-changes = diff --cached --name-only --diff-filter=AM
   conflicts      = diff --name-only --diff-filter=U
+  review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
