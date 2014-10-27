@@ -44,4 +44,4 @@
   conflicts      = diff --name-only --diff-filter=U
   review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
 
-  aca = "!clear; git add -A; git commit --amend"
+  aa = "!clear; git add -A; git status"
