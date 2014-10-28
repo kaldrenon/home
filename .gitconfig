@@ -43,5 +43,6 @@
   cached-changes = diff --cached --name-only --diff-filter=AM
   conflicts      = diff --name-only --diff-filter=U
   review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
+  gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
 
   aa = "!clear; git add -A; git status"
