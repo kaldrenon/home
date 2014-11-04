@@ -14,6 +14,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'elzr/vim-json'
 Bundle 'JavaScript-Indent'
+Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'slim-template/vim-slim'
@@ -92,12 +93,11 @@ let g:airline_symbols.readonly   = 'RO'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_powerline_fonts    = 1
 
-let g:syntastic_mode_map            = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+let g:syntastic_mode_map            = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': [] }
 let g:syntastic_auto_jump           = 0
-let g:syntastic_auto_loc_list       = 0
-let g:syntastic_enable_signs        = 1
+let g:syntastic_auto_loc_list       = 1
+let g:syntastic_enable_signs        = 0
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_quiet_messages      = { 'level': 'warnings' }
 
 let g:vimwiki_list         = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
@@ -283,16 +283,12 @@ map Y y$
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr><C-w>_
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr><C-w>_
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr><C-w>_zz
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr><C-w>_zz
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 nnoremap <silent> <C-=> <C-w>=
 nnoremap <silent> <C-m> <C-w>_
-
-nnoremap <silent> <space>sv :vnew<cr>
-nnoremap <silent> <space>sh :new<cr>
-nnoremap <silent> <space>ss :new<cr>
 
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
@@ -336,6 +332,9 @@ nnoremap <silent> <space>yr :YcmRestart<cr>
 
 " recapitalize a word
 nnoremap <silent> <space>c viw~
+
+nnoremap <silent> <space>sc :SyntasticCheck<cr>
+nnoremap <silent> <space>sC :lcl<cr><C-w>_
 
 
 """""
