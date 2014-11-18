@@ -6,7 +6,7 @@
   linenumber = true
 
 [github]
-	user = kaldrenon
+  user = kaldrenon
 
 [credential]
   helper = store
@@ -30,19 +30,24 @@
   default = current
 
 [alias]
-  ca = commit --amend
-  cm = commit -m
-  co = checkout
-  d  = diff
-  dc = diff --cached
-  dl = diff 'HEAD^1' HEAD
-  s  = status
-  l  = "!source ~/.githelpers && pretty_git_log"
+  b     = branch
+  bc    = for-each-ref --sort='-*committerdate' --format="%(refname:short)" refs/heads/
+  ca    = commit --amend
+  cm    = commit -m
+  co    = checkout
+  d     = diff
+  dc    = diff --cached
+  dl    = diff 'HEAD^1' HEAD
+  s     = status
+  l     = "!source ~/.githelpers && pretty_git_log"
+  rhh   = reset --hard HEAD
 
   changes        = diff --name-only --diff-filter=AM
   cached-changes = diff --cached --name-only --diff-filter=AM
   conflicts      = diff --name-only --diff-filter=U
   review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
   gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
+  cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
 
   aa = "!clear; git add -A; git status"
+
