@@ -37,6 +37,7 @@ alias c="clear;"
 alias ag="noglob ag "
 alias td="echo \`date +'%m/%d/%Y'\`"
 alias wat='man'
+alias serve='http-server'
 
 # Ubuntu/Debian
 alias agi="sudo apt-get install -y"
@@ -47,7 +48,6 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 # Voices (OSX only afaik)
 alias alert="say -v 'Victoria'"
-
 alias vimp="vim --startuptime ~/vim_start.log"
 
 ######
