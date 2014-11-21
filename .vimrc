@@ -39,6 +39,7 @@ Bundle 'mhinz/vim-signify'
 Bundle 'mhinz/vim-tmuxify'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rking/ag.vim'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
@@ -141,6 +142,8 @@ let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
       \ 'dir': '\vtmp'
       \}
+
+let g:user_emmet_leader_key='<C-e>'
 
 command! W :w
 command! Q :q
