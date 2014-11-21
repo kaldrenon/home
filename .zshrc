@@ -192,8 +192,6 @@ appg() {
   case $HOST in
     HQSML-136389)
       ;;
-    fallows.elocal)
-      ;;
     fallows)
       echo "Executing 'brew install $1"
       brew install $1
@@ -321,30 +319,6 @@ zle -N zle-keymap-select
 # Add tmuxinator scripts
 source ~/.tmuxinator/tmuxinator.zsh
 
-# Configure AWS environment variables
-case $HOST in
-  fallows.elocal)
-    export JAVA_HOME="$(/usr/libexec/java_home)";
-    export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)";
-    export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)";
-    export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars";
-
-    export AWS_ELB_HOME="/Users/andrew/elb_tools";
-    export AWS_RDS_HOME="/Users/andrew/rds_tools";
-    export AWS_ACCESS_KEY_ID="AKIAJZAR6QC6Q2L53AVQ";
-    export AWS_SECRET_ACCESS_KEY="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";
-    export AWS_CREDENTIAL_FILE="$HOME/.ec2/creds-file"
-    export AWS_SSH_KEY_ID=elocal_andrew;
-    export KNIFE_USER_NAME=asfallows;
-    HOST_PATH=/Applications/Postgres93.app/Contents/MacOS/bin:/Users/andrew/elb_tools/bin:/Users/andrew/rds_tools
-
-    # Used for JRuby optimization for Rails
-    export JAVA_OPTS="-d32"
-    ;;
-  *)
-    ;;
-esac
-
 # Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
                                bindkey -M vicmd "$terminfo[khome]" beginning-of-line
@@ -358,51 +332,6 @@ esac
 # Use PageUp/PageDown to search history
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
-
-#####
-# ELOCAL: Managing elocal servers
-#####
-elcat() {
-  ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}' | ag "^ +$1\|"
-}
-
-elcats() {
-  ruby -rjson -ropen-uri -e 'puts JSON.parse(open("http://www.elocal.com/categories.json").read)["categories"].map{|c| "%5d| %s" % [c["id"].to_i, c["name"]]}'
-}
-
-githash() {
-  ssh $1 "cd /mnt/deploy/$2/current; git rev-parse HEAD";
-}
-
-elgrep() {
-  for ff in 1 2 3;
-  do
-    echo "-- Elocal Prod Web $ff --";
-    ssh elocal_production_web_$ff "sudo grep --color '$1' /var/log/syslog" | ag $1;
-    echo ''
-  done
-}
-
-elgrephist() {
-  for ff in 1 2 3;
-  do
-    echo "-- Elocal Prod Web $ff --";
-    ssh elocal_production_web_$ff "sudo grep --color '$1' /var/log/syslog.1" | ag $1;
-    echo ''
-  done
-}
-
-bdgrep() {
-  echo "-- Bearded Dragon Prod --";
-  ssh bdprod "sudo grep --color '$1' /var/log/syslog" | ag $1
-  echo ''
-}
-
-bdgreps() {
-  echo "-- Bearded Dragon Stage --";
-  ssh bdstage "sudo grep --color '$1' /var/log/syslog" | ag $1
-  echo ''
-}
 
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
