@@ -157,7 +157,8 @@ grcl() {
 # XFinity Home Tools
 ######
 
-alias cdx="cd ~/Dropbox/code/comcast/xfinity_home; clear"
+alias cdc="cd ~/comcast; clear"
+alias cdx="cd ~/comcast/xfinity_home; clear"
 alias xpkg="bundle install && npm install"
 
 grd() {
