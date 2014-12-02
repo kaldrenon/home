@@ -37,7 +37,9 @@
   co    = checkout
   d     = diff
   dc    = diff --cached
+  dcf   = diff --cached --name-only
   dl    = diff 'HEAD^1' HEAD
+  dlf   = diff 'HEAD^1' HEAD --name-only
   s     = status
   l     = "!source ~/.githelpers && pretty_git_log"
   rhh   = reset --hard HEAD
