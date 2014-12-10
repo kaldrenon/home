@@ -93,11 +93,11 @@ snippet # "Interpolated Code"
 endsnippet
 
 snippet log "Log" b
-console.log(${1:"${2:msg}"});
+console.log(${1:'${2:msg}'});
 endsnippet
 
 snippet info "Info" b
-console.info(${1:"${2:msg}"});
+console.info(${1:'${2:msg}'});
 endsnippet
 
 ###########################################################################
@@ -183,3 +183,9 @@ setTimeout(function() {$0}${2:}, ${1:10});
 endsnippet
 
 # vim:ft=snippets:
+
+snippet gt "gulp task" !b
+gulp.task('${1:task}', function($2) {
+  ${3:// TODO}
+});
+endsnippet
