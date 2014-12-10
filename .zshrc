@@ -2,6 +2,7 @@
 source ~/antigen.zsh
 #
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle emallson/gulp-zsh-completion
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
@@ -364,3 +365,5 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+
+ulimit -n 4096
