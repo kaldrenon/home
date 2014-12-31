@@ -11,10 +11,16 @@ $(document).on('click', '$1', function(event){
 endsnippet
 
 
-snippet // "comment header" b
+snippet // "comment header //" b
 //
 // ${1:function header}
 //
+endsnippet
+
+snippet /** "comment header /*" !b
+/**
+ * ${1:function header}
+ */
 endsnippet
 
 snippet targ "Set target var" !b
@@ -85,7 +91,7 @@ catch ${2:error}
 endsnippet
 
 snippet req "Require" b
-${1/^'?(\w+)'?$/\L$1\E/} = require(${1:'${2:sys}'})
+var ${1:sys} = require('${2:$1}');
 endsnippet
 
 snippet # "Interpolated Code"
