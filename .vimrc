@@ -32,6 +32,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'lord-garbage/tslime.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'mattn/gist-vim'
@@ -196,7 +197,7 @@ if !has('win32')
 endif
 
 " Searching
-set hlsearch
+" set hlsearch
 set incsearch
 
 set ttimeoutlen=50
@@ -223,7 +224,7 @@ nnoremap K kJ
 nnoremap <A-j> ddkkpJ
 
 " Clear search highlighting with \c
-nnoremap <silent><Leader>c :nohls<CR>
+nnoremap <silent><space>h :nohls<CR>
 nnoremap <silent><c-n> :nohls<CR>
 
 " Various leader maps
@@ -250,8 +251,8 @@ inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 nnoremap ZA :wqa<cr>
 
 " Find uncommented method and class headers
-nnoremap <silent><space>h /\v^\s*[^#]*\n^\s*(def\|class)/+1<cr>:noh<cr>
-nnoremap <silent><space>H O##
+" nnoremap <silent><space>h /\v^\s*[^#]*\n^\s*(def\|class)/+1<cr>:noh<cr>
+" nnoremap <silent><space>H O##
 
 " flip capitalization on a word
 nnoremap <silent><leader>~ viw~
@@ -341,8 +342,9 @@ nnoremap <silent> <space>sC :lcl<cr><C-w>_
 
 
 """""
-" Vimwiki Task related mappings - rely on UltiSnips snippets
+" Vimwiki related mappings
 """""
+" Task snippets which rely on UltiSnips snippets
 " New Pomodoro task entry
 nmap <space>p o<esc>0Cp<C-j>
 nmap <space>P O<esc>0Cp<C-j>
@@ -355,10 +357,13 @@ nmap <space>T O<esc>0CT<C-j>
 nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
 
-nnoremap <C-x> A<space>!<C-j><esc><C-space>
+nnoremap <silent><space>wc :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
+nnoremap <silent><space>ws :e ~/Dropbox/docs/vimwiki/Unsorted Snippets.wiki<cr>
 
 " Enable tab completion for popup menus in vimwiki buffers
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+
+""""
 
 " * search in visual mode
 vnoremap *     y/<C-r>"<cr>
@@ -392,3 +397,30 @@ au FileType ruby nnoremap <silent><C-p> :w !ruby<cr>
 set ttyfast
 set ttymouse=xterm2
 set mouse=a
+
+""" EasyMotion
+let g:EasyMotion_leader_key = '<leader>'
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" Version 2 Needs one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s)
+nmap S <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t)
+nmap T <Plug>(easymotion-T2)
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" replace incremental search
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" replace n/N for fast targeting
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
