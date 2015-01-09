@@ -51,7 +51,8 @@
   conflicts      = diff --name-only --diff-filter=U
   gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
   #nightly        = "!source ~/.githelpers && update_nightly_branch"
-  review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
+  #review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
+  review         = "!source ~/.githelpers && review_code"
 
   aa = "!clear; git add -A; git status"
 

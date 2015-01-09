@@ -13,3 +13,19 @@ function pretty_git_log() {
   column -t -s '{' |
   less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
 }
+
+function review_code() {
+  BRANCH=$1
+  if [ -z $BRANCH ]
+  then
+    $BRANCH="develop"
+  fi
+
+  REMOTE=$2
+  if [ -z $REMOTE ]
+  then
+    $REMOTE="origin"
+  fi
+
+  git push $REMOTE HEAD:refs/for/$BRANCH;
+}
