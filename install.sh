@@ -1,16 +1,16 @@
 #!/bin/sh
 # apt-get installs
 sudo apt-get update
-sudo apt-get install $(cat packages)
+sudo apt-get install -y $(cat packages)
 
 # symlinks
-for file in $(ls dotfiles); do
-  ln -s $(pwd)/$file $HOME/$file
-done
+./symlink.sh
 
 # repos
 
 # ruby
+\curl -sSL https://get.rvm.io | bash -s stable
+rvm install ruby-head
 
 # etc
 
