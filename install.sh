@@ -8,9 +8,6 @@ sudo apt-get install -y $(cat packages)
 
 # repos
 
-# ruby
-\curl -sSL https://get.rvm.io | bash -s stable
-rvm install ruby-head
 
 # etc
 
