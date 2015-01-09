@@ -29,6 +29,7 @@ Bundle 'bling/vim-airline'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
+Bundle 'itchyny/calendar.vim'
 Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
 Bundle 'kien/ctrlp.vim'
@@ -60,7 +61,7 @@ Bundle 'UltiSnips'
 Bundle 'vimwiki'
 
 if !has('win32')
-  Bundle 'Valloric/YouCompleteMe'
+  Bundle 'Shougo/neocomplcache'
 endif
 
 " Colo Plugins
@@ -115,7 +116,13 @@ let g:used_javascript_libs = 'angularjs'
 
 let g:ycm_server_keep_logfiles = 1
 
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 2
+
 let g:goyo_width = 100
+
+let g:calendar_google_calendar = 1
 
 if executable('ag')
   let g:ackprg                          = 'ag --nogroup --nocolor --column'
@@ -145,6 +152,11 @@ let g:ctrlp_custom_ignore = {
       \}
 
 let g:user_emmet_leader_key='<C-e>'
+let g:user_emmet_settings = {
+\  'html' : {
+\    'indentation' : '  '
+\  },
+\}
 
 command! W :w
 command! Q :q
@@ -358,12 +370,23 @@ nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
 
 nnoremap <silent><space>wc :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
+nnoremap <silent><space>we :e ~/Dropbox/docs/vimwiki/Pomodoro/index.wiki<cr>
 nnoremap <silent><space>ws :e ~/Dropbox/docs/vimwiki/Unsorted Snippets.wiki<cr>
 
 " Enable tab completion for popup menus in vimwiki buffers
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 
 """"
+
+inoremap <expr><tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " * search in visual mode
 vnoremap *     y/<C-r>"<cr>
@@ -422,5 +445,5 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
 " replace n/N for fast targeting
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+nmap <space>n <Plug>(easymotion-next)
+nmap <space>N <Plug>(easymotion-prev)
