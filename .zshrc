@@ -35,7 +35,6 @@ export TERM
 # CLI tools
 alias grep="grep --color"
 alias c="clear;"
-alias ag="noglob ag "
 alias td="echo \`date +'%m/%d/%Y'\`"
 alias wat='man'
 alias serve='http-server'
@@ -235,6 +234,10 @@ vimag() {
   vim -o `ag -l $1 $2`
 }
 
+vimdl() {
+  vim -o `git dlf`
+}
+
 ###
 # TMUX: things that specifically benefit tmux usage
 ###
@@ -364,6 +367,5 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
 
 ulimit -n 4096
