@@ -53,6 +53,7 @@ alias vimp="vim --startuptime ~/vim_start.log"
 ######
 # Ruby Dev
 ######
+alias rc="clear; bundle exec rails c"
 alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
@@ -104,7 +105,6 @@ alias gs="git status"
 alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gcodbsql="git checkout HEAD db/structure.sql"
 
-alias rc="clear; bundle exec rails c"
 # git add, commit, push
 gcp() {
   git add -A
