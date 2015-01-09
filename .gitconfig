@@ -32,6 +32,7 @@
 [alias]
   b     = branch
   bc    = for-each-ref --sort='-*committerdate' --format="%(refname:short)" refs/heads/
+  bm    = "!source ~/.githelpers && list_merged"
   ca    = commit --amend
   cm    = commit -m
   co    = checkout

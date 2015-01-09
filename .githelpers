@@ -29,3 +29,21 @@ function review_code() {
 
   git push $REMOTE HEAD:refs/for/$BRANCH;
 }
+
+function list_merged() {
+  for branch in $(git branch | grep -v develop)
+  do
+    check_merged $branch
+  done
+}
+
+function check_merged() {
+  BRANCH=$1
+  HASH=`git rev-parse $BRANCH`
+  INDEV=`git branch --contains $HASH | grep develop | wc -l | bc`
+
+  if [[ $INDEV -eq 1 ]]
+  then
+    echo $BRANCH
+  fi
+}
