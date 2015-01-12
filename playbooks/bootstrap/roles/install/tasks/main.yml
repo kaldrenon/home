@@ -1,0 +1,8 @@
+---
+
+- apt: name=git
+- apt: name=zsh
+- apt: name=tmux
+- apt: name=vim
+- apt: name=htop
+- apt: name=tree

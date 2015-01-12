@@ -342,7 +342,7 @@ zle -N zle-keymap-select
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-[[ -z `which brew` ]] || source $(brew --prefix nvm)/nvm.sh
+[[ 0 -eq `which brew || $?` ]] || source $(brew --prefix nvm)/nvm.sh
 
 # Vim is default editor for all things
 EDITOR=`which vim`

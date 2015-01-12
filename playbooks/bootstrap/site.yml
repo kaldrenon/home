@@ -1,0 +1,9 @@
+---
+
+- hosts: droplets
+
+  sudo: yes
+
+  roles:
+    - update
+    - install
