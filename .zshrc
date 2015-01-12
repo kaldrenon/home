@@ -322,7 +322,7 @@ zle -N zle-keymap-select
 
 
 # Add tmuxinator scripts
-source ~/.tmuxinator/tmuxinator.zsh
+[[ -z `which tmuxinator` ]] || source ~/.tmuxinator/tmuxinator.zsh
 
 # Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
@@ -342,7 +342,7 @@ source ~/.tmuxinator/tmuxinator.zsh
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-source $(brew --prefix nvm)/nvm.sh
+[[ -z `which brew` ]] || source $(brew --prefix nvm)/nvm.sh
 
 # Vim is default editor for all things
 EDITOR=`which vim`
@@ -352,7 +352,7 @@ VISUAL=`which vim`
 export VISUAL
 
 start-agent() {
-  if ps ax | ag '[s]sh-agent -s' > /dev/null; then
+  if ps ax | grep '[s]sh-agent -s' > /dev/null; then
     # Do nothing
   else
     eval `ssh-agent -s`
