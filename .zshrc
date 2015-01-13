@@ -322,7 +322,8 @@ zle -N zle-keymap-select
 
 
 # Add tmuxinator scripts
-[[ -z `which tmuxinator` ]] || source ~/.tmuxinator/tmuxinator.zsh
+HAS_TMUXINATOR=`which tmuxinator > /dev/null; echo $?`
+[[ 0 -eq $HAS_TMUXINATOR ]] || source ~/.tmuxinator/tmuxinator.zsh
 
 # Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
@@ -342,7 +343,8 @@ zle -N zle-keymap-select
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-[[ 0 -eq `which brew || $?` ]] || source $(brew --prefix nvm)/nvm.sh
+HAS_BREW=`which brew > /dev/null; echo $?`
+[[ 0 -eq $HAS_BREW ]] || source $(brew --prefix nvm)/nvm.sh
 
 # Vim is default editor for all things
 EDITOR=`which vim`
