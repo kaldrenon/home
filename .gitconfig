@@ -39,6 +39,8 @@
   d     = diff
   dc    = diff --cached
   dcf   = diff --cached --name-only
+  dh    = "!f() { echo $1; git diff $1^ $1; }; f"
+  dhf   = "!f() { echo $1; git diff --name-only $1^ $1; }; f"
   dl    = diff 'HEAD^1' HEAD
   dlf   = diff 'HEAD^1' HEAD --name-only
   ds    = stash show -p stash@{0}
