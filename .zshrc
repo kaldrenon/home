@@ -48,6 +48,9 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 # Voices (OSX only afaik)
 alias alert="say -v 'Victoria'"
+
+alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+
 alias vimp="vim --startuptime ~/vim_start.log"
 
 ######
@@ -376,6 +379,17 @@ compinit
 ###
 ak-cache() {
   curl -IXGET -H "Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no" $1
+}
+
+vimgulp() {
+  CWD=`pwd`
+  PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
+  if [[ $CWD != $PROJECT_ROOT ]];
+  then
+    cd $PROJECT_ROOT
+  fi
+
+  vim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
 }
 
 ulimit -n 4096
