@@ -7,10 +7,20 @@ snippet { "close braces" i
 }
 endsnippet
 
+snippet ( "close parens" i
+(
+  $1
+)
+endsnippet
+
 snippet [ "close brackets" i
 [
   $1
 ]
+endsnippet
+
+snippet in "i18n tag for gulp-html-i18n" !i
+\$\{\{ ${2:xh.${1:tag}} \}\}$
 endsnippet
 
 ##########################

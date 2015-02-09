@@ -19,8 +19,9 @@ bindkey -M vicmd '?' history-incremental-search-backward  # Search up through re
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
 # Prompt: [time (green)][user@host (cyan): current path (depth 2)]$
-PROMPT="[%{$fg_bold[green]%}%T%{$reset_color%}][%{$fg_bold[blue]%}%n@%m%{$reset_color%}:%2~]$ "
-RPROMPT='' # prompt for right side of screen
+git_branch=`git branch 2>/dev/null | grep -e '^*' | sed -E 's/^\* (.+)$/(\1) /'`
+PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ → "
+RPROMPT="$git_branch" # prompt for right side of screen
 
 alias hl="history -D -n -1"
 
@@ -241,6 +242,10 @@ vimdl() {
   vim -o `git dlf`
 }
 
+vimconf() {
+  vim -o `git diff --name-only --diff-filter=U`
+}
+
 ###
 # TMUX: things that specifically benefit tmux usage
 ###
@@ -316,6 +321,7 @@ zle -N accept-line _-accept-line
 
 # Show mode in right prompt for zsh vi bindings
 function zle-line-init zle-keymap-select {
+  git_branch=`git branch 2>/dev/null | grep -e '^*' | sed -E 's/^\* (.+)$/(\1) /'`
   RPS1="${${KEYMAP/vicmd/- N -}/(main|viins)/- I -}"
   RPS2=$RPS1
   zle reset-prompt

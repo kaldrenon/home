@@ -150,7 +150,7 @@ let g:ctrlp_switch_buffer = 'ETVH'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
-      \ 'dir': '\vtmp'
+      \ 'dir': '\v(tmp|public/assets)'
       \}
 
 let g:user_emmet_leader_key='<C-e>'
@@ -307,6 +307,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 nnoremap <silent> <C-=> <C-w>=
 nnoremap <silent> <C-m> <C-w>_
+
+nnoremap <silent> <space>> :tabnext<cr>
+nnoremap <silent> <space>< :tabprevious<cr>
 
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
