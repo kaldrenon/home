@@ -26,7 +26,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{%Gδ%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
 
-PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status) → '
+PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status)→ '
 RPROMPT="" # prompt for right side of screen
 
 alias hl="history -D -n -1"
@@ -46,15 +46,29 @@ alias td="echo \`date +'%m/%d/%Y'\`"
 alias wat='man'
 alias serve='http-server'
 
+HOST_OS=`uname`
+
 # Ubuntu/Debian
-alias agi="sudo apt-get install -y"
+if [[ $HOST_OS -eq 'Linux' ]]; then
+  alias agi="sudo apt-get install -y"
+  alias alert="echo"
+fi
+
+# Mac OS only
+if [[ $HOST_OS -eq 'Darwin' ]]; then
+  alias agi="brew install -y"
+
+  # Load Node Version Manager
+  HAS_BREW=`which brew > /dev/null; echo $?`
+  [[ 1 -eq $HAS_BREW ]] || source $(brew --prefix nvm)/nvm.sh
+
+  # Voices
+  alias alert="say -v 'Victoria'"
+fi
 
 # PostgreSQL
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-
-# Voices (OSX only afaik)
-alias alert="say -v 'Victoria'"
 
 alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
@@ -199,22 +213,6 @@ vlm() {
   vim -o $(echo $files)
 }
 
-appg() {
-  case $HOST in
-    HQSML-136389)
-      ;;
-    fallows)
-      echo "Executing 'brew install $1"
-      brew install $1
-      ;;
-    *)
-      echo "Executing 'sudo apt-get install $1"
-      sudo apt-get install $1
-      ;;
-  esac
-}
-
-
 # Quick alias to get disk usage of a dir
 usage(){
   du -hc $1 | grep total
@@ -357,9 +355,6 @@ HAS_TMUXINATOR=`which tmuxinator > /dev/null; echo $?`
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-HAS_BREW=`which brew > /dev/null; echo $?`
-[[ 1 -eq $HAS_BREW ]] || source $(brew --prefix nvm)/nvm.sh
 
 # Vim is default editor for all things
 EDITOR=`which vim`
