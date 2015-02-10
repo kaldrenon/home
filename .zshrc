@@ -3,6 +3,7 @@ source ~/antigen.zsh
 #
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle emallson/gulp-zsh-completion
+antigen bundle olivierverdier/zsh-git-prompt
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
@@ -18,10 +19,9 @@ bindkey -M vicmd '?' history-incremental-search-backward  # Search up through re
 
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
-# Prompt: [time (green)][user@host (cyan): current path (depth 2)]$
-git_branch=`git branch 2>/dev/null | grep -e '^*' | sed -E 's/^\* (.+)$/(\1) /'`
-PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ → "
-RPROMPT="$git_branch" # prompt for right side of screen
+# Prompt: time user|host current-path git-info →
+PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ %{$fg[yellow]%}$(git_super_status)${vcs_info_wrapper}%{$reset_color%}→ "
+RPROMPT="" # prompt for right side of screen
 
 alias hl="history -D -n -1"
 
