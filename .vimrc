@@ -403,10 +403,12 @@ highlight Pmenu ctermbg=238 gui=bold
 set autoread " automatically reload externally changed buffers
 
 " Extension to filetype config
-au BufRead,BufNewFile *.rem setfiletype remind
-au BufRead,BufNewFile *.tex setfiletype tex
-au BufRead,BufNewFile *.god setfiletype rb
-au BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
+autocmd BufRead,BufNewFile *.rem setfiletype remind
+autocmd BufRead,BufNewFile *.tex setfiletype tex
+autocmd BufRead,BufNewFile *.god setfiletype rb
+autocmd BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
+
+autocmd BufNewFile,BufNewFile html,javascript,css,sass,ruby let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " Mappings for common Tabularizations
 nnoremap <Leader>a= :Tabularize /=<CR>
