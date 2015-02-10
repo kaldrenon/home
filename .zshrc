@@ -20,7 +20,13 @@ bindkey -M vicmd '?' history-incremental-search-backward  # Search up through re
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
 # Prompt: time user|host current-path git-info →
-PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ %{$fg[yellow]%}$(git_super_status)${vcs_info_wrapper}%{$reset_color%}→ "
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[green]%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{%GΔ%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}%{…%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{%Gδ%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
+
+PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status) → '
 RPROMPT="" # prompt for right side of screen
 
 alias hl="history -D -n -1"
