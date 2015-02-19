@@ -399,4 +399,9 @@ vimgulp() {
   vim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
 }
 
+vimpc() {
+  vim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore test/*`
+}
+compctl -W app/assets/components -/ vimpc
+
 ulimit -n 4096
