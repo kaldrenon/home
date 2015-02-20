@@ -404,4 +404,9 @@ vimpc() {
 }
 compctl -W app/assets/components -/ vimpc
 
+vimpca() {
+  vim -o `ag -g app/assets/components/$1/`
+}
+compctl -W app/assets/components -/ vimpca
+
 ulimit -n 4096
