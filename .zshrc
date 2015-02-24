@@ -45,6 +45,7 @@ alias c="clear;"
 alias td="echo \`date +'%m/%d/%Y'\`"
 alias wat='man'
 alias serve='http-server'
+alias cdh='cd ~/home'
 
 HOST_OS=`uname`
 
@@ -388,19 +389,35 @@ ak-cache() {
   curl -IXGET -H "Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no" $1
 }
 
-vimgulp() {
+cdxhw() {
   CWD=`pwd`
   PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
   if [[ $CWD != $PROJECT_ROOT ]];
   then
     cd $PROJECT_ROOT
   fi
+}
 
+xvim() {
+  cdxhw && vim
+}
+
+vimgulp() {
+  cdxhw
   vim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
+  cd -
+}
+
+vimlang() {
+  cdxhw
+  lang=$1
+  if [ -z "$1" ]; then; lang='en-US'; fi
+  vim -c 'autocmd VimEnter * wincmd H' -o app/assets/languages/$lang/*.json
+  cd - > /dev/null
 }
 
 vimpc() {
-  vim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore test/*`
+  vim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg --ignore test/*`
 }
 compctl -W app/assets/components -/ vimpc
 
