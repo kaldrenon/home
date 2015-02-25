@@ -47,6 +47,9 @@ alias wat='man'
 alias serve='http-server'
 alias cdh='cd ~/home'
 
+# Docker and Vagrant
+alias b2d='boot2docker start && $(boot2docker shellinit)'
+
 HOST_OS=`uname`
 
 # Ubuntu/Debian
