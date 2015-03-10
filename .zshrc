@@ -49,6 +49,12 @@ alias cdh='cd ~/home'
 
 # Docker and Vagrant
 alias b2d='boot2docker start && $(boot2docker shellinit)'
+alias vup='vagrant up'
+alias vdown='vagrant halt'
+alias vkill='vagrant halt && vagrant destroy -f'
+
+# NeoVim
+alias nv="nvim"
 
 HOST_OS=`uname`
 
@@ -74,9 +80,9 @@ fi
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
-alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~/home && nvim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
-alias vimp="vim --startuptime ~/vim_start.log"
+alias vimp="nvim --startuptime ~/vim_start.log"
 
 ######
 # Ruby Dev
@@ -214,7 +220,7 @@ vlm() {
     filename=db/migrate/$file
     files="$files $filename"
   done
-  vim -o $(echo $files)
+  nvim -o $(echo $files)
 }
 
 # Quick alias to get disk usage of a dir
@@ -243,15 +249,15 @@ zz() {
 
 # Search power
 vimag() {
-  vim -o `ag -l $1 $2`
+  nvim -o `ag -l $1 $2`
 }
 
 vimdl() {
-  vim -o `git dlf`
+  nvim -o `git dlf`
 }
 
 vimconf() {
-  vim -o `git diff --name-only --diff-filter=U`
+  nvim -o `git diff --name-only --diff-filter=U`
 }
 
 ###
@@ -401,13 +407,13 @@ cdxhw() {
   fi
 }
 
-xvim() {
-  cdxhw && vim
+xnvim() {
+  cdxhw && nvim
 }
 
 vimgulp() {
   cdxhw
-  vim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
+  nvim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
   cd -
 }
 
@@ -415,17 +421,19 @@ vimlang() {
   cdxhw
   lang=$1
   if [ -z "$1" ]; then; lang='en-US'; fi
-  vim -c 'autocmd VimEnter * wincmd H' -o app/assets/languages/$lang/*.json
+  nvim -o app/assets/languages/$lang/*.json
   cd - > /dev/null
 }
 
 vimpc() {
-  vim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg --ignore test/*`
+  nvim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg --ignore test/*`
 }
 compctl -W app/assets/components -/ vimpc
 
+alias vc="vimpc"
+
 vimpca() {
-  vim -o `ag -g app/assets/components/$1/`
+  nvim -o `ag -g app/assets/components/$1/`
 }
 compctl -W app/assets/components -/ vimpca
 
