@@ -210,7 +210,7 @@ endif
 " set hlsearch
 set incsearch
 
-set ttimeoutlen=50
+set ttimeoutlen=0
 
 nnoremap <silent> <space>vp :e<space>~/vim_start.log<cr>G
 
