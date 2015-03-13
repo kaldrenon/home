@@ -35,6 +35,9 @@ alias hl="history -D -n -1"
 TERM=screen-256color
 export TERM
 
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
+tic ~/$TERM.ti
+
 ###
 # ALIAS: Other aliases
 ###
@@ -54,7 +57,6 @@ alias vdown='vagrant halt'
 alias vkill='vagrant halt && vagrant destroy -f'
 
 # NeoVim
-alias nv="nvim"
 
 HOST_OS=`uname`
 
@@ -80,9 +82,68 @@ fi
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
+####
+# Vim and NeoVim
+####
+
+alias v="vim"
+alias nv="nvim"
+
 alias dotfiles="cd ~/home && nvim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
 alias vimp="nvim --startuptime ~/vim_start.log"
+
+vlm() {
+  files=""
+  for file in $(ls db/migrate | tail -$1); do
+    filename=db/migrate/$file
+    files="$files $filename"
+  done
+  nvim -o $(echo $files)
+}
+
+# Search power
+vimag() {
+  nvim -o `ag -l $1 $2`
+}
+
+vimdl() {
+  nvim -o `git dlf`
+}
+
+vimconf() {
+  nvim -o `git diff --name-only --diff-filter=U`
+}
+
+xvim() {
+  cdxhw && nvim
+}
+
+vimgulp() {
+  cdxhw
+  nvim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
+  cd -
+}
+
+vimlang() {
+  cdxhw
+  lang=$1
+  if [ -z "$1" ]; then; lang='en-US'; fi
+  nvim -o app/assets/languages/$lang/*.json
+  cd - > /dev/null
+}
+
+vimpc() {
+  nvim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg --ignore test/*`
+}
+compctl -W app/assets/components -/ vimpc
+
+alias vc="vimpc"
+
+vimpca() {
+  nvim -o `ag -g app/assets/components/$1/`
+}
+compctl -W app/assets/components -/ vimpca
 
 ######
 # Ruby Dev
@@ -214,15 +275,6 @@ print_color() {
   echo "$fg_bold[$1]$2$reset_color"
 }
 
-vlm() {
-  files=""
-  for file in $(ls db/migrate | tail -$1); do
-    filename=db/migrate/$file
-    files="$files $filename"
-  done
-  nvim -o $(echo $files)
-}
-
 # Quick alias to get disk usage of a dir
 usage(){
   du -hc $1 | grep total
@@ -245,19 +297,6 @@ jcurl() {
 # Reload this file
 zz() {
   source ~/.zshrc
-}
-
-# Search power
-vimag() {
-  nvim -o `ag -l $1 $2`
-}
-
-vimdl() {
-  nvim -o `git dlf`
-}
-
-vimconf() {
-  nvim -o `git diff --name-only --diff-filter=U`
 }
 
 ###
@@ -407,34 +446,5 @@ cdxhw() {
   fi
 }
 
-xnvim() {
-  cdxhw && nvim
-}
-
-vimgulp() {
-  cdxhw
-  nvim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
-  cd -
-}
-
-vimlang() {
-  cdxhw
-  lang=$1
-  if [ -z "$1" ]; then; lang='en-US'; fi
-  nvim -o app/assets/languages/$lang/*.json
-  cd - > /dev/null
-}
-
-vimpc() {
-  nvim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg --ignore test/*`
-}
-compctl -W app/assets/components -/ vimpc
-
-alias vc="vimpc"
-
-vimpca() {
-  nvim -o `ag -g app/assets/components/$1/`
-}
-compctl -W app/assets/components -/ vimpca
 
 ulimit -n 4096
