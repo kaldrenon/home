@@ -29,7 +29,6 @@ Plugin 'AndrewRadev/switch.vim'
 Plugin 'EinfachToll/DidYouMean'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/unite.vim'
 Plugin 'UltiSnips'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -234,8 +233,7 @@ nnoremap K kJ
 nnoremap <A-j> ddkkpJ
 
 " Clear search highlighting with \c
-nnoremap <silent><space>h :nohls<CR>
-nnoremap <silent><c-n> :nohls<CR>
+nnoremap <silent><c-/> :nohls<CR>
 
 " Various leader maps
 " save and unload
@@ -304,37 +302,11 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 nnoremap <silent> <C-=> <C-w>=
 nnoremap <silent> <C-m> <C-w>_
 
-nnoremap <silent> <space>> :tabnext<cr>
-nnoremap <silent> <space>< :tabprevious<cr>
+nnoremap <silent> <C-n> :tabnew<cr>
 
 set noequalalways " Prevent window stack from automatically evening out when one closes
 set winminheight=0 " No max height on windows.
 set splitright
-
-""""
-" Unite.vim mappings
-""""
-call unite#custom#source('buffer,file,file_mru,file_rec', 'sorters', 'sorter_rank')
-call unite#custom#source('file_rec', 'ignore_pattern', 'tmp/*')
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-" Open windows in horiz/vert splits after fuzzy matching a file name
-nnoremap <Leader>t :set nosplitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
-nnoremap <Leader>T :set splitbelow<cr>:Unite -default-action=split -start-insert file_rec<cr>
-nnoremap <Leader>v :set splitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
-nnoremap <Leader>V :set nosplitright<cr>:Unite -default-action=vsplit -start-insert file_rec<cr>
-nnoremap <Leader>n :Unite -default-action=split -start-insert file/new<cr>
-
-nnoremap <space>m :CtrlPMixed<cr>
-
-" Read files into current buffer; swap buffers
-nnoremap <Leader>e :Unite -start-insert file_rec<cr>
-nnoremap <Leader>B :Unite -start-insert buffer<cr>
-nnoremap <Leader>b :Unite buffer<cr>
-nnoremap <Leader>s :Unite -quick-match buffer<cr>
-
-" Unite search (I rarely use this)
-nnoremap <space>/ :Unite grep:.<cr>
 
 " Mark something completed with a unicode check
 nnoremap <Leader>x I✓<space><esc>
@@ -450,3 +422,8 @@ omap / <Plug>(easymotion-tn)
 " replace n/N for fast targeting
 nmap <space>n <Plug>(easymotion-next)
 nmap <space>N <Plug>(easymotion-prev)
+
+" Highlight long rows
+" ctermbg 52 is dark red
+highlight OverLength ctermbg=52 ctermfg=white guibg=#770000
+match OverLength /\%81v./
