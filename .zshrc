@@ -1,9 +1,10 @@
 # Antigen bundles
 source ~/antigen.zsh
 #
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle akoenig/gulp-autocompletion-zsh
 antigen bundle emallson/gulp-zsh-completion
 antigen bundle olivierverdier/zsh-git-prompt
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
@@ -86,7 +87,7 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 # Vim and NeoVim
 ####
 
-alias v="vim"
+alias v="nvim"
 alias nv="nvim"
 
 alias dotfiles="cd ~/home && nvim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
@@ -123,6 +124,11 @@ vimgulp() {
   cdxhw
   nvim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
   cd -
+}
+
+vgulp() {
+  cdxhw
+  nvim -O gulpfile.js lib/tasks/gulp/$1.js
 }
 
 vimlang() {
@@ -446,5 +452,17 @@ cdxhw() {
   fi
 }
 
+pdfman() {
+  PROCESS=$1
+  man -t $PROCESS | pstopdf -i -o /tmp/$PROCESS.man.pdf
+  open /tmp/$PROCESS.man.pdf
+}
+
+psman() {
+  PROCESS=$1
+  man -t $PROCESS > /tmp/$PROCESS.man.ps
+  open /tmp/$PROCESS.man.ps
+}
 
 ulimit -n 4096
+source /Users/asfallows/.gulp-autocompletion-zsh/gulp-autocompletion.zsh

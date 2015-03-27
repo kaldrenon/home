@@ -425,5 +425,6 @@ nmap <space>N <Plug>(easymotion-prev)
 
 " Highlight long rows
 " ctermbg 52 is dark red
+" TODO: Only apply this in certain fts
 highlight OverLength ctermbg=52 ctermfg=white guibg=#770000
 match OverLength /\%81v./
