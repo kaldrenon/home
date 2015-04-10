@@ -155,6 +155,7 @@ compctl -W app/assets/components -/ vimpca
 # Ruby Dev
 ######
 alias rc="clear; bundle exec rails c"
+alias bx="bundle exec"
 alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
@@ -408,7 +409,6 @@ HAS_TMUXINATOR=`which tmuxinator > /dev/null; echo $?`
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
-PATH=$HOME/.linuxbrew/bin:$PATH
 PATH=$HOME/.rvm/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 

@@ -98,6 +98,10 @@ snippet # "Interpolated Code"
 #{$1}$0
 endsnippet
 
+snippet vcl "Verbose Log" i
+console.log('$1'}, $1);
+endsnippet
+
 snippet log "Log" i
 console.log(${1:'${2:msg}'});
 endsnippet
