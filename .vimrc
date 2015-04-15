@@ -44,6 +44,7 @@ Plugin 'mhinz/vim-tmuxify'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'notalex/vim-run-live'
 Plugin 'rking/ag.vim'
+Plugin 'ryanoasis/vim-webdevicons'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -161,6 +162,8 @@ command! Bd :bd
 command! RS :source ~/.vimrc
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
 
+set clipboard+=unnamedplus
+
 " Highlight matched HTML tags
 set matchpairs+=<:>
 set showmatch
@@ -277,6 +280,7 @@ for prefix in ['i', 'n', 'v']
 endfor
 
 map Y y$
+nnoremap gy "+y
 
 " A whole bunch of mappings to make window management easy and a little bit
 " more like tab management in other editors.
