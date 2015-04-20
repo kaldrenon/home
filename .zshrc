@@ -108,18 +108,23 @@ vimag() {
   nvim -o `ag -l $1 $2`
 }
 
+# Open last commit's files
 vimdl() {
   nvim -o `git dlf`
 }
+alias vl="vimdl"
 
+# Open files in merge conflict state
 vimconf() {
   nvim -o `git diff --name-only --diff-filter=U`
 }
 
+# Open vim in xhome project
 xvim() {
   cdxhw && nvim
 }
 
+# Open vim with gulp js files arranged
 vimgulp() {
   cdxhw
   nvim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
@@ -128,8 +133,10 @@ vimgulp() {
 
 vgulp() {
   cdxhw
-  nvim -O gulpfile.js lib/tasks/gulp/$1.js
+  nvim -O gulpfile.js lib/tasks/gulp/$1
 }
+compctl -W lib/tasks/gulp -f vgulp
+alias vg="vgulp"
 
 vimlang() {
   cdxhw
@@ -150,6 +157,10 @@ vimpca() {
   nvim -o `ag -g app/assets/components/$1/`
 }
 compctl -W app/assets/components -/ vimpca
+
+vimdf() {
+  nvim -o `git diff --name-only` `git diff --cached --name-only`
+}
 
 ######
 # Ruby Dev
@@ -191,6 +202,22 @@ rtest_all() {
     alert "Tests completed - full test suite"
   else
     alert "Tests failed - full test suite"
+  fi
+}
+
+######
+# JS Dev
+######
+
+mtest() {
+  local cmd="mocha $1"
+  clear
+  echo "$fg_bold[blue]Executing $cmd$reset_color"
+  eval $cmd
+  if [ $? -eq 0 ]; then
+    ( alert "Tests completed - $(sed 's/[\/_]/ /g' <<< $1)" & )
+  else
+    ( alert "Tests failed - $(sed 's/[\/_]/ /g' <<< $1)" & )
   fi
 }
 
