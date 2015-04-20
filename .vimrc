@@ -44,7 +44,6 @@ Plugin 'mhinz/vim-tmuxify'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'notalex/vim-run-live'
 Plugin 'rking/ag.vim'
-Plugin 'ryanoasis/vim-webdevicons'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -63,8 +62,14 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'vimwiki'
 
 " Colo Plugins
+Plugin 'ajh17/Spacegray.vim'
+Plugin 'cseelus/vim-colors-clearance'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'jordwalke/flatlandia'
+Plugin 'morhetz/gruvbox'
+Plugin 'noahfrederick/vim-hemisu'
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'wesgibbs/vim-irblack'
 
 " Dependencies - plugins I don't use directly but that other plugins need
 Plugin 'kana/vim-textobj-user'
@@ -72,7 +77,7 @@ Plugin 'mattn/webapi-vim'
 
 filetype plugin indent on
 
-for cs in ['hybrid', 'wombat256mod', 'wombat256', 'default']
+for cs in ['pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
   try
     execute 'colorscheme' cs
     break
@@ -81,6 +86,7 @@ for cs in ['hybrid', 'wombat256mod', 'wombat256', 'default']
 endfor
 
 "Set options for plugins
+let g:airline_theme = 'pencil'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 
@@ -162,7 +168,7 @@ command! Bd :bd
 command! RS :source ~/.vimrc
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
 
-set clipboard+=unnamedplus
+"set clipboard+=unnamed
 
 " Highlight matched HTML tags
 set matchpairs+=<:>
@@ -185,6 +191,7 @@ set ruler
 syntax on
 set backspace=2                        " backspace behaves as in other software
 set laststatus=2                       " always show statusline
+set background=dark
 
 augroup CursorLine
   au!
