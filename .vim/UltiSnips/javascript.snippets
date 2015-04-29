@@ -61,33 +61,33 @@ endsnippet
 
 snippet forr "Range Comprehension (inclusive)" b
 for ${1:name} in [${2:start}..${3:finish}]${4: by ${5:step}}
-	${0:# body...}
+  ${0:# body...}
 endsnippet
 
 snippet forrex "Range Comprehension (exclusive)" b
 for ${1:name} in [${2:start}...${3:finish}]${4: by ${5:step}}
-	${0:# body...}
+  ${0:# body...}
 endsnippet
 
 snippet swi "Switch" b
 switch ${1:object}
-	when ${2:value}
-		${0:# body...}
+  when ${2:value}
+    ${0:# body...}
 endsnippet
 
 snippet cla "Class" b
 class ${1:ClassName}${2: extends ${3:Ancestor}}
 
-	${4:constructor: (${5:args}) ->
-		${6:# body...}}
-	$7
+  ${4:constructor: (${5:args}) ->
+    ${6:# body...}}
+  $7
 endsnippet
 
 snippet try "Try .. Catch" b
 try
-	$1
+  $1
 catch ${2:error}
-	$3
+  $3
 endsnippet
 
 snippet req "Require" b
@@ -123,13 +123,13 @@ endsnippet
 
 snippet '':f "object method string"
 '${1:${2:#thing}:${3:click}}': function(element){
-	$0
+  $0
 }${10:,}
 endsnippet
 
 snippet :f "Object Method"
 ${1:method_name}: function(${3:attribute}){
-	$0
+  $0
 }${10:,}
 endsnippet
 
@@ -143,20 +143,20 @@ endsnippet
 
 snippet proto "Prototype (proto)"
 ${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) ,,{
-	${0:// body...}
+  ${0:// body...}
 };
 
 endsnippet
 
 snippet for "for (...) {...} (faster)"
 for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2--){
-	${3:$1[$2]}$0
+  ${3:$1[$2]}$0
 };
 endsnippet
 
 snippet for "for (...) {...}"
 for (var ${2:i}=0; $2 < ${1:Things}.length; $2++) {
-	${3:$1[$2]}$0
+  ${3:$1[$2]}$0
 };
 endsnippet
 
@@ -216,25 +216,44 @@ extends javascript
 
 snippet des "Describe (js)" b
 describe('${1:description}', function() {
-	$0
+  $0
 });
+endsnippet
+
+snippet desg "Describe (js)" b
+describe('${1:description}', function() {
+  var hasRun = false;
+  beforeEach(function() {
+    hasRun = runOnce('build:rev', hasRun);
+  });
+  $0
+});
+endsnippet
+
+snippet gr "Description" !b
+var hasRun = false;
+beforeEach(function() {
+  hasRun = runOnce('build:rev', hasRun);
+});
+
+$0
 endsnippet
 
 snippet it "it (js)" b
 it('${1:description}', function() {
-	$0
+  $0
 });
 endsnippet
 
 snippet bef "before each (js)" b
 beforeEach(function() {
-	$0
+  $0
 });
 endsnippet
 
 snippet aft "after each (js)" b
 afterEach(function() {
-	$0
+  $0
 });
 endsnippet
 
@@ -244,7 +263,7 @@ endsnippet
 
 snippet ru "runs (js)" b
 runs(function() {
-	$0
+  $0
 });
 endsnippet
 
