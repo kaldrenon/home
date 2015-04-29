@@ -87,6 +87,13 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 # Vim and NeoVim
 ####
 
+HAS_NVIM=`hash nvima 2>/dev/null`
+if [ "$HAS_NVIM" = true ]; then
+  VIM_BIN="nvim"
+else
+  VIM_BIN="vim"
+fi
+
 alias v="nvim"
 alias nv="nvim"
 
@@ -354,22 +361,11 @@ tmuxcolors() {
   done
 }
 
-powerup() {
-  mkdir -p $HOME/.pow
-
-  cp $HOME/home/.powenv .powenv
-
-  POW_APP_PATH=`pwd`
-  cd ~/.pow
-  rm `basename $POW_APP_PATH` > /dev/null
-  ln -s $POW_APP_PATH
-  cd - > /dev/null
+smux() {
+  TEMP_DIR=/tmp/sharedtmux
+  mkdir -p $TEMP_DIR && chgrp staff $TEMP_DIR
+  tmux -S $TEMP_DIR new -s $1
 }
-
-powercycle() {
-  powify restart `basename $(pwd)`
-}
-
 
 ###
 # MISC: Various things
