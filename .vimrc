@@ -105,6 +105,7 @@ let g:syntastic_auto_jump           = 0
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 0
 let g:syntastic_enable_highlighting = 1
+let g:syntastic_scss_checkers       = ['scss_lint']
 
 let g:vimwiki_list         = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
