@@ -154,7 +154,7 @@ vimlang() {
 }
 
 vimpc() {
-  nvim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg --ignore test/*`
+  nvim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg,mp3 --ignore test/*`
 }
 compctl -W app/assets/components -/ vimpc
 
@@ -347,6 +347,8 @@ zz() {
 ## CD to given path in all panes
 # NOTE: assumes all panes are at a clear zsh prompt; must use absolute dirs or
 # have all panes in same path to get the same result
+alias tma="tmux attach -t"
+
 tmcd() {
   for pane in `tmux list-panes -F '#P'`; do
     tmux select-pane -t $pane
