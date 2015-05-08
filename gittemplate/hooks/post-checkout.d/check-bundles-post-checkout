@@ -1,0 +1,2 @@
+#!/bin/sh
+source lib/hooks/check-bundles.sh

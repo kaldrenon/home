@@ -1,5 +1,7 @@
 #!/bin/sh
+HOOK_DIR=${GIT_DIR}/hooks/post-checkout.d/*
 
-if which tmux > /dev/null; then
-  tmux rename-session "$(basename $(git rev-parse --show-toplevel))/$(git rev-parse --abbrev-ref HEAD)";
-fi
+for sub_hook in ${HOOK_DIR}
+do
+  source ${sub_hook}
+done

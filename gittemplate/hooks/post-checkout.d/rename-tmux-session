@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if which tmux > /dev/null; then
+  tmux rename-session "$(basename $(git rev-parse --show-toplevel))/$(git rev-parse --abbrev-ref HEAD)";
+fi
