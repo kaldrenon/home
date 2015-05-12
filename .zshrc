@@ -189,7 +189,12 @@ rdbupdate() {
 
 # Run a single test file
 rtest() {
-  local cmd="bundle exec ruby -Itest $1"
+  if [[ $1 =~ ^spec/ ]]; then
+    local cmd="bundle exec rspec $1"
+  else
+    local cmd="bundle exec ruby -Itest $1"
+  fi
+
   clear
   echo "$fg_bold[blue]Executing $cmd$reset_color"
   eval $cmd
@@ -461,6 +466,14 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Cleaver - https://github.com/jdan/cleaver
+cleave() {
+  md=$1
+  html=$2
+  if [ -z "${html}" ]; then; html=$1; fi
+  cleaver ${md}.md && open ${html}.html
+}
+
 
 ###
 # Comcast
@@ -478,17 +491,22 @@ cdxhw() {
   fi
 }
 
-pdfman() {
-  PROCESS=$1
-  man -t $PROCESS | pstopdf -i -o /tmp/$PROCESS.man.pdf
-  open /tmp/$PROCESS.man.pdf
-}
-
-psman() {
-  PROCESS=$1
-  man -t $PROCESS > /tmp/$PROCESS.man.ps
-  open /tmp/$PROCESS.man.ps
-}
-
-ulimit -n 4096
 source /Users/asfallows/.gulp-autocompletion-zsh/gulp-autocompletion.zsh
+
+mri() {
+  PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
+
+  if [[ -z $1 || $1 == "on" ]]; then
+    echo "Turning MRI Ruby on!"
+    rvm use default
+    sed -i.bak s/1\.9\.3/2.1.3/g Gemfile
+  elif [[ -n $1 && $1 == "off" ]]; then
+    echo "Turning JRuby on..."
+    rvm use $(cat $PROJECT_ROOT/.ruby-version)
+    sed -i.bak s/2\.1\.3/1.9.3/g Gemfile
+  else
+    echo "You dun goof'd."
+  fi
+
+  rm Gemfile.bak
+}
