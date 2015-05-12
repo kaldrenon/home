@@ -70,6 +70,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'noahfrederick/vim-hemisu'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'wesgibbs/vim-irblack'
+Plugin 'zefei/vim-colortuner'
 
 " Dependencies - plugins I don't use directly but that other plugins need
 Plugin 'kana/vim-textobj-user'
