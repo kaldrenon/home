@@ -10,18 +10,19 @@ if exists('g:loaded_airline')
 endif
 
 " Syntax Plugins
+Plugin 'JavaScript-Indent'
+Plugin 'VimClojure'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'elzr/vim-json'
-Plugin 'JavaScript-Indent'
-Plugin 'othree/yajs.vim'
+Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'neilhwatson/vim_cf3'
 Plugin 'othree/html5.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'othree/yajs.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-haml'
-Plugin 'groenewege/vim-less'
-Plugin 'VimClojure'
 
 " Functionality plugins
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -185,6 +186,8 @@ set wildmode=longest,list
 set nobackup
 set nowritebackup
 set noswapfile
+
+set nofoldenable
 
 " Basic color and format defaults
 set hidden
