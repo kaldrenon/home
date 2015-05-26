@@ -1,7 +1,6 @@
 # Antigen bundles
 source ~/antigen.zsh
 #
-antigen bundle akoenig/gulp-autocompletion-zsh
 antigen bundle emallson/gulp-zsh-completion
 antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -490,8 +489,6 @@ cdxhw() {
     cd $PROJECT_ROOT
   fi
 }
-
-source /Users/asfallows/.gulp-autocompletion-zsh/gulp-autocompletion.zsh
 
 mri() {
   PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
