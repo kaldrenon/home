@@ -269,7 +269,7 @@ inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
-inoremap jk <esc>
+inoremap dk <esc>
 
 " Go to next uncompleted task in vimwiki buffers
 nnoremap ZA :wqa<cr>
