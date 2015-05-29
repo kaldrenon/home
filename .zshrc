@@ -29,7 +29,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
 PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status)→ '
 RPROMPT="" # prompt for right side of screen
 
-alias hl="history -D -n -1"
 
 # Support colors for excellence!
 TERM=screen-256color
@@ -46,9 +45,14 @@ tic ~/$TERM.ti
 alias grep="grep --color"
 alias c="clear;"
 alias td="echo \`date +'%m/%d/%Y'\`"
+
 alias wat='man'
 alias serve='http-server'
+
+alias code='cd ~/Dropbox/code'
 alias cdh='cd ~/home'
+
+alias hl="history -D -n -1"
 
 # Docker and Vagrant
 alias b2d='boot2docker start && $(boot2docker shellinit)'
