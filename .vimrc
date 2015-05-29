@@ -251,11 +251,6 @@ nnoremap <A-j> ddkkpJ
 nnoremap <silent><c-/> :nohls<CR>
 
 " Various leader maps
-" save and unload
-nnoremap <silent><Leader>w :w<cr>:bd<cr>
-" open/close location list
-nnoremap <silent><Leader>l :lopen<cr>
-nnoremap <silent><Leader>L <C-w>k:lclose<cr><C-w>_
 
 " reduce down to current buffer
 nnoremap <silent><Leader>o :only<cr>
@@ -270,6 +265,12 @@ nnoremap <silent><Leader>ur :UltiSnipsEdit<space>ruby<cr>
 " in mappings!
 inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 
+" minor cursor adjust without leaving insert mode
+inoremap <C-h> <left>
+inoremap <C-l> <right>
+
+inoremap jk <esc>
+
 " Go to next uncompleted task in vimwiki buffers
 nnoremap ZA :wqa<cr>
 
@@ -280,9 +281,6 @@ nnoremap ZA :wqa<cr>
 " flip capitalization on a word
 nnoremap <silent><leader>~ viw~
 
-" minor cursor adjust without leaving insert mode
-inoremap <C-h> <left>
-inoremap <C-l> <right>
 
 " Kick the cursor habit (disable arrow keys in ivn modes)
 for prefix in ['i', 'n', 'v']
@@ -358,9 +356,11 @@ nmap <space>T O<esc>0CT<C-j>
 nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
 
-nnoremap <silent><space>wc :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
-nnoremap <silent><space>we :e ~/Dropbox/docs/vimwiki/Pomodoro/index.wiki<cr>
-nnoremap <silent><space>ws :e ~/Dropbox/docs/vimwiki/Unsorted Snippets.wiki<cr>
+nnoremap <silent><leader>wc :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
+nnoremap <silent><leader>we :e ~/Dropbox/docs/vimwiki/Pomodoro/index.wiki<cr>
+
+" Better save
+nnoremap <space>w :w<cr>
 
 " Enable tab completion for popup menus in vimwiki buffers
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
