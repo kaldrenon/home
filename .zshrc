@@ -17,6 +17,9 @@ bindkey -v             # Vi-ish bindings (normal and insert modes)
 
 bindkey -M vicmd '?' history-incremental-search-backward  # Search up through recent commands
 
+bindkey "Control-k" up-line-or-history-beginning-search-backward
+bindkey "Control-j" down-line-or-history-beginning-search-backward
+
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
 # Prompt: time user|host current-path git-info →
@@ -59,6 +62,8 @@ alias b2d='boot2docker start && $(boot2docker shellinit)'
 alias vup='vagrant up'
 alias vdown='vagrant halt'
 alias vkill='vagrant halt && vagrant destroy -f'
+
+alias pax="ps ax | ag"
 
 # NeoVim
 
