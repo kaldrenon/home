@@ -33,6 +33,7 @@ Plugin 'Shougo/neocomplcache'
 Plugin 'UltiSnips'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'diepm/vim-rest-console'
 Plugin 'floobits/floobits-neovim'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
@@ -444,3 +445,10 @@ nmap <space>N <Plug>(easymotion-prev)
 " TODO: Only apply this in certain fts
 highlight OverLength ctermbg=52 ctermfg=white guibg=#770000
 match OverLength /\%81v./
+
+
+nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
+
+" Jump around
+nnoremap z[ {zt
+nnoremap z] }zt
