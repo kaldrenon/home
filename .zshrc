@@ -504,7 +504,7 @@ mri() {
 
   if [[ -z $1 || $1 == "on" ]]; then
     echo "Turning MRI Ruby on!"
-    rvm use default
+    rvm use 2.1.3
     sed -i.bak s/1\.9\.3/2.1.3/g Gemfile
   elif [[ -n $1 && $1 == "off" ]]; then
     echo "Turning JRuby on..."

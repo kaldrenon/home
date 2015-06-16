@@ -1,5 +1,14 @@
 #!/bin/sh
 
 if which tmux > /dev/null; then
-  tmux rename-session "$(basename $(git rev-parse --show-toplevel))/$(git rev-parse --abbrev-ref HEAD)";
+  PROJECT=$(basename $(git rev-parse --show-toplevel))
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  SESSION_NAME="${PROJECT}/${BRANCH}";
+  if [ -z "$(tmux ls | grep ${SESSION_NAME})"]; then
+    tmux rename-session ${SESSION_NAME}
+  else
+    echo "Skipping session rename - ${SESSION_NAME} is already a tmux sessino"
+  fi
 fi
+
+exit 0
