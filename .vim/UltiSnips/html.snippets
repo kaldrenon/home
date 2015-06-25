@@ -10,6 +10,12 @@ def x(snip):
         snip.rv = ""
 endglobal
 
+snippet "<([\w-]+\w)( ?.*)>" "def with name" r
+<`!p snip.rv = match.group(1)``!p snip.rv = match.group(2)`>
+  $1
+</`!p snip.rv = match.group(1)`>
+endsnippet
+
 ############
 # Doctypes #
 ############
