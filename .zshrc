@@ -52,6 +52,7 @@ alias td="echo \`date +'%m/%d/%Y'\`"
 alias wat='man'
 alias serve='http-server'
 
+alias drop='cd ~/Dropbox/'
 alias code='cd ~/Dropbox/code'
 alias cdh='cd ~/home'
 
