@@ -96,19 +96,19 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 # Vim and NeoVim
 ####
 
-HAS_NVIM=`hash nvima 2>/dev/null`
-if [ "$HAS_NVIM" = true ]; then
+HAS_NVIM=`which nvim`
+if [ ! -z "$HAS_NVIM" ]; then
   VIM_BIN="nvim"
 else
   VIM_BIN="vim"
 fi
 
-alias v="nvim"
-alias nv="nvim"
+alias v="${VIM_BIN}"
+alias nv="${VIM_BIN}"
 
-alias dotfiles="cd ~/home && nvim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~/home && ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
-alias vimp="nvim --startuptime ~/vim_start.log"
+alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
 vlm() {
   files=""
@@ -116,40 +116,40 @@ vlm() {
     filename=db/migrate/$file
     files="$files $filename"
   done
-  nvim -o $(echo $files)
+  ${VIM_BIN} -o $(echo $files)
 }
 
 # Search power
 vimag() {
-  nvim -o `ag -l $1 $2`
+  ${VIM_BIN} -o `ag -l $1 $2`
 }
 
 # Open last commit's files
 vimdl() {
-  nvim -o `git dlf`
+  ${VIM_BIN} -o `git dlf`
 }
 alias vl="vimdl"
 
 # Open files in merge conflict state
 vimconf() {
-  nvim -o `git diff --name-only --diff-filter=U`
+  ${VIM_BIN} -o `git diff --name-only --diff-filter=U`
 }
 
 # Open vim in xhome project
 xvim() {
-  cdxhw && nvim
+  cdxhw && ${VIM_BIN}
 }
 
 # Open vim with gulp js files arranged
 vimgulp() {
   cdxhw
-  nvim -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
+  ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
   cd -
 }
 
 vgulp() {
   cdxhw
-  nvim -O gulpfile.js lib/tasks/gulp/$1
+  ${VIM_BIN} -O gulpfile.js lib/tasks/gulp/$1
 }
 compctl -W lib/tasks/gulp -f vgulp
 alias vg="vgulp"
@@ -158,24 +158,24 @@ vimlang() {
   cdxhw
   lang=$1
   if [ -z "$1" ]; then; lang='en-US'; fi
-  nvim -o app/assets/languages/$lang/*.json
+  ${VIM_BIN} -o app/assets/languages/$lang/*.json
   cd - > /dev/null
 }
 
 vimpc() {
-  nvim -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg,mp3 --ignore test/*`
+  ${VIM_BIN} -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg,mp3 --ignore test/*`
 }
 compctl -W app/assets/components -/ vimpc
 
 alias vc="vimpc"
 
 vimpca() {
-  nvim -o `ag -g app/assets/components/$1/`
+  ${VIM_BIN} -o `ag -g app/assets/components/$1/`
 }
 compctl -W app/assets/components -/ vimpca
 
 vimdf() {
-  nvim -o `git diff --name-only` `git diff --cached --name-only`
+  ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
 }
 
 ######
@@ -183,18 +183,8 @@ vimdf() {
 ######
 alias rc="clear; bundle exec rails c"
 alias bx="bundle exec"
-alias unicrestart="sudo kill -USR2 \`pgrep -f 'unicorn master'\`"
 alias irb="pry"
 alias cop='clear; rubocop'
-rdbupdate() {
-  bundle install
-  rake db:migrate db:test:prepare
-  if [ $? -eq 0 ]; then
-    ( alert Migration completed )
-  else
-    ( alert Migration failed )
-  fi
-}
 
 # Run a single test file
 rtest() {
@@ -250,17 +240,7 @@ alias ga="git add"
 alias gaa="git add -A"
 alias gcl="git clone"
 alias gco="git checkout"
-alias gg="noglob git grep "
 alias gs="git status"
-alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-alias gcodbsql="git checkout HEAD db/structure.sql"
-
-# git add, commit, push
-gcp() {
-  git add -A
-  git commit -m "$*"
-  git push
-}
 
 # git add, status, prepare to commit
 gcs() {
@@ -270,65 +250,20 @@ gcs() {
   print -z 'git commit -m "'
 }
 
-gdc() {
-  clear
-  git diff "$1^" $1
-}
-
-grcs() {
-  local branch=$(git rev-parse --abbrev-ref HEAD)
-  local remote=$1
-  if [ -z "$1" ]; then; local remote='master'; fi
-
-  local local_count=$(git log --oneline --decorate=short $branch..origin/$remote | wc -l | tr -d ' ')
-  local remote_count=$(git log --oneline --decorate=short origin/$remote..$branch | wc -l | tr -d ' ')
-  echo "  $local_count unmerged commits on $branch"
-  echo "  $remote_count unmerged commits on origin/master"
-  if [ $remote_count != 0 ]; then
-    print_color red "\tPULL!";
-  elif [ $local_count != 0 ]; then
-    print_color green "\tFree to push.";
-  else
-    print_color yellow "\tNothing to push or pull.";
-  fi
-}
-
-grcl() {
-  local branch=$(git rev-parse --abbrev-ref HEAD)
-  echo "\n-- Commits on $branch missing on origin/master --"
-  git log -5 --oneline --decorate=short $branch..origin/master
-  echo "\n-- Commits on origin/master missing on $branch --"
-  git log -5 --oneline --decorate=short origin/master..$branch
-  echo
-}
-
-
 ######
 # XFinity Home Tools
 ######
 
 alias cdc="cd ~/comcast; clear"
 alias cdx="cd ~/comcast/xfinity_home; clear"
-alias xpkg="bundle install && npm install"
 
 grd() {
   git review develop
 }
 
-gca() {
-  clear
-  git add -A
-  git status
-  print -z 'git commit --amend'
-}
-
 ######
 # Utility
 ######
-
-print_color() {
-  echo "$fg_bold[$1]$2$reset_color"
-}
 
 # Quick alias to get disk usage of a dir
 usage(){
@@ -336,7 +271,7 @@ usage(){
 }
 
 # more powerful silver-search
-agg () {
+agg() {
   echo "-- Files"
   noglob ag -g $*
   echo "\n-- Lines"
@@ -358,11 +293,11 @@ zz() {
 # TMUX: things that specifically benefit tmux usage
 ###
 
+alias tma="tmux attach -t"
+
 ## CD to given path in all panes
 # NOTE: assumes all panes are at a clear zsh prompt; must use absolute dirs or
 # have all panes in same path to get the same result
-alias tma="tmux attach -t"
-
 tmcd() {
   for pane in `tmux list-panes -F '#P'`; do
     tmux select-pane -t $pane
@@ -375,12 +310,6 @@ tmuxcolors() {
   for i in {0..255} ; do
     printf "\x1b[38;5;${i}mcolour${i}\n"
   done
-}
-
-smux() {
-  TEMP_DIR=/tmp/sharedtmux
-  mkdir -p $TEMP_DIR && chgrp staff $TEMP_DIR
-  tmux -S $TEMP_DIR new -s $1
 }
 
 ###
@@ -396,12 +325,9 @@ else
 fi
 
 alias ls="ls $LS_COLO_FLAG -A"
-alias ll="ls $LS_COLO_FLAG -A -l"
+alias ll="ls $LS_COLO_FLAG -A -lh"
+alias lh="ls $LS_COLO_FLAG -A -lh"
 alias la="=ls $LS_COLO_FLAG"
-
-lt () {
-  ltsA "$@" | head
-}
 
 function mcd() { mkdir $1 && cd $1; }
 
@@ -427,11 +353,6 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
-
-
-# Add tmuxinator scripts
-HAS_TMUXINATOR=`which tmuxinator > /dev/null; echo $?`
-[[ 1 -eq $HAS_TMUXINATOR ]] || source ~/.tmuxinator/tmuxinator.zsh
 
 # Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
@@ -465,7 +386,6 @@ start-agent() {
     eval `ssh-agent -s`
   fi
 }
-
 start-agent
 
 # The following lines were added by compinstall
@@ -487,18 +407,6 @@ cleave() {
 ###
 # Comcast
 ###
-ak-cache() {
-  curl -IXGET -H "Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no" $1
-}
-
-cdxhw() {
-  CWD=`pwd`
-  PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
-  if [[ $CWD != $PROJECT_ROOT ]];
-  then
-    cd $PROJECT_ROOT
-  fi
-}
 
 mri() {
   PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
