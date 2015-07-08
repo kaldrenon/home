@@ -52,6 +52,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'sudo.vim'
 Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'terryma/vim-expand-region'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-dispatch'
@@ -452,3 +453,5 @@ nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
 " Jump around
 nnoremap z[ {zt
 nnoremap z] }zt
+
+
