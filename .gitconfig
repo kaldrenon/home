@@ -46,6 +46,9 @@
   ds    = stash show -p stash@{0}
   l     = "!source ~/.githelpers && pretty_git_log"
   rhh   = reset --hard HEAD
+  td    = log --pretty='tformat: * %s'
+  tl    = "!f() { git describe --tags `git rev-list --tags --max-count=1`; }; f"
+  tls   = "!f() { echo \"# `git tl` / `date +\"%Y-%m-%d\"`\"; }; f"
   tv    = "!f() { git tag -a $1 -m $1 $2; }; f"
   s     = status
 
