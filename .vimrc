@@ -46,7 +46,6 @@ Plugin 'mhinz/vim-tmuxify'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'notalex/vim-run-live'
 Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sudo.vim'
@@ -129,7 +128,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 2
 
-let g:goyo_width = 100
+let g:goyo_width = 80
 
 let g:calendar_google_calendar = 1
 
@@ -144,7 +143,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let g:tmuxify_custom_command = 'tmux split-window -l 20'
+let g:tmuxify_custom_command = 'tmux split-window -l 16'
 let g:tmuxify_map_prefix = '<space>m'
 let g:tmuxify_run = {
       \ 'c':  'rails c',
@@ -169,8 +168,11 @@ let g:user_emmet_settings = {
 
 command! W :w
 command! Q :q
+command! Qa :qa
 command! Bd :bd
 command! RS :source ~/.vimrc
+
+" Default height of window is maxxed on new
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
 
 "set clipboard+=unnamed
@@ -189,6 +191,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" No code folding
 set nofoldenable
 
 " Basic color and format defaults
@@ -228,8 +231,6 @@ set incsearch
 
 set ttimeoutlen=0
 
-nnoremap <silent> <space>vp :e<space>~/vim_start.log<cr>G
-
 " Swap j/k with gj/gk for normal, visual, and select modes
 nnoremap j  gj
 xnoremap j  gj
@@ -247,7 +248,6 @@ vnoremap gk k
 
 " Join up
 nnoremap K kJ
-nnoremap <A-j> ddkkpJ
 
 " Clear search highlighting with \c
 nnoremap <silent><c-/> :nohls<CR>
@@ -262,27 +262,21 @@ nnoremap <silent><Leader>uu :UltiSnipsEdit<cr>
 nnoremap <Leader>U :UltiSnipsEdit<space>
 nnoremap <silent><Leader>ua :UltiSnipsEdit<space>all<cr>
 nnoremap <silent><Leader>ur :UltiSnipsEdit<space>ruby<cr>
+nnoremap <silent><Leader>uj :UltiSnipsEdit<space>javascript<cr>
 
-" Insert mapping for calling UltiSnips expand trigger - lets me use snippets
-" in mappings!
+" Insert mapping for calling UltiSnips expand trigger
+" lets me use snippets in mappings!
 inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 
 " minor cursor adjust without leaving insert mode
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
+" For Dane and William
 inoremap dk <esc>
 
-" Go to next uncompleted task in vimwiki buffers
+" Save and quit in the ZZ ZQ family
 nnoremap ZA :wqa<cr>
-
-" Find uncommented method and class headers
-" nnoremap <silent><space>h /\v^\s*[^#]*\n^\s*(def\|class)/+1<cr>:noh<cr>
-" nnoremap <silent><space>H O##
-
-" flip capitalization on a word
-nnoremap <silent><leader>~ viw~
-
 
 " Kick the cursor habit (disable arrow keys in ivn modes)
 for prefix in ['i', 'n', 'v']
@@ -291,6 +285,7 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
+" Better yank
 map Y y$
 nnoremap gy "+y
 
@@ -302,44 +297,43 @@ nnoremap gy "+y
 "    and maximize after the new bufffer is selected
 "  - Ctrl h and l move left/right between window stacks
 
-"nnoremap <silent> <C-m> :wincmd _ <cr>
-"nnoremap <silent> <C-j> <C-W>j<C-W>_
-"nnoremap <silent> <C-k> <C-W>k<C-W>_
-"nnoremap <silent> <C-h> :wincmd h <cr>
-"nnoremap <silent> <C-l> :wincmd l <cr>
+" Uncomment these and comment the ones below to disable tmux nav
+" nnoremap <silent> <C-m> :wincmd _ <cr>
+" nnoremap <silent> <C-j> <C-W>j<C-W>_
+" nnoremap <silent> <C-k> <C-W>k<C-W>_
+" nnoremap <silent> <C-h> :wincmd h <cr>
+" nnoremap <silent> <C-l> :wincmd l <cr>
 
 let g:tmux_navigator_no_mappings = 1
 
+" Uncomment these and comment the ones above to enable tmux nav
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr><C-w>_zz
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr><C-w>_zz
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+" Fast zoom and even-out
 nnoremap <silent> <C-=> <C-w>=
 nnoremap <silent> <C-m> <C-w>_
 
-nnoremap <silent> <C-n> :tabnew<cr>
-
-set noequalalways " Prevent window stack from automatically evening out when one closes
+" Prevent window stack from evening out when one closes
+set noequalalways
 set winminheight=0 " No max height on windows.
 set splitright
 
 " Mark something completed with a unicode check
 nnoremap <Leader>x I✓<space><esc>
-nnoremap <Leader>X r✓
 
 " Goyo / Limelight Mappings
 nnoremap <silent> <space><space> :Goyo<cr>
 nnoremap <silent> <Leader>l :Limelight!!<cr>
 
-" quickly restart YCM server
-nnoremap <silent> <space>yr :YcmRestart<cr>
-
 " recapitalize a word
 nnoremap <silent> <space>c viw~
 
 nnoremap <silent> <space>sc :SyntasticCheck<cr>
-nnoremap <silent> <space>sC :lcl<cr><C-w>_
+nnoremap <silent> <space>sC :lclose<cr><C-w>_
 
 
 """""
@@ -358,11 +352,10 @@ nmap <space>T O<esc>0CT<C-j>
 nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
 
-nnoremap <silent><leader>wc :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
-nnoremap <silent><leader>we :e ~/Dropbox/docs/vimwiki/Pomodoro/index.wiki<cr>
+nnoremap <silent><space>cw :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
 
 " Better save
-nnoremap <space>w :w<cr>
+nnoremap <space>ww :w<cr>
 
 " Enable tab completion for popup menus in vimwiki buffers
 au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
@@ -389,7 +382,6 @@ highlight Pmenu ctermbg=238 gui=bold
 set autoread " automatically reload externally changed buffers
 
 " Extension to filetype config
-autocmd BufRead,BufNewFile *.rem setfiletype remind
 autocmd BufRead,BufNewFile *.tex setfiletype tex
 autocmd BufRead,BufNewFile *.god setfiletype rb
 autocmd BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
@@ -402,12 +394,7 @@ vnoremap <Leader>a= :Tabularize /=<CR>
 nnoremap <Leader>a: :Tabularize /:\zs<CR>
 vnoremap <Leader>a: :Tabularize /:\zs<CR>
 
-nnoremap - :NERDTreeToggle<cr>
-
-""" Ruby Specific Bindings
-
-au FileType ruby nnoremap "" :s/"/'/g<cr>
-au FileType ruby nnoremap <silent><C-p> :w !ruby<cr>
+nnoremap - :NERDTreeToggle<cr><C-w>=
 
 """ Mouse Settings
 set ttyfast
@@ -436,6 +423,8 @@ map <Leader>k <Plug>(easymotion-k)
 " replace incremental search
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
+map  ? <Plug>(easymotion-sp)
+omap ? <Plug>(easymotion-tp)
 
 " replace n/N for fast targeting
 nmap <space>n <Plug>(easymotion-next)
@@ -447,11 +436,18 @@ nmap <space>N <Plug>(easymotion-prev)
 highlight OverLength ctermbg=52 ctermfg=white guibg=#770000
 match OverLength /\%81v./
 
-
 nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
 
 " Jump around
 nnoremap z[ {zt
 nnoremap z] }zt
 
+" 1) Read the current tag and its timestamp
+nnoremap <space>gtls :r !git tls<cr>
+
+" 2) Read the commits since the last tag
+nnoremap <space>gtd :r !git td<cr>
+
+" 3) Do both
+nnoremap <space>gcl :r !echo "`git tls`\n\n`git td 1.1.0rc..1.1.1rc`"<cr>
 
