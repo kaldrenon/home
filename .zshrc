@@ -425,3 +425,9 @@ mri() {
 
   rm Gemfile.bak
 }
+
+jkp() {
+  FILENAME="_posts/$(date +'%Y-%m-%d')-$1.md"
+  touch ${FILENAME}
+  ${VIM_BIN} ${FILENAME}
+}
