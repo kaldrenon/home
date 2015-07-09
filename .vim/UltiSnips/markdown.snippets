@@ -2,6 +2,19 @@
 #                          SNIPPETS for MARKDOWN                          #
 ###########################################################################
 
+### Jekyll
+snippet jkp "Jekyll Post Header" !b
+---
+layout:     ${1:post}
+title:      ${2:Title!}
+date:       `date "+%Y-%m-%d"`
+summary:    ${3:Summary}
+author:     ${4:Andrew Fallows}
+---
+
+$5
+endsnippet
+
 ###########################
 # Sections and Paragraphs #
 ###########################
