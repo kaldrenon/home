@@ -150,7 +150,7 @@ let g:tmuxify_run = {
       \ 'gs': 'gs'
       \ }
 
-let g:ctrlp_map = '<space>e'
+let g:ctrlp_map = 'go'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_switch_buffer = 'ETVH'
 let g:ctrlp_clear_cache_on_exit = 0
@@ -158,6 +158,8 @@ let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
       \ 'dir': '\v(tmp|public/assets)'
       \}
+
+nmap gr :CtrlPMRU<cr>
 
 let g:user_emmet_leader_key='<C-e>'
 let g:user_emmet_settings = {
@@ -441,13 +443,3 @@ nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
 " Jump around
 nnoremap z[ {zt
 nnoremap z] }zt
-
-" 1) Read the current tag and its timestamp
-nnoremap <space>gtls :r !git tls<cr>
-
-" 2) Read the commits since the last tag
-nnoremap <space>gtd :r !git td<cr>
-
-" 3) Do both
-nnoremap <space>gcl :r !echo "`git tls`\n\n`git td 1.1.0rc..1.1.1rc`"<cr>
-
