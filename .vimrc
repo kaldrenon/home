@@ -449,6 +449,8 @@ nnoremap z] }zt
 "
 " Geeknote
 "
+let g:GeeknoteFormat="markdown"
+
 nnoremap <space>g    :Geeknote<cr>
 nnoremap <space>gcn  :GeeknoteCreateNote<space>
 nnoremap <space>gcnb :GeeknoteCreateNotebook<space>
