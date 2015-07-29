@@ -23,6 +23,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'othree/yajs.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-markdown'
 
 " Functionality plugins
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -43,6 +44,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'mhinz/vim-tmuxify'
+Plugin 'neilagabriel/vim-geeknote'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'notalex/vim-run-live'
 Plugin 'rking/ag.vim'
@@ -425,8 +427,8 @@ map <Leader>k <Plug>(easymotion-k)
 " replace incremental search
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
-map  ? <Plug>(easymotion-sp)
-omap ? <Plug>(easymotion-tp)
+map  ? <Plug>(easymotion-sn)
+omap ? <Plug>(easymotion-tn)
 
 " replace n/N for fast targeting
 nmap <space>n <Plug>(easymotion-next)
@@ -443,3 +445,41 @@ nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
 " Jump around
 nnoremap z[ {zt
 nnoremap z] }zt
+
+"
+" Geeknote
+"
+nnoremap <space>g    :Geeknote<cr>
+nnoremap <space>gcn  :GeeknoteCreateNote<space>
+nnoremap <space>gcnb :GeeknoteCreateNotebook<space>
+nnoremap <space>gn   :GeeknoteCreateNote<space>
+nnoremap <space>gs   :GeeknoteSearch<cr>
+nnoremap <space>gss  :GeeknoteSync<cr>
+nnoremap <space>gw   :GeeknoteSaveAsNote<cr>
+nnoremap <space>gx   :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
+
+autocmd BufReadPost *__Geeknote__* set ft=markdown
+
+" Mappings to suport new day notes
+cabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
+nnoremap <space>gnt :GeeknoteCreateNote<space>dstamp<CR>
+
+function! ToggleListItem()
+  let magic = &magic
+  set magic
+  normal "zyl
+  if (@z =~ "- [ ]")
+    echo "not complete"
+  else
+    if (@z =~ "- \[X\]")
+      echo "complete"
+    else
+      echo "not a task"
+    endif
+  endif
+
+  let &magic = magic
+endfunction
+
+autocmd FileType markdown
+      \ nnoremap <C-x> :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>

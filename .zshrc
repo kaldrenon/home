@@ -58,6 +58,8 @@ alias cdh='cd ~/home'
 
 alias hl="history -D -n -1"
 
+alias gn="vim -c Geeknote"
+
 # Docker and Vagrant
 alias b2d='boot2docker start && $(boot2docker shellinit)'
 alias vup='vagrant up'
@@ -106,7 +108,7 @@ fi
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 
-alias dotfiles="cd ~/home && ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
@@ -256,6 +258,10 @@ gcs() {
 
 alias cdc="cd ~/comcast; clear"
 alias cdx="cd ~/comcast/xfinity_home; clear"
+
+grp() {
+  git review polymer-one-oh
+}
 
 grd() {
   git review develop
