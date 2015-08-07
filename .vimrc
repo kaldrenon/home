@@ -449,14 +449,13 @@ nnoremap z] }zt
 "
 " Geeknote
 "
-let g:GeeknoteFormat="markdown"
-
 nnoremap <space>g    :Geeknote<cr>
 nnoremap <space>gcn  :GeeknoteCreateNote<space>
 nnoremap <space>gcnb :GeeknoteCreateNotebook<space>
 nnoremap <space>gn   :GeeknoteCreateNote<space>
 nnoremap <space>gs   :GeeknoteSearch<cr>
 nnoremap <space>gss  :GeeknoteSync<cr>
+nnoremap <space>gt   :GeeknoteCreateNote<space>dstamp
 nnoremap <space>gw   :GeeknoteSaveAsNote<cr>
 nnoremap <space>gx   :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
 
@@ -464,7 +463,7 @@ autocmd BufReadPost *__Geeknote__* set ft=markdown
 
 " Mappings to suport new day notes
 cabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
-nnoremap <space>gnt :GeeknoteCreateNote<space>dstamp<CR>
+iabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
 
 function! ToggleListItem()
   let magic = &magic
