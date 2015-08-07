@@ -304,9 +304,16 @@ before(:each) do
 end
 endsnippet
 
+# Describe (basic)
+snippet des "RSpec describe" b
+describe '${1:block}' do
+  $2
+end
+endsnippet
+
 # Describe (for feature specs)
-snippet rdesc "RSpec describe" b
-describe "${1:block}" do
+snippet desb 'RSpec describe' b
+describe '${1:block}' do
   before(:each) do
     @${2:obj} = FactoryGirl.create(:${3:factory_name})
   end
