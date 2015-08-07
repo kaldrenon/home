@@ -256,7 +256,12 @@ gcs() {
 # XFinity Home Tools
 ######
 
-alias cdc="cd ~/comcast; clear"
+cdc() {
+  cd ${HOME}/comcast/$1
+  clear
+}
+compctl -W ${HOME}/comcast -f cdc
+
 alias cdx="cd ~/comcast/xfinity_home; clear"
 
 grp() {
@@ -421,10 +426,12 @@ mri() {
     echo "Turning MRI Ruby on!"
     rvm use 2.1.3
     sed -i.bak s/1\.9\.3/2.1.3/g Gemfile
+    sed -i.bak s/1\.9\.3/2.1.3/g .ruby-version
   elif [[ -n $1 && $1 == "off" ]]; then
     echo "Turning JRuby on..."
     rvm use $(cat $PROJECT_ROOT/.ruby-version)
     sed -i.bak s/2\.1\.3/1.9.3/g Gemfile
+    sed -i.bak s/2\.1\.3/1.9.3/g .ruby-version
   else
     echo "You dun goof'd."
   fi
