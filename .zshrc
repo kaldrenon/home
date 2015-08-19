@@ -56,6 +56,8 @@ alias drop='cd ~/Dropbox/'
 alias code='cd ~/Dropbox/code'
 alias cdh='cd ~/home'
 
+alias clip="nc localhost 8377"
+
 alias hl="history -D -n -1"
 
 alias gn="vim -c Geeknote"
