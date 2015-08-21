@@ -64,7 +64,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vimwiki'
-Plugin 'wincent/vim-clipper'
+"Plugin 'wincent/vim-clipper'
 
 " Colo Plugins
 Plugin 'ajh17/Spacegray.vim'
@@ -179,9 +179,6 @@ command! RS :source ~/.vimrc
 
 " Default height of window is maxxed on new
 command! -nargs=1 MyWinOpen :new <args> | :resize 100
-
-set clipboard=unnamed
-nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
 
 " Highlight matched HTML tags
 set matchpairs+=<:>
