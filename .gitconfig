@@ -35,6 +35,7 @@
   bm    = "!source ~/.githelpers && list_merged"
   ca    = commit --amend
   cm    = commit -m
+  cp    = cherry-pick
   co    = checkout
   d     = diff
   dc    = diff --cached
@@ -58,7 +59,7 @@
   conflicts      = diff --name-only --diff-filter=U
   gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
   review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
-  version        = "!f() { git tag -a $1 -m $1 $2; };"
+  tag-version        = "!f() { git tag -a $1 -m $1 $2; };"
 
   aa = "!clear; git add -A; git status"
 
