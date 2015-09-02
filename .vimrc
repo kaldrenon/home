@@ -12,6 +12,7 @@ endif
 " Syntax Plugins
 Plugin 'JavaScript-Indent'
 Plugin 'VimClojure'
+Plugin 'dahu/vim-asciidoc'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'elzr/vim-json'
