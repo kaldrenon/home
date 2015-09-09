@@ -58,8 +58,9 @@
   cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
   conflicts      = diff --name-only --diff-filter=U
   gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
+  release-notes  = "!source ~/.githelpers && release_notes"
   review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
-  tag-version        = "!f() { git tag -a $1 -m $1 $2; };"
+  tag-version    = "!f() { git tag -a $1 -m $1 $2; };"
 
   aa = "!clear; git add -A; git status"
 

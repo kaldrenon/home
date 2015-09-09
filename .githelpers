@@ -29,3 +29,17 @@ function review_code() {
 
   git push $REMOTE HEAD:refs/for/$BRANCH;
 }
+
+function release_notes() {
+  TAG_RANGE=$1
+  if [ -z $TAG_RANGE ]
+  then
+    TAG_RANGE="release..HEAD"
+  fi
+
+  HEADING=$(echo "# `git tl ${TAG_RANGE}` / `date +\"%Y-%m-%d\"`";)
+  RELEASE=$(git log --pretty='tformat: * %s' ${TAG_RANGE})
+  OLD_NOTES=$(cat History.md)
+
+  echo "${HEADING}\n\n${RELEASE}\n\n${OLD_NOTES}" > History.md
+}
