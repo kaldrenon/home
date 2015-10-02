@@ -5,8 +5,14 @@ snippet "class ([\S, ]+)" "class with name" r
 class `!p snip.rv = match.group(1)`
   $1
 end
-
 endsnippet
+
+snippet "module ([\S, ]+)" "class with name" r
+module `!p snip.rv = match.group(1)`
+  $1
+end
+endsnippet
+
 snippet "def ([\S, ]+)" "def with name" r
 def `!p snip.rv = match.group(1)`
   $1

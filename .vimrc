@@ -458,8 +458,9 @@ nnoremap <space>gss  :GeeknoteSync<cr>
 nnoremap <space>gt   :GeeknoteCreateNote<space>dstamp
 nnoremap <space>gw   :GeeknoteSaveAsNote<cr>
 nnoremap <space>gx   :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
+nnoremap <space>g'   :%s/\(&amp;\)\?&apos;/'/g<cr>
 
-autocmd BufReadPost *__Geeknote__* set ft=markdown
+autocmd BufReadPre *__Geeknote__* set ft=markdown
 
 " Mappings to suport new day notes
 cabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
