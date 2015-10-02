@@ -1,4 +1,4 @@
-nnoremap gt /[▽▶]<space>Journal<space><space><cr>
-nnoremap gj /[▽▶]<space>Journal<space><space><cr>
-nnoremap gi /[▽▶]<space>Inbox<space><space><cr>
-nnoremap gd /[▽▶]<space>Daily<space>Reflections<space><space><cr>
+nnoremap <silent><buffer> gt /\v[▽▶]<space>Journal<space>[<space>(]<cr>
+nnoremap <silent><buffer> gj /\v[▽▶]<space>Journal<space>[<space>(]<cr>
+nnoremap <silent><buffer> gi /\v[▽▶]<space>Inbox<space>[<space>(]<cr>
+nnoremap <silent><buffer> gd /\v[▽▶]<space>Daily<space>Reflections<space>[<space>(]<cr>
