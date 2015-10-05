@@ -402,7 +402,9 @@ nnoremap - :NERDTreeToggle<cr><C-w>=
 
 """ Mouse Settings
 set ttyfast
-set ttymouse=xterm2
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 set mouse=a
 
 """ EasyMotion
