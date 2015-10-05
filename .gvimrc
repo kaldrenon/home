@@ -9,4 +9,4 @@ set lines=50
 
 cd ~/Dropbox
 
-set guifont=Source_Code_Pro:h10:cANSI
+set guifont=Source\ Code\ Pro:h18
