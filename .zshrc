@@ -1,8 +1,8 @@
 # Antigen bundles
 source ~/antigen.zsh
-#
+
 antigen bundle emallson/gulp-zsh-completion
-antigen bundle olivierverdier/zsh-git-prompt
+#antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
@@ -29,7 +29,8 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{%Gδ%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
 
-PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status)→ '
+#PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status)→ '
+PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ → "
 RPROMPT="" # prompt for right side of screen
 
 
@@ -60,7 +61,6 @@ alias clip="nc localhost 8377"
 
 alias hl="history -D -n -1"
 
-alias gn="vim -c Geeknote"
 
 # Docker and Vagrant
 alias b2d='boot2docker start && $(boot2docker shellinit)'
@@ -101,14 +101,15 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 ####
 
 HAS_NVIM=`which nvim`
-if [ ! -z "$HAS_NVIM" ]; then
-  VIM_BIN="nvim"
-else
+if [ ${HAS_NVIM} == "nvim not found" ]; then
   VIM_BIN="vim"
+else
+  VIM_BIN="nvim"
 fi
 
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
+alias gn="${VIM_BIN} -c Geeknote"
 
 alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
@@ -141,25 +142,25 @@ vimconf() {
 
 # Open vim in xhome project
 xvim() {
-  cdxhw && ${VIM_BIN}
+  cdx && ${VIM_BIN}
 }
 
 # Open vim with gulp js files arranged
 vimgulp() {
-  cdxhw
+  cdx
   ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
   cd -
 }
 
 vgulp() {
-  cdxhw
+  cdx
   ${VIM_BIN} -O gulpfile.js lib/tasks/gulp/$1
 }
 compctl -W lib/tasks/gulp -f vgulp
 alias vg="vgulp"
 
 vimlang() {
-  cdxhw
+  cdx
   lang=$1
   if [ -z "$1" ]; then; lang='en-US'; fi
   ${VIM_BIN} -o app/assets/languages/$lang/*.json
