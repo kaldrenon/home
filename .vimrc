@@ -254,6 +254,7 @@ vnoremap gk k
 nnoremap K kJ
 
 " Clear search highlighting with \c
+set nohlsearch
 nnoremap <silent><space>l :nohls<CR>
 
 " Various leader maps
