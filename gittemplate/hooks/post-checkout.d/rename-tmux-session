@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if which tmux > /dev/null; then
   PROJECT=$(basename $(git rev-parse --show-toplevel))

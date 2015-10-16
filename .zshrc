@@ -75,13 +75,13 @@ alias pax="ps ax | ag"
 HOST_OS=`uname`
 
 # Ubuntu/Debian
-if [[ $HOST_OS -eq 'Linux' ]]; then
+if [[ $HOST_OS = 'Linux' ]]; then
   alias agi="sudo apt-get install -y"
   alias alert="echo"
 fi
 
 # Mac OS only
-if [[ $HOST_OS -eq 'Darwin' ]]; then
+if [[ $HOST_OS = 'Darwin' ]]; then
   alias agi="brew install -y"
 
   # Load Node Version Manager
@@ -101,7 +101,7 @@ alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 ####
 
 HAS_NVIM=`which nvim`
-if [ ${HAS_NVIM} == "nvim not found" ]; then
+if [ ${HAS_NVIM} = "nvim not found" ]; then
   VIM_BIN="vim"
 else
   VIM_BIN="nvim"
