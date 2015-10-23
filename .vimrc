@@ -22,6 +22,7 @@ Plugin 'neilhwatson/vim_cf3'
 Plugin 'othree/html5.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'othree/yajs.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-markdown'
@@ -171,6 +172,8 @@ let g:user_emmet_settings = {
 \    'indentation' : '  '
 \  },
 \}
+
+let g:rust_recommended_style = 0
 
 command! W :w
 command! Q :q
@@ -453,11 +456,11 @@ nnoremap z] }zt
 " Geeknote
 "
 nnoremap <space>g    :Geeknote<cr>
-nnoremap <space>gcn  :GeeknoteCreateNote<space>
-nnoremap <space>gcnb :GeeknoteCreateNotebook<space>
 nnoremap <space>gn   :GeeknoteCreateNote<space>
-nnoremap <space>gs   :GeeknoteSearch<cr>
-nnoremap <space>gss  :GeeknoteSync<cr>
+nnoremap <space>gb   :GeeknoteCreateNotebook<space>
+nnoremap <space>gn   :GeeknoteCreateNote<space>
+nnoremap <space>gs   :GeeknoteSearch<space>
+nnoremap <space>gy   :GeeknoteSync<cr>
 nnoremap <space>gt   :GeeknoteCreateNote<space>dstamp
 nnoremap <space>gw   :GeeknoteSaveAsNote<cr>
 nnoremap <space>gx   :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
