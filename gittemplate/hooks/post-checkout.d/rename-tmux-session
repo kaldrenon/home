@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function try_rename() {
-  if [ -z "$(tmux ls | grep ${SESSION_NAME})"]; then
+  if [ -z "$(tmux ls | grep ${SESSION_NAME})" ]; then
     tmux rename-session ${SESSION_NAME}
   else
     echo "Skipping session rename - ${SESSION_NAME} is already a tmux session"
@@ -14,7 +14,7 @@ if which tmux > /dev/null; then
   SESSION_NAME="${PROJECT}/${BRANCH}";
 
   # Only rename if in tmux
-  if [ -z ${TMUX_PANE} ]; then
+  if [ ! -z ${TMUX_PANE} ]; then
     try_rename
   fi
 fi
