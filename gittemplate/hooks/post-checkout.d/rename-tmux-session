@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function try_rename() {
   if [ -z "$(tmux ls | grep ${SESSION_NAME})" ]; then
