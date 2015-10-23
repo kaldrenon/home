@@ -3,35 +3,6 @@
 ;; It must be stored in your home directory.
 
 ;;
-;; CUSTOM DEFINITIONS
-;;
-(add-to-list 'load-path "~/.emacs.d/custom/")
-
-(setq-default dotspacemacs-configuration-layers '(osx))
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-(define-key evil-normal-state-map (kbd "go") 'helm-projectile-find-file)
-
-(global-set-key (kbd "C-j") 'evil-window-down)
-(global-set-key (kbd "C-k") 'evil-window-up)
-(global-set-key (kbd "C-h") 'evil-window-left)
-(global-set-key (kbd "C-l") 'evil-window-right)
-
-(global-set-key (kbd "M-v") 'clipboard-yank)
-(define-key evil-visual-state-map (kbd "M-c") 'clipboard-kill-ring-save)
-
-(projectile-global-mode)
-(global-linum-mode t)
-
-(require 'weechat)
-
-(setq evernote-ruby-command "/Users/asfallows/.rvm/rubies/ruby-1.9.3-p551/bin/ruby")
-(require 'evernote-mode)
-(setq evernote-username "kaldrenon@gmail.com") ; optional: you can use this username as default.
-(setq evernote-developer-token "S=s34:U=3a2945:E=157a4d6d3a7:C=1504d25a460:P=1cd:A=en-devtoken:V=2:H=2cf2a8a61bdc36137b569bf5bb7830b6")
-(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
-
-;;
 ;; SPACEMACS DEFAULT STUFF
 ;;
 
@@ -231,7 +202,43 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (set-default-font "-*-Source Code Pro-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+
+  (add-to-list 'load-path "~/.emacs.d/custom/")
+
+  (setq-default dotspacemacs-configuration-layers '(osx))
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+  (define-key evil-normal-state-map (kbd "go") 'helm-projectile-find-file)
+
+  (global-set-key (kbd "C-j") 'evil-window-down)
+  (global-set-key (kbd "C-k") 'evil-window-up)
+  (global-set-key (kbd "C-h") 'evil-window-left)
+  (global-set-key (kbd "C-l") 'evil-window-right)
+  (global-set-key (kbd "C-w") 'evil-delete-backward-word)
+
+  (global-set-key (kbd "M-v") 'clipboard-yank)
+  (define-key evil-visual-state-map (kbd "M-c") 'clipboard-kill-ring-save)
+
+  (projectile-global-mode)
+  (global-linum-mode t)
+
+  ;(require 'weechat)
+
+  (setq evernote-ruby-command "/Users/asfallows/.rvm/rubies/ruby-1.9.3-p551/bin/ruby")
+  (require 'evernote-mode)
+  (setq evernote-username "kaldrenon@gmail.com") ; optional: you can use this username as default.
+  (setq evernote-developer-token "S=s34:U=3a2945:E=157a4d6d3a7:C=1504d25a460:P=1cd:A=en-devtoken:V=2:H=2cf2a8a61bdc36137b569bf5bb7830b6")
+  (setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
+
+  (setq-default dotspacemacs-configuration-layers '(themes-megapack))
+  (setq-default dotspacemacs-configuration-layers '(auto-completion))
+  (setq-default dotspacemacs-configuration-layers
+                '(auto-completion :variables
+                                  auto-completion-enable-sort-by-usage t))
+  (global-company-mode)
 )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
