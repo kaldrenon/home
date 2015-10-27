@@ -472,22 +472,5 @@ autocmd BufReadPre *__Geeknote__* set ft=markdown
 cabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
 iabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
 
-function! ToggleListItem()
-  let magic = &magic
-  set magic
-  normal "zyl
-  if (@z =~ "- [ ]")
-    echo "not complete"
-  else
-    if (@z =~ "- \[X\]")
-      echo "complete"
-    else
-      echo "not a task"
-    endif
-  endif
-
-  let &magic = magic
-endfunction
-
 autocmd FileType markdown
       \ nnoremap <C-x> :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
