@@ -110,6 +110,7 @@ fi
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias gn="${VIM_BIN} -c Geeknote"
+alias vpi="${VIM_BIN} -c PluginInstall"
 
 alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
