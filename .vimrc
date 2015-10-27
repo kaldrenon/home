@@ -127,15 +127,11 @@ let g:UltiSnipsEditSplit     = 'horizontal'
 
 let g:used_javascript_libs = 'angularjs'
 
-let g:ycm_server_keep_logfiles = 1
-
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 2
 
 let g:goyo_width = 80
-
-let g:calendar_google_calendar = 1
 
 if executable('ag')
   let g:ackprg                          = 'ag --nogroup --nocolor --column'
