@@ -207,6 +207,9 @@ set backspace=2                        " backspace behaves as in other software
 set laststatus=2                       " always show statusline
 set background=dark
 
+" Might be nvim-only?
+set clipboard+=unnamedplus
+
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
