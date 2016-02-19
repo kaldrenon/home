@@ -281,9 +281,6 @@ inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
-" For Dane and William
-inoremap dk <esc>
-
 " Save and quit in the ZZ ZQ family
 nnoremap ZA :wqa<cr>
 
