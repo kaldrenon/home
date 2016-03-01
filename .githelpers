@@ -15,20 +15,12 @@ function pretty_git_log() {
 }
 
 function review_code() {
-  BRANCH=$1
-  if [ -z $BRANCH ]
-  then
-    BRANCH="develop"
-  fi
-
-  REMOTE=$2
-  if [ -z $REMOTE ]
-  then
-    REMOTE="origin"
-  fi
-
-  git push $REMOTE HEAD:refs/for/$BRANCH;
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  COMMIT=$(git log --pretty="tformat:%s" -1)
+  echo "Reviewing \"${COMMIT}\" on ${BRANCH}"
+  git push origin HEAD:refs/for/$BRANCH;
 }
+
 
 function release_notes() {
   TAG_RANGE=$1

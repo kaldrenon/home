@@ -46,6 +46,7 @@
   dlf   = diff 'HEAD^1' HEAD --name-only
   ds    = stash show -p stash@{0}
   l     = "!source ~/.githelpers && pretty_git_log"
+  rb    = "!source ~/.githelpers && review_code"
   rhh   = reset --hard HEAD
   td    = log --pretty='tformat: * %s'
   tl    = "!f() { git describe --tags `git rev-list --tags --max-count=1`; }; f"
