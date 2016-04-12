@@ -19,6 +19,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'mxw/vim-jsx'
 Plugin 'neilhwatson/vim_cf3'
 Plugin 'othree/html5.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
@@ -172,6 +173,8 @@ let g:user_emmet_settings = {
 \}
 
 let g:rust_recommended_style = 0
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 command! W :w
 command! Q :q
@@ -453,16 +456,16 @@ nnoremap z] }zt
 "
 " Geeknote
 "
-nnoremap <space>g    :Geeknote<cr>
-nnoremap <space>gn   :GeeknoteCreateNote<space>
-nnoremap <space>gb   :GeeknoteCreateNotebook<space>
-nnoremap <space>gn   :GeeknoteCreateNote<space>
-nnoremap <space>gs   :GeeknoteSearch<space>
-nnoremap <space>gy   :GeeknoteSync<cr>
-nnoremap <space>gt   :GeeknoteCreateNote<space>dstamp
-nnoremap <space>gw   :GeeknoteSaveAsNote<cr>
-nnoremap <space>gx   :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
-nnoremap <space>g'   :%s/\(&amp;\)\?&apos;/'/g<cr>
+nnoremap <space>gg :Geeknote<cr>
+nnoremap <space>gn :GeeknoteCreateNote<space>
+nnoremap <space>gb :GeeknoteCreateNotebook<space>
+nnoremap <space>gn :GeeknoteCreateNote<space>
+nnoremap <space>gs :GeeknoteSearch<space>
+nnoremap <space>gy :GeeknoteSync<cr>
+nnoremap <space>gt :GeeknoteCreateNote<space>dstamp
+nnoremap <space>gw :GeeknoteSaveAsNote<cr>
+nnoremap <space>gx :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
+nnoremap <space>g' :%s/\(&amp;\)\?&apos;/'/g<cr>
 
 autocmd BufReadPre *__Geeknote__* set ft=markdown
 
