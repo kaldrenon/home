@@ -1,0 +1,37 @@
+#!/bin/bash
+
+HASH="%C(yellow)%h%C(reset)"
+RELATIVE_TIME="%C(green)%ar%C(reset)"
+AUTHOR="%C(blue)%an%C(reset)"
+REFS="%C(red)%d%C(reset)"
+SUBJECT="%s"
+
+FORMAT="$RELATIVE_TIME{$HASH{$AUTHOR{$REFS $SUBJECT"
+
+function pretty_git_log() {
+  git log --pretty="tformat:${FORMAT}" $* |
+  column -t -s '{' |
+  less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
+}
+
+function review_code() {
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  COMMIT=$(git log --pretty="tformat:%s" -1)
+  echo "Reviewing \"${COMMIT}\" on ${BRANCH}"
+  git push origin HEAD:refs/for/$BRANCH;
+}
+
+
+function release_notes() {
+  TAG_RANGE=$1
+  if [ -z $TAG_RANGE ]
+  then
+    TAG_RANGE="release..HEAD"
+  fi
+
+  HEADING=$(echo "# `git tl ${TAG_RANGE}` / `date +\"%Y-%m-%d\"`";)
+  RELEASE=$(git log --pretty='tformat: * %s' ${TAG_RANGE})
+  OLD_NOTES=$(cat History.md)
+
+  echo "${HEADING}\n\n${RELEASE}\n\n${OLD_NOTES}" > History.md
+}

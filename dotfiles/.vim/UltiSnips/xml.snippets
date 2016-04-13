@@ -1,0 +1,38 @@
+extends html
+
+#
+# Splunk
+#
+snippet dash "Dashboard" !b
+<dashboard>
+  <label>${1:Label}</label>
+  ${2:row}
+</dashboard>
+endsnippet
+
+snippet row "Row" !b
+<row>
+  <!-- ${1:description} -->
+  <${2:chart|table}>
+    <title>${3:Title}</title>
+    <searchString>
+    </searchString>
+  </$2>
+</row>
+endsnippet
+
+snippet ch "chart" !b
+<chart>
+  <title>${2:Title}</title>
+  <searchString>
+  </searchString>
+</chart>
+endsnippet
+
+snippet ta "Table" !b
+<table>
+  <title>${2:Title}</title>
+  <searchString>
+  </searchString>
+</table>
+endsnippet

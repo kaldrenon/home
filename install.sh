@@ -1,14 +1,23 @@
 #!/bin/sh
+
+# Setup:
+#
+# - brew install things (if OSX)
+# - apt-get install things (if Linux)
+# - symlink a pile of things to ~
 # apt-get installs
-sudo apt-get update
-sudo apt-get install -y $(cat packages)
+echo "Setting up dotfiles"
 
-# symlinks
-./symlink.sh
+if [[ $HOST_OS = 'Linux' ]]; then
+  echo "Installing rcm with apt-get"
+  sudo add-apt-repository ppa:martin-frost/thoughtbot-rcm
+  sudo apt-get update
+  sudo apt-get install rcm
+fi
 
-# repos
-
-
-# etc
-
+if [[ $HOST_OS = 'Darwin' ]]; then
+  echo "Installing rcm with brew"
+  brew tap thoughtbot/formulae
+  brew install rcm
+fi
 

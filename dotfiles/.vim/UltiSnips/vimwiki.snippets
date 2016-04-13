@@ -1,0 +1,71 @@
+### Vimwiki snippets
+
+# Task list snippets
+snippet d "New day" b
+~~`date +"%D"` - `date +"%A"`~~ [[details/`date +"%Y%m%d%H%M%S"`]]
+  - [ ] |*| To Do Today List, Goals, Scrum notes
+  - [ ] |*| scrum
+      y: ${1:yesterday}
+      t: ${2:today}
+  - [ ] |${3:1}| ${4:pomodoro description}
+  - [ ] |*| Reflections
+
+endsnippet
+
+snippet p "pomodoro" !b
+  - [ ] |${1:1}| ${2:pomodoro description}
+endsnippet
+
+snippet T "new task" i
+  - [ ] |${1:*}| ${2:small task}
+endsnippet
+
+snippet r "Resulotion" i
+      ${1:Resolution/summary}
+endsnippet
+
+snippet w "last week" i
+[[history/Week of `date -v -1w +"%Y"`-${1:`date +"%m-%d"`}]] @${2:sprint}
+endsnippet
+
+snippet ! "timestamp" i
+@`date +"%H:%M"`
+endsnippet
+
+snippet date "timestamp" i
+`date +"%Y-%m-%d"`
+endsnippet
+
+snippet ddate "timestamp" b
+[[`date +"%Y-%m-%d"`]]
+endsnippet
+
+snippet dt "task details" i
+[[details/`date +"%Y%m%d%H%M%S"`]]
+endsnippet
+
+snippet snp "new thought snippet" !b
+[[snips/`date +"%Y%m%d%H%M%S"`]]
+endsnippet
+
+snippet pt "Titles for pomodoro reflection file" !b
+= Goals =
+$1
+= Notes =
+$2
+= Reflections =
+$3
+endsnippet
+
+snippet tt "Titles for diary file" !b
+= `date +"%A"` =
+== Yesterday ==
+$1
+
+== Today ==
+$2
+
+== Tomorrow ==
+$3
+endsnippet
+

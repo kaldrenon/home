@@ -1,0 +1,365 @@
+### Mine
+extends 'rails.snippets'
+
+snippet "class ([\S, ]+)" "class with name" r
+class `!p snip.rv = match.group(1)`
+  $1
+end
+endsnippet
+
+snippet "module ([\S, ]+)" "class with name" r
+module `!p snip.rv = match.group(1)`
+  $1
+end
+endsnippet
+
+snippet "def ([\S, ]+)" "def with name" r
+def `!p snip.rv = match.group(1)`
+  $1
+end
+endsnippet
+
+snippet "do \|([\w, ]+)\|" "close do block" r
+do |`!p snip.rv = match.group(1)`|
+  $1
+end
+endsnippet
+
+snippet test "unit test" b
+test "${1:context}" do
+  ${2:# TODO: definition}
+end
+endsnippet
+
+#
+# Misc
+#
+
+# encoding header
+snippet enc "encoding line" !b
+# encoding: UTF-8
+endsnippet
+
+# minimalist comment header block
+snippet ## "Header Comment" !b
+#
+# ${1:Class/Method Header}
+#
+endsnippet
+
+#
+# Debugging
+#
+snippet pry "add a binding.pry" !b
+binding.pry
+endsnippet
+
+###
+# Predefined
+###
+
+# Make a file executable
+snippet "^#!" "#!/usr/bin/env ruby" r
+#!/usr/bin/env ruby
+$0
+endsnippet
+
+
+#
+# Good if snippets
+#
+
+# Regular if
+snippet if "if <condition> ... end"
+if ${1:condition}
+  ${2:# TODO}
+end
+endsnippet
+
+# with else
+snippet ife "if <condition> ... else ... end"
+if ${1:condition}
+  ${2:# TODO}
+else
+  ${3:# TODO}
+end
+endsnippet
+
+# with one elsif
+snippet ifee "if <condition> ... elseif <condition> ... else ... end"
+if ${1:condition}
+  ${2:# TODO}
+elsif ${3:condition}
+  ${4:# TODO}
+else
+  ${0:# TODO}
+end
+endsnippet
+
+# Unless
+snippet unless "unless <condition> ... end"
+unless ${1:condition}
+  ${0:# TODO}
+end
+endsnippet
+
+# Define a function
+snippet "\b(de)?f" "def <name>..." r
+def ${1:function_name}$3
+  ${2:# TODO}
+end
+endsnippet
+
+# Define an init function
+snippet defi "def initialize ..."
+def initialize$2
+  ${1:# TODO}
+end
+endsnippet
+
+#
+# Iteration blocks
+#
+
+# Map in a do block
+snippet "(\S+)\.map" ".map do |<element>| <block> end" r
+`!p snip.rv=match.group(1)`.map do |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+  wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+  snip.rv = wmatch.group(1).lower()
+except:
+  snip.rv = 'element'
+`}|
+  ${0:# TODO}
+end
+endsnippet
+
+# Map in a {} block
+snippet "(\S+)\.map{" ".map { |<element>| <block> }" r
+`!p snip.rv=match.group(1)`.map { |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+  wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+  snip.rv = wmatch.group(1).lower()
+except:
+  snip.rv = 'element'
+`}| ${2:# TODO} }
+endsnippet
+
+# Each in a do block
+snippet "(\S+)\.each" ".each do |<element>| <block> end" r
+`!p snip.rv=match.group(1)`.each do |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+  wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+  snip.rv = wmatch.group(1).lower()
+except:
+  snip.rv = 'element'
+`}|
+  ${0:# TODO}
+end
+endsnippet
+
+# Each in a {} block
+snippet "(\S+)\.each{" ".each { |<element>| <block> }" r
+`!p snip.rv=match.group(1)`.each { |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+  wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+  snip.rv = wmatch.group(1).lower()
+except:
+  snip.rv = 'element'
+`}| ${2:# TODO} }
+endsnippet
+
+
+
+# String substitution
+snippet "(\S+)\.sub" ".sub(<expression>) { <block> }" r
+`!p snip.rv=match.group(1)`.sub(${1:expression}) { ${2:"replace_with"} }
+endsnippet
+
+
+# Global string substitution
+snippet "(\S+)\.gsub" ".gsub(<expression>) { <block> }" r
+`!p snip.rv=match.group(1)`.gsub(${1:expression}) { ${2:"replace_with"} }
+endsnippet
+
+
+# Do block
+snippet do "do ... end" i
+do
+  $0
+end
+endsnippet
+
+
+# Do with key
+snippet dok "do |<key>| ... end" i
+do ${1:|${2:key}|}
+  $0
+end
+endsnippet
+
+
+
+
+snippet "\b(r|attr)" "attr_reader :<attr_names>" r
+attr_reader :${0:attr_names}
+endsnippet
+
+
+
+snippet "\b(w|attr)" "attr_writer :<attr_names>" r
+attr_writer :${0:attr_names}
+endsnippet
+
+
+
+snippet "\b(rw|attr)" "attr_accessor :<attr_names>" r
+attr_accessor :${0:attr_names}
+endsnippet
+
+
+
+snippet begin "begin ... rescue ... end"
+begin
+  ${1:# TODO}
+rescue
+  ${0:# TODO}
+end
+endsnippet
+
+
+snippet rescue
+rescue Exception => e
+  puts e.message
+  puts e.backtrace.inspect
+  ${0:# Rescue}
+endsnippet
+
+
+
+snippet "\b(case|sw(itch)?)" "case <variable> when <expression> ... end" r
+case ${1:variable}
+when ${2:expression}
+$0
+end
+endsnippet
+
+
+
+snippet alias "alias :<new_name> :<old_name>"
+alias :${1:new_name} :${2:old_name}
+endsnippet
+
+
+
+snippet class "class <class_name> def initialize ... end end"
+class ${1:class_name}
+  def initialize ${2:*args}
+    $0
+  end
+end
+endsnippet
+
+snippet module "module"
+module ${1:module_name}
+  $0
+end
+endsnippet
+
+snippet ###
+=begin
+  $0
+=end
+endsnippet
+
+#
+# RSpec
+#
+
+# basic clause
+snippet it "rspec it (line)" !b
+it '${1:meets a condition}' do
+  $2
+end
+endsnippet
+
+snippet sh "should" !b
+should '${1:meets a condition}' do
+  $2
+end
+endsnippet
+
+snippet shs "should (snippet)" !b
+should '${1:meets a condition}'
+endsnippet
+
+# Before Each (empty)
+snippet bfe "Before each" b
+before(:each) do
+  $1
+end
+endsnippet
+
+# Before each with a user login
+snippet bfu "Before each(user)" b
+before(:each) do
+  @user = FactoryGirl.create(:default_user)
+  sign_in @user
+end
+endsnippet
+
+# Describe (basic)
+snippet des "RSpec describe" b
+describe '${1:block}' do
+  $2
+end
+endsnippet
+
+# Describe (for feature specs)
+snippet desb "RSpec describe" b
+describe '${1:block}' do
+  before(:each) do
+    @${2:obj} = FactoryGirl.create(:${3:factory_name})
+  end
+
+  $4
+end
+endsnippet
+
+# Feature scenario
+snippet scen "feature scenario" b
+scenario '${1:desc}' do
+  ${2:pending 'TODO: $1'}
+end
+endsnippet
+
+# spec context
+snippet cnt "test context" b
+context '${1:desc}' do
+  $2
+end
+endsnippet
+
+# VCR cassette template
+snippet vcr "vcr cassette block" !b
+VCR.use_cassette('${1:cassette_name}') do
+  ${2:# TODO: test execution}
+end
+endsnippet
+
+# FactoryGirl
+snippet fc "FactoryGirl create" i
+FactoryGirl.create(:${1:model})
+endsnippet
+
+snippet fb "FactoryGirl build" i
+FactoryGirl.build(:${1:model})
+endsnippet

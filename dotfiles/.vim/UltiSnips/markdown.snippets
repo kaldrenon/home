@@ -1,0 +1,125 @@
+###########################################################################
+#                          SNIPPETS for MARKDOWN                          #
+###########################################################################
+
+snippet date "timestamp" i
+`date +"%Y-%m-%d"`
+endsnippet
+
+### Jekyll
+snippet jkp "Jekyll Post Header" !b
+---
+layout:     ${1:post}
+title:      ${2:Title!}
+date:       `date "+%Y-%m-%d"`
+summary:    ${3:Summary}
+author:     ${4:Andrew Fallows}
+---
+
+$5
+endsnippet
+
+#####################
+# Geeknote Snippets #
+#####################
+
+# Task list snippets
+snippet d "New day" b
+  * [ ] |1| breakfast
+  * [ ] |*| To Do Today List, Goals, Scrum notes
+  * [ ] |*| Review JIRA - bugs, stories
+  * [ ] |*| scrum
+      y: ${1:yesterday}
+      t: ${2:today}
+  * [ ] |${3:1}| ${4:pomodoro description}
+  * [ ] |*| Reflections
+
+endsnippet
+
+snippet p "pomodoro" !b
+  * [ ] |${1:1}| ${2:pomodoro description}
+endsnippet
+
+snippet T "new task" i
+  * [ ] |${1:*}| ${2:small task}
+endsnippet
+
+snippet r "Resulotion" i
+      ${1:Resolution/summary}
+endsnippet
+
+snippet ! "timestamp" i
+@`date +"%H:%M"`
+endsnippet
+
+snippet pt "Titles for pomodoro reflection file" !b
+## Goals
+
+$1
+
+## Notes
+
+$2
+
+## Reflections
+
+$3
+endsnippet
+
+snippet tt "Titles for diary file" !b
+# `date +"%A"`
+
+## Yesterday
+
+$1
+
+## Today
+
+$2
+
+## Tomorrow
+
+$3
+endsnippet
+
+
+###########################
+# Sections and Paragraphs #
+###########################
+snippet sec "Section" b
+# ${1:Section Name}
+$0
+endsnippet
+
+snippet ssec "Sub Section" b
+## ${1:Section Name}
+$0
+endsnippet
+
+snippet sssec "SubSub Section" b
+### ${1:Section Name}
+$0
+endsnippet
+
+snippet par "Paragraph" b
+#### ${1:Paragraph Name}
+$0
+endsnippet
+
+snippet spar "Paragraph" b
+##### ${1:Paragraph Name}
+$0
+endsnippet
+
+################
+# Common stuff #
+################
+snippet link "Link to something"
+[${1:${VISUAL:Text}}](${3:http://${2:www.url.com}})$0
+endsnippet
+
+snippet img "Image"
+![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+endsnippet
+
+# vim:ft=snippets:
