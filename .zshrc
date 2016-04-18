@@ -17,9 +17,6 @@ bindkey -v             # Vi-ish bindings (normal and insert modes)
 
 bindkey -M vicmd '?' history-incremental-search-backward  # Search up through recent commands
 
-bindkey "Control-k" up-line-or-history-beginning-search-backward
-bindkey "Control-j" down-line-or-history-beginning-search-backward
-
 autoload -U colors && colors  # simplify color codes for use in this RC file
 
 # Prompt: time user|host current-path git-info →
@@ -51,7 +48,6 @@ alias c="clear;"
 alias td="echo \`date +'%m/%d/%Y'\`"
 
 alias wat='man'
-alias serve='http-server'
 
 alias drop='cd ~/Dropbox/'
 alias code='cd ~/Dropbox/code'
@@ -63,11 +59,11 @@ alias hl="history -D -n -1"
 
 
 # Docker and Vagrant
-alias b2d='boot2docker start && $(boot2docker shellinit)'
 alias vup='vagrant up'
 alias vdown='vagrant halt'
 alias vkill='vagrant halt && vagrant destroy -f'
 
+# Process search
 alias pax="ps ax | ag"
 
 # NeoVim
@@ -141,48 +137,10 @@ vimconf() {
   ${VIM_BIN} -o `git diff --name-only --diff-filter=U`
 }
 
-# Open vim in xhome project
-xvim() {
-  cdx && ${VIM_BIN}
-}
-
-# Open vim with gulp js files arranged
-vimgulp() {
-  cdx
-  ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o gulpfile.js lib/tasks/gulp/*.js
-  cd -
-}
-
-vgulp() {
-  cdx
-  ${VIM_BIN} -O gulpfile.js lib/tasks/gulp/$1
-}
-compctl -W lib/tasks/gulp -f vgulp
-alias vg="vgulp"
-
-vimlang() {
-  cdx
-  lang=$1
-  if [ -z "$1" ]; then; lang='en-US'; fi
-  ${VIM_BIN} -o app/assets/languages/$lang/*.json
-  cd - > /dev/null
-}
-
-vimpc() {
-  ${VIM_BIN} -o `ag -g app/assets/components/$1/ --ignore demo.html --ignore index.html --ignore **/*.jpg,png,svg,mp3 --ignore test/*`
-}
-compctl -W app/assets/components -/ vimpc
-
-alias vc="vimpc"
-
-vimpca() {
-  ${VIM_BIN} -o `ag -g app/assets/components/$1/`
-}
-compctl -W app/assets/components -/ vimpca
-
 vimdf() {
   ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
 }
+alias vd="vimdf"
 
 ######
 # Ruby Dev
@@ -254,26 +212,6 @@ gcs() {
   git add -A
   git status
   print -z 'git commit -m "'
-}
-
-######
-# XFinity Home Tools
-######
-
-cdc() {
-  cd ${HOME}/comcast/$1
-  clear
-}
-compctl -W ${HOME}/comcast -f cdc
-
-alias cdx="cd ~/comcast/xfinity_home; clear"
-
-grp() {
-  git review polymer-one-oh
-}
-
-grd() {
-  git review develop
 }
 
 ######
@@ -416,35 +354,4 @@ cleave() {
   html=$2
   if [ -z "${html}" ]; then; html=$1; fi
   cleaver ${md}.md && open ${html}.html
-}
-
-
-###
-# Comcast
-###
-
-mri() {
-  PROJECT_ROOT='/Users/asfallows/comcast/xfinity_home'
-
-  if [[ -z $1 || $1 == "on" ]]; then
-    echo "Turning MRI Ruby on!"
-    rvm use 2.1.3
-    sed -i.bak s/1\.9\.3/2.1.3/g Gemfile
-    sed -i.bak s/1\.9\.3/2.1.3/g .ruby-version
-  elif [[ -n $1 && $1 == "off" ]]; then
-    echo "Turning JRuby on..."
-    rvm use $(cat $PROJECT_ROOT/.ruby-version)
-    sed -i.bak s/2\.1\.3/1.9.3/g Gemfile
-    sed -i.bak s/2\.1\.3/1.9.3/g .ruby-version
-  else
-    echo "You dun goof'd."
-  fi
-
-  rm Gemfile.bak
-}
-
-jkp() {
-  FILENAME="_posts/$(date +'%Y-%m-%d')-$1.md"
-  touch ${FILENAME}
-  ${VIM_BIN} ${FILENAME}
 }
