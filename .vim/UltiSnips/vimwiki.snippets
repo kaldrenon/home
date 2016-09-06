@@ -3,8 +3,9 @@
 # Task list snippets
 snippet d "New day" b
 ~~`date +"%D"` - `date +"%A"`~~ [[details/`date +"%Y%m%d%H%M%S"`]]
-  - [ ] |*| To Do Today List, Goals, Scrum notes
-  - [ ] |*| scrum
+  - [ ] |*| reading plan / devotion
+  - [ ] |1| breakfast
+  - [ ] |*| To Do Today List, Goals
       y: ${1:yesterday}
       t: ${2:today}
   - [ ] |${3:1}| ${4:pomodoro description}
@@ -25,7 +26,7 @@ snippet r "Resulotion" i
 endsnippet
 
 snippet w "last week" i
-[[history/Week of `date -v -1w +"%Y"`-${1:`date +"%m-%d"`}]] @${2:sprint}
+[[history/Week of `date -v -1w +"%Y"`-${1:`date +"%m-%d"`}]]
 endsnippet
 
 snippet ! "timestamp" i
