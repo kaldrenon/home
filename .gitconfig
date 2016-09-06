@@ -1,6 +1,6 @@
 [user]
   name = Andrew Fallows
-  email = kaldrenon@gmail.com
+  email = andrew.fallows@intervarsity.org
 
 [grep]
   linenumber = true
@@ -64,4 +64,3 @@
   tag-version    = "!f() { git tag -a $1 -m $1 $2; };"
 
   aa = "!clear; git add -A; git status"
-
