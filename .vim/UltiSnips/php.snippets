@@ -15,15 +15,10 @@ do {
 } while (${1:/* condition */});"
 endsnippet
 
-snippet doc_f "doc_f"
-/**
- * $2
- * @return ${4:void}
- * @author ${5:`!v g:snips_author`}
- **/
-${1:public }function ${2:someFunc}(${3})
-{${6}
-}
+snippet /** "block comment"
+/*
+ * $1
+ */
 endsnippet
 
 snippet doc_i "doc_i"
