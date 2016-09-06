@@ -1,7 +1,7 @@
 "Load plugins with Vundle
 set nocompatible
 filetype off
-set runtimepath+=~/.vim/bundle/vundle
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 runtime macros/matchit.vim
 
@@ -362,6 +362,7 @@ nmap <space>r o<esc>0Cr<C-j>
 nmap <space>R O<esc>0Cr<C-j>
 
 nnoremap <silent><space>cw :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
+nnoremap <silent><space>wp :e ~/Dropbox/docs/vimwiki/Pomodoro/index.wiki<cr>
 
 " Better save
 nnoremap <space>ww :w<cr>
@@ -453,25 +454,14 @@ nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
 nnoremap z[ {zt
 nnoremap z] }zt
 
-"
-" Geeknote
-"
-nnoremap <space>gg :Geeknote<cr>
-nnoremap <space>gn :GeeknoteCreateNote<space>
-nnoremap <space>gb :GeeknoteCreateNotebook<space>
-nnoremap <space>gn :GeeknoteCreateNote<space>
-nnoremap <space>gs :GeeknoteSearch<space>
-nnoremap <space>gy :GeeknoteSync<cr>
-nnoremap <space>gt :GeeknoteCreateNote<space>dstamp
-nnoremap <space>gw :GeeknoteSaveAsNote<cr>
-nnoremap <space>gx :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
-nnoremap <space>g' :%s/\(&amp;\)\?&apos;/'/g<cr>
-
-autocmd BufReadPre *__Geeknote__* set ft=markdown
-
 " Mappings to suport new day notes
 cabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
 iabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
 
 autocmd FileType markdown
       \ nnoremap <C-x> :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
+
+" Netrw
+let g:netrw_liststyle=3
+nnoremap <silent><space>gn :Explore<cr>
+

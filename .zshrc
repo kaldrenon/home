@@ -108,7 +108,7 @@ alias nv="${VIM_BIN}"
 alias gn="${VIM_BIN} -c Geeknote"
 alias vpi="${VIM_BIN} -c PluginInstall"
 
-alias dotfiles="cd ~/home && vim -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~/home && ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
@@ -354,4 +354,53 @@ cleave() {
   html=$2
   if [ -z "${html}" ]; then; html=$1; fi
   cleaver ${md}.md && open ${html}.html
+}
+
+###
+# InterVarsity commands
+###
+
+ivs() {
+  HOST=$1
+  VPN=$(scutil --nc list | grep "IVCF VPN" | grep Connected)
+
+  if [ -z "${VPN}" ]; then
+    echo "You need to connect to the VPN!"
+    return 1
+  else
+    ssh $1
+  fi
+}
+
+IV_AWS_USER=andrewfallowsintervarsityorg
+IV_DEFAULT_PATH="/srv/www/drupal_b_dev/current/.git"
+
+ive() {
+  HOST=$1
+  FILE=$2
+  if [ -z "${FILE}" ]; then; FILE=${IV_DEFAULT_PATH}; fi
+
+  VPN=$(scutil --nc list | grep "IVCF VPN" | grep Connected)
+
+  if [ -z "${VPN}" ]; then
+    echo "You need to connect to the VPN!"
+    return 1
+  else
+    ${VIM_BIN} scp://${IV_AWS_USER}@${HOST}/${FILE}
+  fi
+}
+
+ivx() {
+  HOST=$1
+  FILE=$2
+  if [ -z "${FILE}" ]; then; FILE=${IV_DEFAULT_PATH}; fi
+
+  VPN=$(scutil --nc list | grep "IVCF VPN" | grep Connected)
+
+  if [ -z "${VPN}" ]; then
+    echo "You need to connect to the VPN!"
+    return 1
+  else
+    ${VIM_BIN} -c Explore scp://${IV_AWS_USER}@${HOST}/${FILE}
+  fi
 }
