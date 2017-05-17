@@ -30,6 +30,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
 PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ → "
 RPROMPT="" # prompt for right side of screen
 
+unsetopt AUTO_CD
 
 # Support colors for excellence!
 TERM=screen-256color
@@ -360,14 +361,21 @@ cleave() {
 # InterVarsity commands
 ###
 
-ivs() {
-  HOST=$1
-  VPN=$(scutil --nc list | grep "IVCF VPN" | grep Connected)
+ivpn() {
+  VPN=$(ifconfig | grep "utun0")
 
   if [ -z "${VPN}" ]; then
     echo "You need to connect to the VPN!"
     return 1
   else
+    return 0
+  fi
+}
+
+ivs() {
+  HOST=$1
+
+  if ivpn; then
     ssh $1
   fi
 }
@@ -380,12 +388,7 @@ ive() {
   FILE=$2
   if [ -z "${FILE}" ]; then; FILE=${IV_DEFAULT_PATH}; fi
 
-  VPN=$(scutil --nc list | grep "IVCF VPN" | grep Connected)
-
-  if [ -z "${VPN}" ]; then
-    echo "You need to connect to the VPN!"
-    return 1
-  else
+  if ivpn; then
     ${VIM_BIN} scp://${IV_AWS_USER}@${HOST}/${FILE}
   fi
 }
@@ -395,12 +398,22 @@ ivx() {
   FILE=$2
   if [ -z "${FILE}" ]; then; FILE=${IV_DEFAULT_PATH}; fi
 
-  VPN=$(scutil --nc list | grep "IVCF VPN" | grep Connected)
-
-  if [ -z "${VPN}" ]; then
-    echo "You need to connect to the VPN!"
-    return 1
-  else
+  if ivpn; then
     ${VIM_BIN} -c Explore scp://${IV_AWS_USER}@${HOST}/${FILE}
+  fi
+}
+
+mcp() {
+  SITE=$1
+  MODULE=$2
+
+  if [ -z "${SITE}" ]; then; SITE=$(basename $(dirname $(dirname $PWD))); fi
+  if [ -z "${MODULE}" ]; then; MODULE=$(basename $PWD); fi
+
+  if ivpn; then
+    CMD="scp -rq ../${MODULE} dev2:/srv/www/drupal_b_dev/current/sites/${SITE}/modules"
+    echo ${CMD}
+    eval ${CMD}
+    alert "Module copied"
   fi
 }
