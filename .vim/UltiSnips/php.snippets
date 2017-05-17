@@ -1,6 +1,28 @@
 ## Snippets from SnipMate, taken from
 ## https://github.com/scrooloose/snipmate-snippets.git
 
+snippet map "Description" !b
+$this->addFieldMapping('$1', '${2:$1}');
+endsnippet
+
+snippet nidp "Description" !b
+if ($row->nid == $1) {
+  print_r($row);
+  //return TRUE;
+} else {
+  return FALSE;
+}
+endsnippet
+
+snippet nid "Description" !b
+if ($row->nid == $1) {
+  dsm($row);
+  //return TRUE;
+} else {
+  return FALSE;
+}
+endsnippet
+
 snippet array "array"
 $${1:arrayName} = array('${2}' => ${3});${4}
 endsnippet
