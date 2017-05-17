@@ -73,6 +73,7 @@ Plugin 'vimwiki'
 
 " Colo Plugins
 Plugin 'ajh17/Spacegray.vim'
+Plugin 'chriskempson/base16-vim'
 Plugin 'cseelus/vim-colors-clearance'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'jordwalke/flatlandia'
