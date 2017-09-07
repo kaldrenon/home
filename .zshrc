@@ -64,6 +64,8 @@ alias vup='vagrant up'
 alias vdown='vagrant halt'
 alias vkill='vagrant halt && vagrant destroy -f'
 
+alias kiex="~/.kiex/bin/kiex"
+
 # Process search
 alias pax="ps ax | ag"
 
@@ -74,19 +76,23 @@ HOST_OS=`uname`
 # Ubuntu/Debian
 if [[ $HOST_OS = 'Linux' ]]; then
   alias agi="sudo apt-get install -y"
-  alias alert="echo"
+  alert() {
+    echo $1
+  }
 fi
 
 # Mac OS only
 if [[ $HOST_OS = 'Darwin' ]]; then
   alias agi="brew install -y"
 
-  # Load Node Version Manager
-  HAS_BREW=`which brew > /dev/null; echo $?`
-  [[ 1 -eq $HAS_BREW ]] || source $(brew --prefix nvm)/nvm.sh
+  # # Load Node Version Manager
+  # HAS_BREW=`which brew > /dev/null; echo $?`
+  # [[ 1 -eq $HAS_BREW ]] || source $(brew --prefix nvm)/nvm.sh
 
   # Voices
-  alias alert="say -v 'Victoria'"
+  alert() {
+    (say -v 'Victoria' "$@" </dev/null &>/dev/null &)
+  }
 fi
 
 # PostgreSQL
@@ -411,9 +417,13 @@ mcp() {
   if [ -z "${MODULE}" ]; then; MODULE=$(basename $PWD); fi
 
   if ivpn; then
-    CMD="scp -rq ../${MODULE} dev2:/srv/www/drupal_b_dev/current/sites/${SITE}/modules"
+    CMD="scp -rq ../${MODULE} ivdev:/srv/www/drupal_b_dev/current/sites/${SITE}/modules"
     echo ${CMD}
     eval ${CMD}
     alert "Module copied"
   fi
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
