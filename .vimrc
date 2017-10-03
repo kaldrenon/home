@@ -10,25 +10,30 @@ if exists('g:loaded_airline')
 endif
 
 " Syntax Plugins
-Plugin 'JavaScript-Indent'
-Plugin 'VimClojure'
-Plugin 'andreimaxim/vim-io'
+"" Markup
 Plugin 'dahu/vim-asciidoc'
 Plugin 'digitaltoad/vim-jade'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'elzr/vim-json'
+Plugin 'othree/html5.vim'
+Plugin 'slim-template/vim-slim'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-markdown'
+
+"" Prog Langs
+Plugin 'JavaScript-Indent'
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'OrangeT/vim-csharp'
+Plugin 'VimClojure'
+Plugin 'andreimaxim/vim-io'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mxw/vim-jsx'
 Plugin 'neilhwatson/vim_cf3'
-Plugin 'othree/html5.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'othree/yajs.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'simeng/vim-imba'
-Plugin 'slim-template/vim-slim'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-markdown'
 
 " Functionality plugins
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -39,20 +44,14 @@ Plugin 'Shougo/neocomplcache'
 Plugin 'UltiSnips'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'diepm/vim-rest-console'
-Plugin 'floobits/floobits-neovim'
 Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'mhinz/vim-tmuxify'
-Plugin 'neilagabriel/vim-geeknote'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'notalex/vim-run-live'
-Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sudo.vim'
@@ -112,12 +111,17 @@ let g:airline_symbols.readonly   = 'RO'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_powerline_fonts    = 1
 
-let g:syntastic_mode_map            = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
-let g:syntastic_auto_jump           = 0
-let g:syntastic_auto_loc_list       = 1
-let g:syntastic_enable_signs        = 0
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_scss_checkers       = ['scss_lint']
+let g:syntastic_mode_map = {
+  'mode': 'active',
+  'active_filetypes': [],
+  'passive_filetypes': []
+}
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_jump                = 0
+let g:syntastic_auto_loc_list            = 1
+let g:syntastic_enable_signs             = 0
+let g:syntastic_enable_highlighting      = 1
+let g:syntastic_scss_checkers            = ['scss_lint']
 
 let g:vimwiki_list         = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
