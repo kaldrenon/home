@@ -115,7 +115,7 @@ alias nv="${VIM_BIN}"
 alias gn="${VIM_BIN} -c Geeknote"
 alias vpi="${VIM_BIN} -c PluginInstall"
 
-alias dotfiles="cd ~/home && ${VIM_BIN} -c 'autocmd VimEnter * wincmd H' -o ~/Dropbox/docs/vimwiki/index.wiki .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~/home && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
@@ -268,7 +268,7 @@ tmcd() {
 # Print all the color names for TMUX highlighting
 tmuxcolors() {
   for i in {0..255} ; do
-    printf "\x1b[38;5;${i}mcolour${i}\n"
+    printf "\x1b[38;5;${i}mcolor${i}\n"
   done
 }
 
