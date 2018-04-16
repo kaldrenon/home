@@ -14,6 +14,7 @@ endif
 Plugin 'dahu/vim-asciidoc'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elzr/vim-json'
+Plugin 'posva/vim-vue'
 Plugin 'othree/html5.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-haml'
