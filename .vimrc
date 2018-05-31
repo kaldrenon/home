@@ -41,7 +41,7 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'EinfachToll/DidYouMean'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/deoplete.nvim'
 Plugin 'UltiSnips'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -98,6 +98,7 @@ for cs in ['pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
 endfor
 
 "Set options for plugins
+let g:python3_host_prog='/usr/local/bin/python3'
 let g:airline_theme = 'pencil'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
@@ -132,9 +133,11 @@ let g:UltiSnipsEditSplit     = 'horizontal'
 
 let g:used_javascript_libs = 'angularjs'
 
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 2
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+      \ 'auto_complete_delay': 20,
+      \ 'smart_case': v:true,
+      \ })
 
 let g:goyo_width = 80
 
@@ -375,12 +378,12 @@ au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<
 """"
 
 inoremap <expr><tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css,vue setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown,vue setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript,vue setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
