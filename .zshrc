@@ -4,6 +4,7 @@ source ~/antigen.zsh
 antigen bundle emallson/gulp-zsh-completion
 #antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle bobthecow/git-flow-completion
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
