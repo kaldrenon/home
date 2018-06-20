@@ -11,6 +11,8 @@ endif
 
 " Syntax Plugins
 "" Markup
+Plugin 'sheerun/vim-polyglot'
+
 Plugin 'dahu/vim-asciidoc'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elzr/vim-json'
@@ -29,6 +31,7 @@ Plugin 'andreimaxim/vim-io'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'neilhwatson/vim_cf3'
 Plugin 'othree/javascript-libraries-syntax.vim'
