@@ -101,7 +101,7 @@ for cs in ['pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
 endfor
 
 "Set options for plugins
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/usr/local/opt/python/libexec/bin/python'
 let g:airline_theme = 'pencil'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
