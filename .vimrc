@@ -5,6 +5,8 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 runtime macros/matchit.vim
 
+set redrawtime=100000
+
 if exists('g:loaded_airline')
   set noshowmode
 endif
@@ -168,7 +170,7 @@ let g:ctrlp_switch_buffer = 'ETVH'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
-      \ 'dir': '\v(tmp|public/assets)'
+      \ 'dir': '\v[\/]\.?(node_modules|tmp|public/assets|git|hg|svn)$'
       \}
 
 nmap gr :CtrlPMRU<cr>
