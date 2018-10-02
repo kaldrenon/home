@@ -2,14 +2,14 @@
 
 HASH="%C(yellow)%h%C(reset)"
 RELATIVE_TIME="%C(green)%ar%C(reset)"
-AUTHOR="%C(blue)%an%C(reset)"
+AUTHOR="%C(cyan)%an%C(reset)"
 REFS="%C(red)%d%C(reset)"
 SUBJECT="%s"
 
 FORMAT="$RELATIVE_TIME{$HASH{$AUTHOR{$REFS $SUBJECT"
 
 function pretty_git_log() {
-  git log --pretty="tformat:${FORMAT}" $* |
+  git log --color=always --pretty="tformat:${FORMAT}" $* |
   column -t -s '{' |
   less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
 }
