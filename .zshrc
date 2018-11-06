@@ -48,6 +48,7 @@ tic ~/$TERM.ti
 alias grep="grep --color"
 alias c="clear;"
 alias td="echo \`date +'%m/%d/%Y'\`"
+alias ag='ag --path-to-ignore ~/.ignore'
 
 alias wat='man'
 
