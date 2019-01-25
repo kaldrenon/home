@@ -91,8 +91,27 @@ catch ${2:error}
 endsnippet
 
 snippet req "Require" b
-var ${1:sys} = require('${2:$1}');
+const ${1:sys} = require('${2:$1}');
 endsnippet
+
+snippet reqa "Request function" i
+(req, res) => {
+  $1
+});
+endsnippet
+
+snippet af "arrow function" i
+($1) => {
+  $2
+}
+endsnippet
+
+snippet afc "arrow function" i
+($1) => {
+  $2
+});
+endsnippet
+
 
 snippet # "Interpolated Code"
 #{$1}$0
@@ -395,3 +414,9 @@ snippet noscw "expect was not called with (js)" b
 expect(${1:target}).wasNotCalledWith(${2:arguments});
 endsnippet
 
+priority 10
+snippet {{ "closer" !i
+{
+ $1
+});
+endsnippet
