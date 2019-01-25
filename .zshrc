@@ -50,11 +50,15 @@ alias c="clear;"
 alias td="echo \`date +'%m/%d/%Y'\`"
 alias ag='ag --path-to-ignore ~/.ignore'
 
+alias srv='http-server'
+alias htp='http-prompt'
+
 alias wat='man'
 
 alias drop='cd ~/Dropbox/'
 alias code='cd ~/Dropbox/code'
 alias cdh='cd ~/home'
+alias ivcode='cd ~/ivcf'
 
 alias clip="nc localhost 8377"
 
