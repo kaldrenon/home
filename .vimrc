@@ -1,8 +1,9 @@
 "Load plugins with Vundle
 set nocompatible
 filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+"set runtimepath+=~/.vim/bundle/Vundle.vim
+"call vundle#rc()
+call plug#begin('~/.local/share/nvim/plugged')
 runtime macros/matchit.vim
 
 set redrawtime=100000
@@ -13,84 +14,89 @@ endif
 
 " Syntax Plugins
 "" Markup
-Plugin 'sheerun/vim-polyglot'
-
-Plugin 'dahu/vim-asciidoc'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'elzr/vim-json'
-Plugin 'posva/vim-vue'
-Plugin 'othree/html5.vim'
-Plugin 'slim-template/vim-slim'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-markdown'
+Plug 'sheerun/vim-polyglot'
+Plug 'dahu/vim-asciidoc'
+Plug 'digitaltoad/vim-jade'
+Plug 'elzr/vim-json'
+Plug 'posva/vim-vue'
+Plug 'othree/html5.vim'
+Plug 'slim-template/vim-slim'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-markdown'
 
 "" Prog Langs
-Plugin 'JavaScript-Indent'
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'OrangeT/vim-csharp'
-Plugin 'VimClojure'
-Plugin 'andreimaxim/vim-io'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'groenewege/vim-less'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mattn/emmet-vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'neilhwatson/vim_cf3'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'othree/yajs.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'simeng/vim-imba'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'OrangeT/vim-csharp'
+Plug 'elixir-lang/vim-elixir'
+Plug 'groenewege/vim-less'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mattn/emmet-vim'
+Plug 'neilhwatson/vim_cf3'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/yajs.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'simeng/vim-imba'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Functionality plugins
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'EinfachToll/DidYouMean'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'UltiSnips'
-Plugin 'bling/vim-airline'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'gmarik/vundle'
-Plugin 'godlygeek/tabular'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mattn/gist-vim'
-Plugin 'mhinz/vim-signify'
-Plugin 'mhinz/vim-tmuxify'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'notalex/vim-run-live'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'sudo.vim'
-Plugin 'sunaku/vim-ruby-minitest'
-Plugin 'terryma/vim-expand-region'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'vimwiki'
-"Plugin 'wincent/vim-clipper'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
+Plug 'EinfachToll/DidYouMean'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'SirVer/UltiSnips'
+Plug 'bling/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'gmarik/vundle'
+Plug 'godlygeek/tabular'
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/gist-vim'
+Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-tmuxify'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'notalex/vim-run-live'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'lambdalisue/suda.vim'
+Plug 'sunaku/vim-ruby-minitest'
+Plug 'terryma/vim-expand-region'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-ruby/vim-ruby'
+"Plug 'wincent/vim-clipper'
 
 " Colo Plugins
-Plugin 'ajh17/Spacegray.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'cseelus/vim-colors-clearance'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'jordwalke/flatlandia'
-Plugin 'morhetz/gruvbox'
-Plugin 'noahfrederick/vim-hemisu'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'wesgibbs/vim-irblack'
-Plugin 'zefei/vim-colortuner'
+Plug 'ajh17/Spacegray.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'cseelus/vim-colors-clearance'
+Plug 'flazz/vim-colorschemes'
+Plug 'jordwalke/flatlandia'
+Plug 'morhetz/gruvbox'
+Plug 'noahfrederick/vim-hemisu'
+Plug 'reedes/vim-colors-pencil'
+Plug 'wesgibbs/vim-irblack'
+Plug 'zefei/vim-colortuner'
 
 " Dependencies - plugins I don't use directly but that other plugins need
-Plugin 'kana/vim-textobj-user'
-Plugin 'mattn/webapi-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'mattn/webapi-vim'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+call plug#end()
 
 filetype plugin indent on
 
@@ -139,10 +145,6 @@ let g:UltiSnipsEditSplit     = 'horizontal'
 let g:used_javascript_libs = 'angularjs'
 
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-      \ 'auto_complete_delay': 20,
-      \ 'smart_case': v:true,
-      \ })
 
 let g:goyo_width = 80
 
