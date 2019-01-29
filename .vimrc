@@ -7,6 +7,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 runtime macros/matchit.vim
 
 set redrawtime=100000
+set encoding=UTF-8
 
 if exists('g:loaded_airline')
   set noshowmode
@@ -14,7 +15,6 @@ endif
 
 " Syntax Plugins
 "" Markup
-Plug 'sheerun/vim-polyglot'
 Plug 'dahu/vim-asciidoc'
 Plug 'digitaltoad/vim-jade'
 Plug 'elzr/vim-json'
@@ -32,7 +32,6 @@ Plug 'groenewege/vim-less'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mattn/emmet-vim'
 Plug 'neilhwatson/vim_cf3'
-Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/yajs.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'simeng/vim-imba'
@@ -50,14 +49,15 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'gmarik/vundle'
 Plug 'godlygeek/tabular'
 Plug 'kien/ctrlp.vim'
+Plug 'lambdalisue/suda.vim'
 Plug 'mattn/gist-vim'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-tmuxify'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'notalex/vim-run-live'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'lambdalisue/suda.vim'
 Plug 'sunaku/vim-ruby-minitest'
 Plug 'terryma/vim-expand-region'
 Plug 'tomtom/tcomment_vim'
@@ -70,7 +70,6 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby'
-"Plug 'wincent/vim-clipper'
 
 " Colo Plugins
 Plug 'ajh17/Spacegray.vim'
@@ -83,6 +82,8 @@ Plug 'noahfrederick/vim-hemisu'
 Plug 'reedes/vim-colors-pencil'
 Plug 'wesgibbs/vim-irblack'
 Plug 'zefei/vim-colortuner'
+Plug 'mhartington/oceanic-next'
+Plug 'drewtempelmeyer/palenight.vim'
 
 " Dependencies - plugins I don't use directly but that other plugins need
 Plug 'kana/vim-textobj-user'
@@ -108,9 +109,14 @@ for cs in ['pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
   endtry
 endfor
 
+if (has("termguicolors"))
+  set termguicolors
+  execute 'colorscheme OceanicNext'
+endif
+
 "Set options for plugins
 let g:python3_host_prog='/usr/local/opt/python/libexec/bin/python'
-let g:airline_theme = 'pencil'
+let g:airline_theme='oceanicnext'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 
@@ -123,6 +129,10 @@ let g:airline_symbols.branch     = '⎇'
 let g:airline_symbols.readonly   = 'RO'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_powerline_fonts    = 1
+
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:WebDevIconsOS = 'Darwin'
 
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': [] }
 let g:syntastic_always_populate_loc_list = 1
@@ -141,8 +151,6 @@ let g:gist_open_browser_after_post = 1
 
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsEditSplit     = 'horizontal'
-
-let g:used_javascript_libs = 'angularjs'
 
 let g:deoplete#enable_at_startup = 1
 
