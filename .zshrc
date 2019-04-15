@@ -64,7 +64,6 @@ alias clip="nc localhost 8377"
 
 alias hl="history -D -n -1"
 
-
 # Docker and Vagrant
 alias vup='vagrant up'
 alias vdown='vagrant halt'
@@ -72,11 +71,15 @@ alias vkill='vagrant halt && vagrant destroy -f'
 
 alias kiex="~/.kiex/bin/kiex"
 
+alias php="php-fpm"
+alias cmp="composer"
+
+alias lrb="lando stop && lando rebuild -y && lando start"
+
 # Process search
 alias pax="ps ax | ag"
 
 # NeoVim
-
 HOST_OS=`uname`
 
 # Ubuntu/Debian
@@ -99,6 +102,9 @@ if [[ $HOST_OS = 'Darwin' ]]; then
   alert() {
     (say -v 'Victoria' "$@" </dev/null &>/dev/null &)
   }
+
+  alias bsl="brew services list"
+  alias bsr="brew services restart"
 fi
 
 # PostgreSQL
@@ -433,3 +439,49 @@ mcp() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by acquia/blt
+function blt() {
+  if [[ ! -z ${AH_SITE_ENVIRONMENT} ]]; then
+    PROJECT_ROOT="/var/www/html/${AH_SITE_GROUP}.${AH_SITE_ENVIRONMENT}"
+  elif [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+    PROJECT_ROOT=$(git rev-parse --show-cdup)
+  else
+    PROJECT_ROOT="."
+  fi
+
+  if [ -f "$PROJECT_ROOT/vendor/bin/blt" ]; then
+    $PROJECT_ROOT/vendor/bin/blt "$@"
+
+  # Check for local BLT.
+  elif [ -f "./vendor/bin/blt" ]; then
+    ./vendor/bin/blt "$@"
+
+  else
+    echo "You must run this command from within a BLT-generated project."
+    return 1
+  fi
+}
+# End added by acquia/blt
+
+# Config for Lando
+function ldi() {
+  NAME=$1
+  RECIPE=$2
+
+  if [ -z "${NAME}" ]; then; NAME=$(basename $(pwd)); fi
+  if [ -z "${RECIPE}" ]; then; RECIPE="drupal7"; fi
+
+  if [[ ${RECIPE} = "drupal7" ]]; then;
+    VERSION_URL="https://ftp.drupal.org/files/projects/drupal-7.x-dev.tar.gz";
+  else;
+    VERSION_URL="https://ftp.drupal.org/files/projects/drupal-8.8.x-dev.tar.gz";
+  fi
+
+  lando init --source remote --remote-url ${VERSION_URL} --remote-options="--strip-components 1" --recipe ${RECIPE} --webroot . --name ${NAME}
+  alert "Lando init completed for ${NAME}"
+}
+
+function lci() {
+  lando composer init -n --name=$(basename $(pwd))
+}

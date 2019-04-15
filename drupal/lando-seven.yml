@@ -1,0 +1,4 @@
+name: seven
+recipe: drupal7
+config:
+  webroot: web

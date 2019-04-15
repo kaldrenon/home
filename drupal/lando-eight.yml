@@ -1,0 +1,9 @@
+name: eight
+recipe: drupal8
+services:
+  appserver:
+    build:
+      - composer install
+config:
+  webroot: web
+  database: postgres
