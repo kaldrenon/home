@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOOK_DIR=$(pwd)/${GIT_DIR}/hooks/post-checkout.d/*
+HOOK_DIR=$(pwd)/.git/hooks/post-checkout.d/*
 
 for sub_hook in ${HOOK_DIR}
 do
