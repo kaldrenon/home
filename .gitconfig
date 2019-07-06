@@ -34,8 +34,9 @@
 [alias]
   b     = branch
   bc    = for-each-ref --sort='-*committerdate' --format="%(refname:short)" refs/heads/
-  bm    = "!source ~/.githelpers && list_merged"
+  bm    = "!bash -c 'source ~/.githelpers && list_merged'"
   ca    = commit --amend
+  clg   = "!f() { git clone http://github.com/$1; }; f"
   cm    = commit -m
   cp    = cherry-pick
   co    = checkout
@@ -47,8 +48,8 @@
   dl    = diff 'HEAD^1' HEAD
   dlf   = diff 'HEAD^1' HEAD --name-only
   ds    = stash show -p stash@{0}
-  l     = "!source ~/.githelpers && pretty_git_log"
-  rb    = "!source ~/.githelpers && review_code"
+  l     = "!bash -c 'source ~/.githelpers && pretty_git_log'"
+  rb    = "!bash -c 'source ~/.githelpers && review_code'"
   rhh   = reset --hard HEAD
   td    = log --pretty='tformat: * %s'
   tl    = "!f() { git describe --tags `git rev-list --tags --max-count=1`; }; f"
@@ -61,7 +62,7 @@
   cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
   conflicts      = diff --name-only --diff-filter=U
   gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
-  release-notes  = "!source ~/.githelpers && release_notes"
+  release-notes  = "!bash -c 'source ~/.githelpers && release_notes'"
   review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
   tag-version    = "!f() { git tag -a $1 -m $1 $2; };"
 
