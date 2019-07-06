@@ -3,9 +3,11 @@ set nocompatible
 filetype off
 "set runtimepath+=~/.vim/bundle/Vundle.vim
 "call vundle#rc()
-call plug#begin('~/.local/share/nvim/plugged')
+"call plug#begin('~/.local/share/nvim/site/plugged')
+call plug#begin('~/.config/nvim/plugged')
 runtime macros/matchit.vim
 
+set runtimepath^=~/.vim
 set redrawtime=100000
 set encoding=UTF-8
 
@@ -115,7 +117,7 @@ if (has("termguicolors"))
 endif
 
 "Set options for plugins
-let g:python3_host_prog='/usr/local/opt/python/libexec/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
 let g:airline_theme='oceanicnext'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
@@ -303,6 +305,11 @@ inoremap <silent><c-b> <C-R>=UltiSnips_ExpandSnippetOrJump()<cr>
 " minor cursor adjust without leaving insert mode
 inoremap <C-h> <left>
 inoremap <C-l> <right>
+
+let g:run_mode_map = '<Leader>rr'
+nmap ge :E
+nmap gs :S
+nmap gv :V
 
 " Save and quit in the ZZ ZQ family
 nnoremap ZA :wqa<cr>
