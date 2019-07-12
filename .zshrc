@@ -341,7 +341,7 @@ zle -N zle-keymap-select
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
-PATH=$HOME/.rvm/bin:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin
+PATH=$HOME/.rvm/bin:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Vim is default editor for all things

@@ -118,6 +118,8 @@ endif
 
 "Set options for plugins
 let g:python3_host_prog='/usr/bin/python3'
+let g:pymode_python = 'python3'
+
 let g:airline_theme='oceanicnext'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
@@ -156,7 +158,7 @@ let g:UltiSnipsEditSplit     = 'horizontal'
 
 let g:deoplete#enable_at_startup = 1
 
-let g:goyo_width = 80
+let g:goyo_width = 100
 
 if executable('ag')
   let g:ackprg                          = 'ag --nogroup --nocolor --column'
@@ -308,7 +310,7 @@ inoremap <C-l> <right>
 
 let g:run_mode_map = '<Leader>rr'
 nmap ge :E
-nmap gs :S
+nmap gh :S
 nmap gv :V
 
 " Save and quit in the ZZ ZQ family
@@ -407,6 +409,7 @@ autocmd FileType css,vue setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown,vue setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript,vue setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " * search in visual mode
@@ -423,7 +426,7 @@ autocmd BufRead,BufNewFile *.tex setfiletype tex
 autocmd BufRead,BufNewFile *.god setfiletype rb
 autocmd BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
 
-autocmd BufNewFile,BufNewFile html,javascript,css,sass,ruby let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+autocmd BufNewFile,BufNewFile html,javascript,css,sass,ruby let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 
 " Mappings for common Tabularizations
 nnoremap <Leader>a= :Tabularize /=<CR>
