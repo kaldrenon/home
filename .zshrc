@@ -2,7 +2,7 @@
 source ~/antigen.zsh
 
 antigen bundle emallson/gulp-zsh-completion
-#antigen bundle olivierverdier/zsh-git-prompt
+antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle bobthecow/git-flow-completion
 antigen apply
@@ -119,23 +119,18 @@ else
   VIM_BIN="nvim"
 fi
 
+
+EDITOR="${VIM_BIN}"
+export EDITOR
+VISUAL="${VIM_BIN}"
+export VISUAL
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
-alias gn="${VIM_BIN} -c Geeknote"
 alias vpi="${VIM_BIN} -c PluginInstall"
 
 alias dotfiles="cd ~/home && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
-
-vlm() {
-  files=""
-  for file in $(ls db/migrate | tail -$1); do
-    filename=db/migrate/$file
-    files="$files $filename"
-  done
-  ${VIM_BIN} -o $(echo $files)
-}
 
 # Search power
 vimag() {
@@ -156,7 +151,6 @@ vimconf() {
 vimdf() {
   ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
 }
-alias vd="vimdf"
 
 ######
 # Ruby Dev
@@ -166,59 +160,9 @@ alias bx="bundle exec"
 alias irb="pry"
 alias cop='clear; rubocop'
 
-# Run a single test file
-rtest() {
-  if [[ $1 =~ ^spec/ ]]; then
-    local cmd="bundle exec rspec $1"
-  else
-    local cmd="bundle exec ruby -Itest $1"
-  fi
-
-  clear
-  echo "$fg_bold[blue]Executing $cmd$reset_color"
-  eval $cmd
-  if [ $? -eq 0 ]; then
-    ( alert "Tests completed - $(sed 's/[\/_]/ /g' <<< $1)" & )
-  else
-    ( alert "Tests failed - $(sed 's/[\/_]/ /g' <<< $1)" & )
-  fi
-}
-
-rtest_all() {
-  local cmd="rake test"
-  clear
-  echo "$fg_bold[blue]Executing $cmd$reset_color"
-  eval $cmd
-  if [ $? -eq 0 ]; then
-    alert "Tests completed - full test suite"
-  else
-    alert "Tests failed - full test suite"
-  fi
-}
-
-######
-# JS Dev
-######
-
-mtest() {
-  local cmd="mocha $1"
-  clear
-  echo "$fg_bold[blue]Executing $cmd$reset_color"
-  eval $cmd
-  if [ $? -eq 0 ]; then
-    ( alert "Tests completed - $(sed 's/[\/_]/ /g' <<< $1)" & )
-  else
-    ( alert "Tests failed - $(sed 's/[\/_]/ /g' <<< $1)" & )
-  fi
-}
-
-
 ######
 # Git(Hub)
 ######
-alias ga="git add"
-alias gaa="git add -A"
-alias gcl="git clone"
 alias gco="git checkout"
 alias gs="git status"
 
@@ -239,7 +183,7 @@ usage(){
   du -hc $1 | grep total
 }
 
-# more powerful silver-search
+# multiple silver-search
 agg() {
   echo "-- Files"
   noglob ag -g $*
@@ -263,16 +207,6 @@ zz() {
 ###
 
 alias tma="tmux attach -t"
-
-## CD to given path in all panes
-# NOTE: assumes all panes are at a clear zsh prompt; must use absolute dirs or
-# have all panes in same path to get the same result
-tmcd() {
-  for pane in `tmux list-panes -F '#P'`; do
-    tmux select-pane -t $pane
-    tmux send-keys "cd $1" C-m c C-m
-  done
-}
 
 # Print all the color names for TMUX highlighting
 tmuxcolors() {
@@ -298,7 +232,7 @@ alias ll="ls $LS_COLO_FLAG -A -lh"
 alias lh="ls $LS_COLO_FLAG -A -lh"
 alias la="=ls $LS_COLO_FLAG"
 
-function mcd() { mkdir $1 && cd $1; }
+function mcd() { mkdir -p $1 && cd $1; }
 
 # Show the task being run when aliases are involved
 _-accept-line () {
@@ -341,13 +275,6 @@ zle -N zle-keymap-select
 PATH=$HOME/.rvm/bin:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-# Vim is default editor for all things
-EDITOR=`which vim`
-export EDITOR
-
-VISUAL=`which vim`
-export VISUAL
-
 start-agent() {
   if ps ax | grep '[s]sh-agent -s' > /dev/null; then
     # Do nothing
@@ -370,117 +297,6 @@ cleave() {
   html=$2
   if [ -z "${html}" ]; then; html=$1; fi
   cleaver ${md}.md && open ${html}.html
-}
-
-###
-# InterVarsity commands
-###
-
-ivpn() {
-  VPN=$(ifconfig | grep "utun0")
-
-  if [ -z "${VPN}" ]; then
-    echo "You need to connect to the VPN!"
-    return 1
-  else
-    return 0
-  fi
-}
-
-ivs() {
-  HOST=$1
-
-  if ivpn; then
-    ssh $1
-  fi
-}
-
-IV_AWS_USER=andrewfallowsintervarsityorg
-IV_DEFAULT_PATH="/srv/www/drupal_b_dev/current/.git"
-
-ive() {
-  HOST=$1
-  FILE=$2
-  if [ -z "${FILE}" ]; then; FILE=${IV_DEFAULT_PATH}; fi
-
-  if ivpn; then
-    ${VIM_BIN} scp://${IV_AWS_USER}@${HOST}/${FILE}
-  fi
-}
-
-ivx() {
-  HOST=$1
-  FILE=$2
-  if [ -z "${FILE}" ]; then; FILE=${IV_DEFAULT_PATH}; fi
-
-  if ivpn; then
-    ${VIM_BIN} -c Explore scp://${IV_AWS_USER}@${HOST}/${FILE}
-  fi
-}
-
-mcp() {
-  SITE=$1
-  MODULE=$2
-
-  if [ -z "${SITE}" ]; then; SITE=$(basename $(dirname $(dirname $PWD))); fi
-  if [ -z "${MODULE}" ]; then; MODULE=$(basename $PWD); fi
-
-  if ivpn; then
-    CMD="scp -rq ../${MODULE} ivdev:/srv/www/drupal_b_dev/current/sites/${SITE}/modules"
-    echo ${CMD}
-    eval ${CMD}
-    alert "Module copied"
-  fi
-}
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Added by acquia/blt
-function blt() {
-  if [[ ! -z ${AH_SITE_ENVIRONMENT} ]]; then
-    PROJECT_ROOT="/var/www/html/${AH_SITE_GROUP}.${AH_SITE_ENVIRONMENT}"
-  elif [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
-    PROJECT_ROOT=$(git rev-parse --show-cdup)
-  else
-    PROJECT_ROOT="."
-  fi
-
-  if [ -f "$PROJECT_ROOT/vendor/bin/blt" ]; then
-    $PROJECT_ROOT/vendor/bin/blt "$@"
-
-  # Check for local BLT.
-  elif [ -f "./vendor/bin/blt" ]; then
-    ./vendor/bin/blt "$@"
-
-  else
-    echo "You must run this command from within a BLT-generated project."
-    return 1
-  fi
-}
-# End added by acquia/blt
-
-# Config for Lando
-function ldi() {
-  NAME=$1
-  RECIPE=$2
-
-  if [ -z "${NAME}" ]; then; NAME=$(basename $(pwd)); fi
-  if [ -z "${RECIPE}" ]; then; RECIPE="drupal7"; fi
-
-  if [[ ${RECIPE} = "drupal7" ]]; then;
-    VERSION_URL="https://ftp.drupal.org/files/projects/drupal-7.x-dev.tar.gz";
-  else;
-    VERSION_URL="https://ftp.drupal.org/files/projects/drupal-8.8.x-dev.tar.gz";
-  fi
-
-  lando init --source remote --remote-url ${VERSION_URL} --remote-options="--strip-components 1" --recipe ${RECIPE} --webroot . --name ${NAME}
-  alert "Lando init completed for ${NAME}"
-}
-
-function lci() {
-  lando composer init -n --name=$(basename $(pwd))
 }
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
