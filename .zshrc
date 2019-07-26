@@ -58,7 +58,6 @@ alias wat='man'
 alias drop='cd ~/Dropbox/'
 alias code='cd ~/Dropbox/code'
 alias cdh='cd ~/home'
-alias ivcode='cd ~/ivcf'
 
 alias clip="nc localhost 8377"
 
@@ -71,13 +70,11 @@ alias vkill='vagrant halt && vagrant destroy -f'
 
 alias kiex="~/.kiex/bin/kiex"
 
-alias php="php-fpm"
-alias cmp="composer"
-
-alias lrb="lando stop && lando rebuild -y && lando start"
-
 # Process search
 alias pax="ps ax | ag"
+
+alias p='python3'
+alias pip='pip3'
 
 # NeoVim
 HOST_OS=`uname`
@@ -489,3 +486,5 @@ function lci() {
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 source $HOME/.rvm/scripts/rvm
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

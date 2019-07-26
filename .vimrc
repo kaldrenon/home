@@ -37,7 +37,7 @@ Plug 'neilhwatson/vim_cf3'
 Plug 'othree/yajs.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'simeng/vim-imba'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 Plug 'mxw/vim-jsx'
 
 " Functionality plugins
@@ -145,6 +145,7 @@ let g:syntastic_auto_loc_list            = 0
 let g:syntastic_enable_signs             = 1
 let g:syntastic_enable_highlighting      = 1
 let g:syntastic_scss_checkers            = ['scss_lint']
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 let g:vimwiki_list         = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
