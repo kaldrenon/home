@@ -34,7 +34,6 @@ Plug 'groenewege/vim-less'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mattn/emmet-vim'
 Plug 'neilhwatson/vim_cf3'
-Plug 'othree/yajs.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'simeng/vim-imba'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
@@ -48,7 +47,6 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'SirVer/UltiSnips'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'gmarik/vundle'
 Plug 'godlygeek/tabular'
 Plug 'kien/ctrlp.vim'
 Plug 'lambdalisue/suda.vim'
@@ -60,7 +58,6 @@ Plug 'notalex/vim-run-live'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'sunaku/vim-ruby-minitest'
 Plug 'terryma/vim-expand-region'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-abolish'
@@ -75,17 +72,10 @@ Plug 'vim-ruby/vim-ruby'
 
 " Colo Plugins
 Plug 'ajh17/Spacegray.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'cseelus/vim-colors-clearance'
 Plug 'flazz/vim-colorschemes'
-Plug 'jordwalke/flatlandia'
-Plug 'morhetz/gruvbox'
-Plug 'noahfrederick/vim-hemisu'
-Plug 'reedes/vim-colors-pencil'
-Plug 'wesgibbs/vim-irblack'
 Plug 'zefei/vim-colortuner'
 Plug 'mhartington/oceanic-next'
-Plug 'drewtempelmeyer/palenight.vim'
 
 " Dependencies - plugins I don't use directly but that other plugins need
 Plug 'kana/vim-textobj-user'
@@ -103,7 +93,7 @@ call plug#end()
 
 filetype plugin indent on
 
-for cs in ['pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
+for cs in ['spacegray', 'pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
   try
     execute 'colorscheme' cs
     break
