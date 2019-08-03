@@ -17,11 +17,12 @@ endif
 
 " Syntax Plugins
 "" Markup
+Plug 'ap/vim-css-color'
 Plug 'dahu/vim-asciidoc'
 Plug 'digitaltoad/vim-jade'
 Plug 'elzr/vim-json'
-Plug 'posva/vim-vue'
 Plug 'othree/html5.vim'
+Plug 'posva/vim-vue'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
@@ -48,6 +49,7 @@ Plug 'SirVer/UltiSnips'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'godlygeek/tabular'
+Plug 'janko/vim-test'
 Plug 'kien/ctrlp.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'mattn/gist-vim'
@@ -82,7 +84,17 @@ Plug 'kana/vim-textobj-user'
 Plug 'mattn/webapi-vim'
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'neoclide/coc.nvim'
+  Plug 'neoclide/coc-solargraph'
+  Plug 'neoclide/coc-snippets'
+
+  " Coc Nvim Config
+  set hidden
+  set cmdheight=2
+  set updatetime=300
+  set shortmess+=c
+  set signcolumn=yes
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
@@ -107,7 +119,7 @@ if (has("termguicolors"))
 endif
 
 "Set options for plugins
-let g:python3_host_prog='/usr/bin/python3'
+let g:python3_host_prog='/usr/local/bin/python3'
 let g:pymode_python = 'python3'
 
 let g:airline_theme='oceanicnext'
@@ -147,7 +159,7 @@ let g:gist_open_browser_after_post = 1
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsEditSplit     = 'horizontal'
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 let g:goyo_width = 100
 
@@ -182,10 +194,10 @@ nmap gr :CtrlPMRU<cr>
 
 let g:user_emmet_leader_key='<C-e>'
 let g:user_emmet_settings = {
-\  'html' : {
-\    'indentation' : '  '
-\  },
-\}
+  \  'html' : {
+  \    'indentation' : '  '
+  \  },
+  \}
 
 let g:rust_recommended_style = 0
 
@@ -300,9 +312,10 @@ inoremap <C-h> <left>
 inoremap <C-l> <right>
 
 let g:run_mode_map = '<Leader>rr'
+
 nmap ge :E
-nmap gh :S
-nmap gv :V
+nmap gx :S
+nmap g\ :V
 
 " Save and quit in the ZZ ZQ family
 nnoremap ZA :wqa<cr>
@@ -317,21 +330,6 @@ endfor
 " Better yank
 map Y y$
 nnoremap gy "+y
-
-" A whole bunch of mappings to make window management easy and a little bit
-" more like tab management in other editors.
-"  - Ctrl-m will maximize the current window.
-"  - Ctrl-t creates a new window and maximizes it
-"  - Ctrl-j and k move up/down in window stack
-"    and maximize after the new bufffer is selected
-"  - Ctrl h and l move left/right between window stacks
-
-" Uncomment these and comment the ones below to disable tmux nav
-" nnoremap <silent> <C-m> :wincmd _ <cr>
-" nnoremap <silent> <C-j> <C-W>j<C-W>_
-" nnoremap <silent> <C-k> <C-W>k<C-W>_
-" nnoremap <silent> <C-h> :wincmd h <cr>
-" nnoremap <silent> <C-l> :wincmd l <cr>
 
 let g:tmux_navigator_no_mappings = 1
 
@@ -364,37 +362,26 @@ nnoremap <silent> <space>c viw~
 nnoremap <silent> <space>sc :SyntasticCheck<cr>
 nnoremap <silent> <space>sC :lclose<cr><C-w>_
 
-
-"""""
-" Vimwiki related mappings
-"""""
-" Task snippets which rely on UltiSnips snippets
-" New Pomodoro task entry
-nmap <space>p o<esc>0Cp<C-j>
-nmap <space>P O<esc>0Cp<C-j>
-
-" New quick task entry
-nmap <space>t o<esc>0CT<C-j>
-nmap <space>T O<esc>0CT<C-j>
-
-" New task description line
-nmap <space>r o<esc>0Cr<C-j>
-nmap <space>R O<esc>0Cr<C-j>
-
-nnoremap <silent><space>cw :e ~/Dropbox/docs/vimwiki/comcast/index.wiki<cr>
-nnoremap <silent><space>wp :e ~/Dropbox/docs/vimwiki/Pomodoro/index.wiki<cr>
-
 " Better save
 nnoremap <space>ww :w<cr>
 
-" Enable tab completion for popup menus in vimwiki buffers
-au FileType vimwiki inoremap <expr> <buffer> <tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-""""
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
-inoremap <expr><tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 autocmd FileType css,vue setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown,vue setlocal omnifunc=htmlcomplete#CompleteTags
@@ -436,7 +423,7 @@ set mouse=a
 
 """ EasyMotion
 let g:EasyMotion_leader_key = '<leader>'
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+let g:EasyMotion_keys = 'asdfjklzxcvqwer'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
@@ -448,6 +435,12 @@ nmap s <Plug>(easymotion-s)
 nmap S <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t)
 nmap T <Plug>(easymotion-T2)
+
+nmap <silent> <space>tn :TestNearest<CR>
+nmap <silent> <space>tf :TestFile<CR>
+nmap <silent> <space>ts :TestSuite<CR>
+nmap <silent> <space>tl :TestLast<CR>
+nmap <silent> <space>tg :TestVisit<CR>
 
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
@@ -467,20 +460,11 @@ nmap <space>N <Plug>(easymotion-prev)
 " ctermbg 52 is dark red
 " TODO: Only apply this in certain fts
 highlight OverLength ctermbg=52 ctermfg=white guibg=#770000
-match OverLength /\%81v./
-
-nnoremap <space>jp :%!python -m json.tool<CR>:w<CR>
+match OverLength /\%101v./
 
 " Jump around
 nnoremap z[ {zt
 nnoremap z] }zt
-
-" Mappings to suport new day notes
-cabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
-iabbrev dstamp <C-R>=strftime("%Y-%m-%d - %A")<CR>
-
-autocmd FileType markdown
-      \ nnoremap <C-x> :Subvert/{[ ],[X]}/{[X],[ ]}/g<cr>
 
 " Netrw
 let g:netrw_liststyle=3

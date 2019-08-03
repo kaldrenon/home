@@ -5,6 +5,8 @@ antigen bundle emallson/gulp-zsh-completion
 antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle bobthecow/git-flow-completion
+antigen bundle docker
+antigen bundle felixr/docker-zsh-completion
 antigen apply
 
 HISTFILE=~/.histfile   # Location of command history
@@ -28,7 +30,7 @@ ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{%Gδ%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
 
 #PROMPT='%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ $(git_super_status)→ '
-PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n|%m%{$reset_color%} %2~ → "
+PROMPT="%{$fg_bold[green]%}%T%{$reset_color%} %{$fg_bold[blue]%}%n%{$reset_color%} %2~ → "
 RPROMPT="" # prompt for right side of screen
 
 unsetopt AUTO_CD
@@ -90,10 +92,6 @@ fi
 # Mac OS only
 if [[ $HOST_OS = 'Darwin' ]]; then
   alias agi="brew install -y"
-
-  # # Load Node Version Manager
-  # HAS_BREW=`which brew > /dev/null; echo $?`
-  # [[ 1 -eq $HAS_BREW ]] || source $(brew --prefix nvm)/nvm.sh
 
   # Voices
   alert() {
@@ -304,3 +302,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 source $HOME/.rvm/scripts/rvm
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
