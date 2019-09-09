@@ -72,6 +72,8 @@ alias vkill='vagrant halt && vagrant destroy -f'
 
 alias kiex="~/.kiex/bin/kiex"
 
+shovel() ( cd ~/cmm/dev && ./script/run shovel "$@"; )
+
 # Process search
 alias pax="ps ax | ag"
 
@@ -125,6 +127,7 @@ export VISUAL
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vpi="${VIM_BIN} -c PluginInstall"
+alias git="hub"
 
 alias dotfiles="cd ~/home && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 

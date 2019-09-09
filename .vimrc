@@ -57,6 +57,7 @@ Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-tmuxify'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'notalex/vim-run-live'
+Plug 'parkr/vim-jekyll'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -184,7 +185,7 @@ let g:tmuxify_run = {
 let g:ctrlp_map = 'go'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_switch_buffer = 'ETVH'
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
       \ 'dir': '\v[\/]\.?(node_modules|tmp|public/assets|git|hg|svn)$'
@@ -389,6 +390,8 @@ autocmd FileType javascript,vue setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+autocmd VimEnter * CtrlPClearCache
 
 " * search in visual mode
 vnoremap *     y/<C-r>"<cr>
