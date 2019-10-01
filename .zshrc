@@ -309,7 +309,5 @@ PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 if [[ -e "$(pwd)/.ruby-version" ]] ; then
-  rvm use $(cat .ruby-version) > /dev/null
-else;
-  echo "not a ruby dir";
+  rvm use $(cat .ruby-version) > /dev/null;
 fi
