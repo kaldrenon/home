@@ -80,6 +80,8 @@ alias pax="ps ax | ag"
 alias p='python3'
 alias pip='pip3'
 
+alias crawl="/Users/afallows/Dropbox/dwn/Dungeon\ Crawl\ Stone\ Soup\ -\ Console.app/Contents/Resources/crawl"
+
 # NeoVim
 HOST_OS=`uname`
 
@@ -273,8 +275,8 @@ zle -N zle-keymap-select
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Ensure local/bin precedes bin, add RVM, Dropbox to PATH
-PATH=$HOME/.rvm/bin:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$PATH:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
 
 start-agent() {
   if ps ax | grep '[s]sh-agent -s' > /dev/null; then
@@ -300,12 +302,14 @@ cleave() {
   cleaver ${md}.md && open ${html}.html
 }
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-source $HOME/.rvm/scripts/rvm
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+PATH=$PATH:$HOME/.rvm/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+if [[ -e "$(pwd)/.ruby-version" ]] ; then
+  rvm use $(cat .ruby-version) > /dev/null
+else;
+  echo "not a ruby dir";
+fi
