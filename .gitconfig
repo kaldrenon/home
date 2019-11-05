@@ -32,38 +32,27 @@
   default = current
 
 [alias]
-  b     = branch
-  bc    = for-each-ref --sort='-*committerdate' --format="%(refname:short)" refs/heads/
-  bm    = "!bash -c 'source ~/.githelpers && list_merged'"
-  ca    = commit --amend
-  clg   = "!f() { git clone http://github.com/$1; }; f"
-  cm    = commit -m
-  cp    = cherry-pick
-  co    = checkout
-  d     = diff
-  dc    = diff --cached
-  dcf   = diff --cached --name-only
-  dh    = "!f() { echo $1; git diff $1^ $1; }; f"
-  dhf   = "!f() { echo $1; git diff --name-only $1^ $1; }; f"
-  dl    = diff 'HEAD^1' HEAD
-  dlf   = diff 'HEAD^1' HEAD --name-only
-  ds    = stash show -p stash@{0}
-  l     = "!bash -c 'source ~/.githelpers && pretty_git_log'"
-  rb    = "!bash -c 'source ~/.githelpers && review_code'"
-  rhh   = reset --hard HEAD
-  td    = log --pretty='tformat: * %s'
-  tl    = "!f() { git describe --tags `git rev-list --tags --max-count=1`; }; f"
-  tls   = "!f() { echo \"# `git tl` / `date +\"%Y-%m-%d\"`\"; }; f"
-  tv    = "!f() { git tag -a $1 -m $1 $2; }; f"
-  s     = status
+  aa  = "!clear; git add -A; git status"
+  b   = branch
+  bc  = for-each-ref --sort='-*committerdate' --format="%(refname:short)" refs/heads/
+  bm  = "!bash -c 'source ~/.githelpers && list_merged'"
+  ca  = commit --amend
+  clg = "!f() { git clone http://github.com/$1; }; f"
+  cm  = commit -m
+  cp  = cherry-pick
+  co  = checkout
+  d   = diff
+  dc  = diff --cached
+  dcf = diff --cached --name-only
+  dl  = diff 'HEAD^1' HEAD
+  dlf = diff 'HEAD^1' HEAD --name-only
+  ds  = "!f() { echo $1; git diff $1^ $1; }; f"
+  dsf = "!f() { echo $1; git diff --name-only $1^ $1; }; f"
+  l   = "!bash -c 'source ~/.githelpers && pretty_git_log'"
+  rhh = reset --hard HEAD
 
   cached-changes = diff --cached --name-only --diff-filter=AM
   changes        = diff --name-only --diff-filter=AM
+  checkpoint     = commit -m "stopping point before I mess it up lol."
   cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
   conflicts      = diff --name-only --diff-filter=U
-  gui            = "!sh -c '/usr/local/opt/git/libexec/git-core/git-gui'"
-  release-notes  = "!bash -c 'source ~/.githelpers && release_notes'"
-  review         = "!f() { git push origin HEAD:refs/for/$1; }; f"
-  tag-version    = "!f() { git tag -a $1 -m $1 $2; };"
-
-  aa = "!clear; git add -A; git status"
