@@ -367,7 +367,7 @@ nnoremap <silent> <space>sC :lclose<cr><C-w>_
 nnoremap <space>ww :w<cr>
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
+      \ pumvisible() ? "\<C-n>" :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
