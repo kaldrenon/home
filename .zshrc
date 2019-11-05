@@ -9,6 +9,8 @@ antigen bundle docker
 antigen bundle felixr/docker-zsh-completion
 antigen apply
 
+source ~/.config/tmuxinator.zsh
+
 HISTFILE=~/.histfile   # Location of command history
 HISTSIZE=10000         # Number of history entries to keep in memory
 SAVEHIST=10000         # Number of history entries to save in HISTFILE
@@ -209,6 +211,7 @@ zz() {
 # TMUX: things that specifically benefit tmux usage
 ###
 
+alias mux="tmuxinator"
 alias tma="tmux attach -t"
 
 # Print all the color names for TMUX highlighting
