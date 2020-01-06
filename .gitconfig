@@ -50,6 +50,7 @@
   dsf = "!f() { echo $1; git diff --name-only $1^ $1; }; f"
   l   = "!bash -c 'source ~/.githelpers && pretty_git_log'"
   rhh = reset --hard HEAD
+  s   = status
 
   cached-changes = diff --cached --name-only --diff-filter=AM
   changes        = diff --name-only --diff-filter=AM
