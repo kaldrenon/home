@@ -165,6 +165,15 @@ alias bx="bundle exec"
 alias irb="pry"
 alias cop='clear; rubocop'
 
+rspeak () {
+  bundle exec rspec $@
+  if [ $? -eq 0 ]; then
+    alert "tests are green"
+  else
+    alert "tests are red"
+  fi
+}
+
 ######
 # Git(Hub)
 ######
