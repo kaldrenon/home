@@ -82,7 +82,7 @@ alias pax="ps ax | ag"
 alias p='python3'
 alias pip='pip3'
 
-alias crawl="/Users/afallows/Dropbox/dwn/Dungeon\ Crawl\ Stone\ Soup\ -\ Console.app/Contents/Resources/crawl"
+alias crawl="/Users/afallows/Dropbox/games/crawl.app/Contents/Resources/crawl"
 
 # NeoVim
 HOST_OS=`uname`
