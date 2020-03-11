@@ -1,7 +1,10 @@
-git
-curl
-tmux
-zsh
-vim
-htop
-tree
+brew "git"
+brew "curl"
+brew "tmux"
+brew "zsh"
+brew "vim"
+brew "htop"
+brew "tree"
+brew "the_silver_searcher"
+brew "hub"
+brew "python3"
