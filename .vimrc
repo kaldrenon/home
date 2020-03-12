@@ -104,17 +104,18 @@ call plug#end()
 
 filetype plugin indent on
 
-for cs in ['spacegray', 'pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
-  try
-    execute 'colorscheme' cs
-    break
-  catch
-  endtry
-endfor
 
 if (has("termguicolors"))
   set termguicolors
-  execute 'colorscheme OceanicNext'
+  execute 'colorscheme spacegray'
+else
+  for cs in ['spacegray', 'pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
+    try
+      execute 'colorscheme' cs
+      break
+    catch
+    endtry
+  endfor
 endif
 
 "Set options for plugins
