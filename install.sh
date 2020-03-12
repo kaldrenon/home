@@ -16,6 +16,8 @@ else
   brew bundle
 fi
 
+ln -s ${pwd}/gittemplate ~/.git_template
+
 # nvm
 if [ -x $(command -V nvm) ]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
