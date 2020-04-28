@@ -148,9 +148,15 @@ vimdl() {
 }
 alias vl="vimdl"
 
+
 # Open files in merge conflict state
 vimconf() {
   ${VIM_BIN} -o `git diff --name-only --diff-filter=U`
+}
+
+# Open all files breaking rubocop rules
+vimcops() {
+  ${VIM_BIN} -o `rubocop -f fi`
 }
 
 vimdf() {
@@ -286,7 +292,7 @@ zle -N zle-keymap-select
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
-# Ensure local/bin precedes bin, add RVM, Dropbox to PATH
+# Ensure local/bin precedes bin, add Dropbox to PATH
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
 
@@ -320,6 +326,6 @@ export NVM_DIR=~/.nvm
 PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-if [[ -e "$(pwd)/.ruby-version" ]] ; then
-  rvm use $(cat .ruby-version) > /dev/null;
-fi
+# if [[ -e "$(pwd)/.ruby-version" ]] ; then
+#   rvm use $(cat .ruby-version) > /dev/null;
+# fi
