@@ -4,7 +4,7 @@ filetype off
 "set runtimepath+=~/.vim/bundle/Vundle.vim
 "call vundle#rc()
 "call plug#begin('~/.local/share/nvim/site/plugged')
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin( stdpath('data') . '/plugged')
 runtime macros/matchit.vim
 
 set runtimepath^=~/.vim
@@ -86,9 +86,7 @@ Plug 'mattn/webapi-vim'
 
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'neoclide/coc.nvim'
-  Plug 'neoclide/coc-solargraph'
-  Plug 'neoclide/coc-snippets'
+  Plug 'neoclide/coc.nvim', {'branch': 'release' }
 
   " Coc Nvim Config
   set hidden
@@ -106,17 +104,18 @@ call plug#end()
 
 filetype plugin indent on
 
-for cs in ['spacegray', 'pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
-  try
-    execute 'colorscheme' cs
-    break
-  catch
-  endtry
-endfor
 
 if (has("termguicolors"))
   set termguicolors
-  execute 'colorscheme OceanicNext'
+  execute 'colorscheme spacegray'
+else
+  for cs in ['spacegray', 'pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
+    try
+      execute 'colorscheme' cs
+      break
+    catch
+    endtry
+  endfor
 endif
 
 "Set options for plugins

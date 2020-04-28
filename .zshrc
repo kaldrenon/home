@@ -131,7 +131,10 @@ export VISUAL
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vpi="${VIM_BIN} -c PluginInstall"
-alias git="hub"
+HAS_HUB=`which hub`
+if [ ${HAS_HUB} = "hub not found" ]; then
+  alias git="hub"
+fi
 
 alias dotfiles="cd ~/home && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 
@@ -321,11 +324,12 @@ cleave() {
 }
 
 export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-# if [[ -e "$(pwd)/.ruby-version" ]] ; then
-#   rvm use $(cat .ruby-version) > /dev/null;
-# fi
+if [[ -e "$(pwd)/.ruby-version" ]] ; then
+  rvm use $(cat .ruby-version) > /dev/null;
+fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
