@@ -132,7 +132,7 @@ alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vpi="${VIM_BIN} -c PluginInstall"
 HAS_HUB=`which hub`
-if [ ${HAS_HUB} = "hub not found" ]; then
+if [ ${HAS_HUB} != "hub not found" ]; then
   alias git="hub"
 fi
 
