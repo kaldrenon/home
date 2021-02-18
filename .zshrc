@@ -150,6 +150,7 @@ if [ ${HAS_HUB} != "hub not found" ]; then
 fi
 
 alias dotfiles="cd ~/home && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
