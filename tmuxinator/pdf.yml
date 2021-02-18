@@ -1,0 +1,18 @@
+# /Users/afallows/.config/tmuxinator/pdf.yml
+
+name: pdf
+root: ~/cmm/pdfmotron
+
+windows:
+  - code:
+      layout: even-vertical
+      panes:
+        - nv
+  - console:
+      layout: even-vertical
+      panes:
+        - docker-compose run app bundle exec rails c
+  - server:
+      layout: even-vertical
+      panes:
+        - docker-compose up

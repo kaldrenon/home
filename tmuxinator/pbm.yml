@@ -1,0 +1,17 @@
+# /Users/afallows/.config/tmuxinator/cb.yml
+
+name: pbmproxy
+root: ~/cmm/pbmproxy
+windows:
+  - code:
+      layout: even-vertical
+      panes:
+        - nv
+  - console:
+      layout: even-vertical
+      panes:
+        - docker-compose run app bundle exec rails c
+  - server:
+      layout: even-vertical
+      panes:
+        - docker-compose up

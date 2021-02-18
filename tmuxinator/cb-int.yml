@@ -1,0 +1,8 @@
+# /Users/afallows/.config/tmuxinator/cb-int.yml
+
+name: cb-int
+root: ~/cmm/criteria_builder_client_integration_tests
+pre_window: rvm use 2.4
+windows:
+  - code: nv
+  - console: bundle exec rspec
