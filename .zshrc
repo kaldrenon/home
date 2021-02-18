@@ -74,7 +74,20 @@ alias vkill='vagrant halt && vagrant destroy -f'
 
 alias kiex="~/.kiex/bin/kiex"
 
-shovel() ( cd ~/cmm/dev && ./script/run shovel "$@"; )
+export PLATFORM_DEV=$HOME/cmm/dev # change to match your local dev directory
+shovel() ( cd $PLATFORM_DEV && ./script/run shovel "$@"; )
+alias de='docker exec -e COLUMNS="$(tput cols)" -e LINES="$(tput lines)" -ti'
+fpath=($PLATFORM_DEV/misc/completion/ $fpath)
+autoload -U compinit && compinit
+
+alias dcr='docker-compose run --rm app'
+alias dcrt='docker-compose run --rm -e RAILS_ENV=test app'
+
+alias dce='docker-compose exec app'
+alias dcet='docker-compose exec -e RAILS_ENV=test app'
+dca() {
+  docker attach $(docker-compose ps -q app)
+}
 
 # Process search
 alias pax="ps ax | ag"
