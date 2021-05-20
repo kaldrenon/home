@@ -50,6 +50,7 @@
   ds  = "!f() { echo $1; git diff $1^ $1; }; f"
   dsf = "!f() { echo $1; git diff --name-only $1^ $1; }; f"
   l   = "!bash -c 'source ~/.githelpers && pretty_git_log'"
+  nvm = reset --soft HEAD~1
   rhh = reset --hard HEAD
   s   = status
 
