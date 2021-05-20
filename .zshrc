@@ -80,6 +80,8 @@ alias de='docker exec -e COLUMNS="$(tput cols)" -e LINES="$(tput lines)" -ti'
 fpath=($PLATFORM_DEV/misc/completion/ $fpath)
 autoload -U compinit && compinit
 
+alias dc='docker-compose'
+
 alias dcr='docker-compose run --rm app'
 alias dcrt='docker-compose run --rm -e RAILS_ENV=test app'
 
@@ -88,6 +90,20 @@ alias dcet='docker-compose exec -e RAILS_ENV=test app'
 dca() {
   docker attach $(docker-compose ps -q app)
 }
+
+dcrebuild() {
+  docker-compose build --no-cache --pull
+}
+
+dcnuke () {
+  docker stop $(docker ps -a -q)
+  docker rm $(docker ps -a -q)
+  docker rmi $(docker images -qa)
+}
+
+# k8s
+alias kc="kubectl"
+alias mk="minikube"
 
 # Process search
 alias pax="ps ax | ag"
@@ -120,6 +136,9 @@ if [[ $HOST_OS = 'Darwin' ]]; then
   alias bsl="brew services list"
   alias bsr="brew services restart"
 fi
+
+# homebrew
+alias steep="brew update && brew upgrade && brew cleanup"
 
 # PostgreSQL
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -337,13 +356,13 @@ cleave() {
   cleaver ${md}.md && open ${html}.html
 }
 
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-PATH=$PATH:$HOME/.rvm/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-if [[ -e "$(pwd)/.ruby-version" ]] ; then
-  rvm use $(cat .ruby-version) > /dev/null;
-fi
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR=~/.nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#
+# PATH=$PATH:$HOME/.rvm/bin
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+#
+# if [[ -e "$(pwd)/.ruby-version" ]] ; then
+#   rvm use $(cat .ruby-version) > /dev/null;
+# fi
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
