@@ -6,6 +6,6 @@ There is also an install script in the root directory of the repo, but be carefu
 
 The fastest way to grab this is: 
 
-    git clone git://github.com/kaldrenon/vim-tools; cd vim-tools; ./install.sh
+    git clone git://github.com/kaldrenon/home; cd home; ./install.sh
 
 Note that I am using Vundle, so to pick up the plugins I use, you'll want to run `:BundleInstall` when you start vim for the first time after cloning and installing.
